@@ -1,19 +1,183 @@
 //
-//  ContentView.swift
+//  DivvyStacks.swift
 //  testingFlow
 //
 //  Created by joyce jiang on 11/8/23.
 //
 
+import Foundation
 import SwiftUI
 
-struct ContentView: View {
+struct DivvyStacks: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 28) {
       HStack(spacing: 0) {
-        Text("No new Divvys to catch up on!")
-          .font(Font.custom("SF Pro Display", size: 24))
-          .foregroundColor(Color(red: 0.74, green: 0.74, blue: 0.74))
+        ZStack() {
+          ZStack() {
+            Rectangle()
+              .foregroundColor(.clear)
+              .frame(width: 222.80, height: 256.79)
+              .background(.white)
+              .cornerRadius(9.32)
+              .overlay(
+                RoundedRectangle(cornerRadius: 9.32)
+                  .inset(by: -0.93)
+                  .stroke(Color(red: 0.95, green: 0.95, blue: 0.95), lineWidth: 0.93)
+              )
+              .offset(x: 0, y: 0)
+              .rotationEffect(.degrees(-10.17))
+              .shadow(
+                color: Color(red: 0, green: 0, blue: 0, opacity: 0.06), radius: 7.46, y: 3.73
+              )
+            Text("November 8")
+              .font(Font.custom("SF Pro Display", size: 22.37))
+              .foregroundColor(Color(red: 0.05, green: 0.09, blue: 0.13))
+              .offset(x: -39.61, y: -87.83)
+              .rotationEffect(.degrees(-10.17))
+            Text("OBAO")
+              .font(Font.custom("SF Pro Display", size: 22.37))
+              .foregroundColor(Color(red: 0.05, green: 0.09, blue: 0.13))
+              .offset(x: -99.88, y: 93.52)
+              .rotationEffect(.degrees(-10.17))
+            HStack(alignment: .top, spacing: -18.64) {
+              Rectangle()
+                .foregroundColor(.clear)
+                .frame(width: 44.74, height: 44.74)
+                .background(
+                  AsyncImage(url: URL(string: "https://via.placeholder.com/45x45"))
+                )
+                .cornerRadius(22.37)
+              Rectangle()
+                .foregroundColor(.clear)
+                .frame(width: 44.74, height: 44.74)
+                .background(
+                  AsyncImage(url: URL(string: "https://via.placeholder.com/45x45"))
+                )
+                .cornerRadius(93.20)
+              Rectangle()
+                .foregroundColor(.clear)
+                .frame(width: 44.74, height: 44.74)
+                .background(
+                  AsyncImage(url: URL(string: "https://via.placeholder.com/45x45"))
+                )
+                .cornerRadius(93.20)
+            }
+            .frame(width: 96.55, height: 44.66)
+            .offset(x: -72.33, y: 51.09)
+            .rotationEffect(.degrees(-10.17))
+          }
+          .frame(width: 222.80, height: 256.79)
+          .offset(x: 80.10, y: -28.11)
+          .rotationEffect(.degrees(-10.17))
+          ZStack() {
+            Rectangle()
+              .foregroundColor(.clear)
+              .frame(width: 222.84, height: 256.75)
+              .background(.white)
+              .cornerRadius(9.32)
+              .overlay(
+                RoundedRectangle(cornerRadius: 9.32)
+                  .inset(by: -0.93)
+                  .stroke(Color(red: 0.95, green: 0.95, blue: 0.95), lineWidth: 0.93)
+              )
+              .offset(x: 0, y: 0)
+              .rotationEffect(.degrees(17.93))
+              .shadow(
+                color: Color(red: 0, green: 0, blue: 0, opacity: 0.06), radius: 7.46, y: 3.73
+              )
+            Text("September")
+              .font(Font.custom("SF Pro Display", size: 24))
+              .foregroundColor(Color(red: 0.05, green: 0.09, blue: 0.13))
+              .offset(x: -30.55, y: -96.60)
+              .rotationEffect(.degrees(17.93))
+            HStack(alignment: .top, spacing: -18.64) {
+              Rectangle()
+                .foregroundColor(.clear)
+                .frame(width: 44.74, height: 44.74)
+                .background(
+                  AsyncImage(url: URL(string: "https://via.placeholder.com/45x45"))
+                )
+                .cornerRadius(22.37)
+              Rectangle()
+                .foregroundColor(.clear)
+                .frame(width: 44.74, height: 44.74)
+                .background(
+                  AsyncImage(url: URL(string: "https://via.placeholder.com/45x45"))
+                )
+                .cornerRadius(93.20)
+              Rectangle()
+                .foregroundColor(.clear)
+                .frame(width: 44.74, height: 44.74)
+                .background(
+                  AsyncImage(url: URL(string: "https://via.placeholder.com/45x45"))
+                )
+                .cornerRadius(93.20)
+            }
+            .frame(width: 96.56, height: 44.65)
+            .offset(x: 2.45, y: 36.99)
+            .rotationEffect(.degrees(17.93))
+          }
+          .frame(width: 222.84, height: 256.75)
+          .offset(x: -76.58, y: 40.49)
+          .rotationEffect(.degrees(17.93))
+          Rectangle()
+            .foregroundColor(.clear)
+            .frame(width: 222.79, height: 256.80)
+            .background(.white)
+            .cornerRadius(9.32)
+            .overlay(
+              RoundedRectangle(cornerRadius: 9.32)
+                .inset(by: -0.93)
+                .stroke(Color(red: 0.95, green: 0.95, blue: 0.95), lineWidth: 0.93)
+            )
+            .offset(x: -2.15, y: 10.41)
+            .rotationEffect(.degrees(6.01))
+            .shadow(
+              color: Color(red: 0, green: 0, blue: 0, opacity: 0.06), radius: 7.46, y: 3.73
+            )
+          Text("November 8")
+            .font(Font.custom("SF Pro Display", size: 24))
+            .foregroundColor(Color(red: 0.05, green: 0.09, blue: 0.13))
+            .offset(x: -30.30, y: -81.40)
+            .rotationEffect(.degrees(6.01))
+          Text("✨ New divvy")
+            .font(Font.custom("SF Pro Display", size: 12))
+            .foregroundColor(Color(red: 0.92, green: 0.34, blue: 0.34))
+            .offset(x: -57.02, y: -52.67)
+            .rotationEffect(.degrees(6.01))
+          Text("OBAO")
+            .font(Font.custom("SF Pro Display", size: 24))
+            .foregroundColor(Color(red: 0.05, green: 0.09, blue: 0.13))
+            .offset(x: -40.97, y: 101.82)
+            .rotationEffect(.degrees(6.01))
+          HStack(alignment: .top, spacing: -18.64) {
+            Rectangle()
+              .foregroundColor(.clear)
+              .frame(width: 44.74, height: 44.74)
+              .background(
+                AsyncImage(url: URL(string: "https://via.placeholder.com/45x45"))
+              )
+              .cornerRadius(22.37)
+            Rectangle()
+              .foregroundColor(.clear)
+              .frame(width: 44.74, height: 44.74)
+              .background(
+                AsyncImage(url: URL(string: "https://via.placeholder.com/45x45"))
+              )
+              .cornerRadius(93.20)
+            Rectangle()
+              .foregroundColor(.clear)
+              .frame(width: 44.74, height: 44.74)
+              .background(
+                AsyncImage(url: URL(string: "https://via.placeholder.com/45x45"))
+              )
+              .cornerRadius(93.20)
+          }
+          .frame(width: 96.54, height: 44.66)
+          .offset(x: -30.51, y: 57.86)
+          .rotationEffect(.degrees(6.01))
+        }
+        .frame(minWidth: 376, maxWidth: 376, maxHeight: .infinity)
       }
       .frame(maxWidth: .infinity, minHeight: 313, maxHeight: 313)
       ZStack() {
@@ -336,5 +500,5 @@ struct ContentView: View {
 
 
 #Preview {
-    ContentView()
+      DivvyStacks()
 }
