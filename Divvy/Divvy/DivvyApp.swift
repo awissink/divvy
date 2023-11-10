@@ -11,7 +11,8 @@ import SwiftUI
 struct DivvyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            //ContentView()
+            AuthView()
         }
     }
 }
