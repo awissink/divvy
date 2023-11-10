@@ -44,6 +44,7 @@
 		5274D5212AEF382C0091B8C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5274D5242AEF382C0091B8C1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		528D4BF52AFED64500282606 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D61877EE2AFEDBFF0023B69A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +100,7 @@
 		5274D51C2AEF382B0091B8C1 /* Divvy */ = {
 			isa = PBXGroup;
 			children = (
+				D61877EE2AFEDBFF0023B69A /* Info.plist */,
 				528D4BF52AFED64500282606 /* GoogleService-Info.plist */,
 				5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */,
 				5274D51F2AEF382B0091B8C1 /* ContentView.swift */,
@@ -352,6 +354,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Divvy/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Divvy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -381,6 +384,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Divvy/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Divvy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
