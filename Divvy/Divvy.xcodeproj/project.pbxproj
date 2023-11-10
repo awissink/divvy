@@ -11,7 +11,6 @@
 		5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274D51F2AEF382B0091B8C1 /* ContentView.swift */; };
 		5274D5222AEF382C0091B8C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5274D5212AEF382C0091B8C1 /* Assets.xcassets */; };
 		5274D5252AEF382C0091B8C1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5274D5242AEF382C0091B8C1 /* Preview Assets.xcassets */; };
-		528D4BC22AFECBF500282606 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D4BC12AFECBF500282606 /* GoogleService-Info.plist */; };
 		528D4BC52AFECCCE00282606 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BC42AFECCCE00282606 /* FirebaseAnalytics */; };
 		528D4BC72AFECCCE00282606 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BC62AFECCCE00282606 /* FirebaseAnalyticsOnDeviceConversion */; };
 		528D4BC92AFECCCE00282606 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BC82AFECCCE00282606 /* FirebaseAnalyticsSwift */; };
@@ -35,7 +34,7 @@
 		528D4BED2AFECCCE00282606 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BEC2AFECCCE00282606 /* FirebaseRemoteConfigSwift */; };
 		528D4BEF2AFECCCE00282606 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BEE2AFECCCE00282606 /* FirebaseStorage */; };
 		528D4BF12AFECCCE00282606 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BF02AFECCCE00282606 /* FirebaseStorageCombine-Community */; };
-		528D4BF22AFED27B00282606 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 528D4BC12AFECBF500282606 /* GoogleService-Info.plist */; };
+		528D4BF62AFED64500282606 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D4BF52AFED64500282606 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,7 +43,7 @@
 		5274D51F2AEF382B0091B8C1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5274D5212AEF382C0091B8C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5274D5242AEF382C0091B8C1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		528D4BC12AFECBF500282606 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		528D4BF52AFED64500282606 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +99,7 @@
 		5274D51C2AEF382B0091B8C1 /* Divvy */ = {
 			isa = PBXGroup;
 			children = (
-				528D4BC12AFECBF500282606 /* GoogleService-Info.plist */,
+				528D4BF52AFED64500282606 /* GoogleService-Info.plist */,
 				5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */,
 				5274D51F2AEF382B0091B8C1 /* ContentView.swift */,
 				5274D5212AEF382C0091B8C1 /* Assets.xcassets */,
@@ -205,7 +204,7 @@
 			files = (
 				5274D5252AEF382C0091B8C1 /* Preview Assets.xcassets in Resources */,
 				5274D5222AEF382C0091B8C1 /* Assets.xcassets in Resources */,
-				528D4BC22AFECBF500282606 /* GoogleService-Info.plist in Resources */,
+				528D4BF62AFED64500282606 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +215,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				528D4BF22AFED27B00282606 /* GoogleService-Info.plist in Sources */,
 				5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */,
 				5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */,
 			);
