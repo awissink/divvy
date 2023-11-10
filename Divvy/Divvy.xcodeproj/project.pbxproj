@@ -35,6 +35,7 @@
 		528D4BED2AFECCCE00282606 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BEC2AFECCCE00282606 /* FirebaseRemoteConfigSwift */; };
 		528D4BEF2AFECCCE00282606 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BEE2AFECCCE00282606 /* FirebaseStorage */; };
 		528D4BF12AFECCCE00282606 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BF02AFECCCE00282606 /* FirebaseStorageCombine-Community */; };
+		528D4BF22AFED27B00282606 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 528D4BC12AFECBF500282606 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -215,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				528D4BF22AFED27B00282606 /* GoogleService-Info.plist in Sources */,
 				5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */,
 				5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */,
 			);
