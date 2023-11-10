@@ -13,6 +13,9 @@ struct DivvyApp: App {
         WindowGroup {
             //ContentView()
             AuthView()
+                .onAppear {
+                    FirebaseAppWrapper.configure()
+                }
         }
     }
 }

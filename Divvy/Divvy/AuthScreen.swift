@@ -8,14 +8,20 @@
 import Foundation
 import SwiftUI
 import FirebaseAuth
+import Firebase
 
 struct AuthView: View {
     
     @State private var phoneNumber: String = ""
     
     var body: some View {
+    
+        
         VStack {
             Text("Welcome to Divvy!")
+                .onAppear {
+                    print("hey there")
+                }
                 .font(.largeTitle)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
@@ -63,6 +69,8 @@ class PhoneVerificationViewModel: ObservableObject {
                 return
             }
             self.verificationID = verificationID
+            
+            print(verificationID!)
         }
     }
 }
