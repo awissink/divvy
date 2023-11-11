@@ -40,6 +40,7 @@ struct AuthView: View {
                 .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
             Spacer().frame(height: 5)
             TextField("", text: $phoneNumber)
+                .padding(.leading, 10) //add padding so the cursor is not on the very edge
                 .frame(width: 326, height: 40)
                 .background(Color(red: 0xE0 / 240.0, green: 0xE0 / 240.0, blue: 0xE0 / 240.0))
                 .cornerRadius(10)
