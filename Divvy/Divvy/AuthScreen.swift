@@ -13,6 +13,10 @@ import Firebase
 struct AuthView: View {
     
     @State private var phoneNumber: String = ""
+    @State private var errorMessage: String?
+    @State private var verificationID: String?
+//    @State private var isVerificationViewPresented = false
+    @State private var userVerificationInput: String=""
     
     var body: some View {
     
@@ -50,9 +54,13 @@ struct AuthView: View {
             
             //Enter button which will send verification code
             //Will also link with firebase to create a new account (TBI)
-            Button(action: {
-                print("sign up button tapped")
-            }) {
+            NavigationLink(
+                destination: VerificationView(verificationID: $verificationID),
+                isActive: Binding(
+                    get: { verificationID != nil},
+                    set: { _ in}
+                )
+            ) {
                 Text("enter")
                     .foregroundColor(.white)
                     .padding(.leading, 100)
@@ -76,53 +84,41 @@ struct AuthView: View {
                     .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
                     .underline()
             }
-            
-            
-//            Button("Verify Phone Number") {
-//                PhoneVerificationViewModel().verifyPhoneNumber(phoneNumber)
-//
-//            }
 
-            if let errorMessage = PhoneVerificationViewModel().errorMessage {
+            if let errorMessage = errorMessage {
                 Text(errorMessage)
                     .foregroundColor(.red)
             }
 
-            if let verificationID = PhoneVerificationViewModel().verificationID {
+            if let verificationID = verificationID {
                 // You can use the verificationID here or navigate to another screen
                 // based on your application logic.
                 Text("Verification ID: \(verificationID)")
             }
         }
         //add padding and offset to align elements and push the whole VStack up on the screen
-            .offset(y: -50)
-            .padding()
-
+        .offset(y: -50)
+        .padding()
+    }
+    
+    func verifyNumber() {
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
+            
+            guard let verificationID = verificationID, error == nil else {
+                return
+            }
+            self.verificationID = verificationID
+            VerificationView(verificationID: $verificationID)
+        }
         
     }
+    
 }
+
 
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
         AuthView()
-    }
-}
-
-
-class PhoneVerificationViewModel: ObservableObject {
-    @Published var verificationID: String?
-    @Published var errorMessage: String?
-
-    func verifyPhoneNumber(_ phoneNumber: String) {
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
-            if let error = error {
-                self.errorMessage = error.localizedDescription
-                return
-            }
-            self.verificationID = verificationID
-            
-            print(verificationID!)
-        }
     }
 }
 
