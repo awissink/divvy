@@ -63,15 +63,29 @@ struct individualClaims: View {
         //restaurant name
         
         VStack(alignment: .leading) {
-            Text("Restaurant name")
-                .font(Font.system(size: 32))
-                .foregroundColor(Color(red: 0.20, green: 0.20, blue: 0.20))
-                .multilineTextAlignment(.leading)
-            Text("Date")
-                .font(Font.system(size: 22))
-                .foregroundColor(Color(red: 0.20, green: 0.20, blue: 0.20))
-                .multilineTextAlignment(.leading)
+            HStack{
+                Image(systemName: "fork.knife")
+                    .foregroundColor(.secondary)
+                Spacer()
+                Text("Restaurant name")
+                    .font(Font.system(size: 32))
+                    .foregroundColor(Color(red: 0.20, green: 0.20, blue: 0.20))
+                    .multilineTextAlignment(.leading)
+            }
+            
+            HStack{
+                Image(systemName: "calendar")
+                    .foregroundColor(.secondary)
+                Spacer()
+                Text("Date")
+                    .font(Font.system(size: 22))
+                    .foregroundColor(Color(red: 0.20, green: 0.20, blue: 0.20))
+                    .multilineTextAlignment(.leading)
+            }
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        
         
         //list of entrees
         
@@ -120,6 +134,9 @@ let menuItems = [
     MenuItem(name: "Pasta", price: 12.99),
     MenuItem(name: "Salad", price: 8.99),
     MenuItem(name: "Steak", price: 19.99),
+    MenuItem(name: "Subtotal", price: 79.00),
+    MenuItem(name: "Tax", price: 5.53),
+    MenuItem(name: "Tip", price: 15.78),
     // Add more menu items as needed
 ]
 
