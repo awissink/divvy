@@ -15,6 +15,7 @@
 		3465A7282AFC652E006A472A /* testingFlowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3465A7272AFC652E006A472A /* testingFlowUITests.swift */; };
 		3465A72A2AFC652E006A472A /* testingFlowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3465A7292AFC652E006A472A /* testingFlowUITestsLaunchTests.swift */; };
 		3465A73B2AFC7803006A472A /* DivvyStacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3465A73A2AFC7803006A472A /* DivvyStacks.swift */; };
+		349064FA2AFED615007C509A /* onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349064F92AFED615007C509A /* onboarding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		3465A7272AFC652E006A472A /* testingFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingFlowUITests.swift; sourceTree = "<group>"; };
 		3465A7292AFC652E006A472A /* testingFlowUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingFlowUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3465A73A2AFC7803006A472A /* DivvyStacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivvyStacks.swift; sourceTree = "<group>"; };
+		349064F92AFED615007C509A /* onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboarding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				3465A70C2AFC652B006A472A /* testingFlowApp.swift */,
 				3465A70E2AFC652B006A472A /* ContentView.swift */,
 				3465A73A2AFC7803006A472A /* DivvyStacks.swift */,
+				349064F92AFED615007C509A /* onboarding.swift */,
 				3465A7102AFC652E006A472A /* Assets.xcassets */,
 				3465A7122AFC652E006A472A /* Preview Content */,
 			);
@@ -262,6 +265,7 @@
 			files = (
 				3465A73B2AFC7803006A472A /* DivvyStacks.swift in Sources */,
 				3465A70F2AFC652B006A472A /* ContentView.swift in Sources */,
+				349064FA2AFED615007C509A /* onboarding.swift in Sources */,
 				3465A70D2AFC652B006A472A /* testingFlowApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
