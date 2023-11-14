@@ -15,6 +15,10 @@
 		3465A7282AFC652E006A472A /* testingFlowUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3465A7272AFC652E006A472A /* testingFlowUITests.swift */; };
 		3465A72A2AFC652E006A472A /* testingFlowUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3465A7292AFC652E006A472A /* testingFlowUITestsLaunchTests.swift */; };
 		3465A73B2AFC7803006A472A /* DivvyStacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3465A73A2AFC7803006A472A /* DivvyStacks.swift */; };
+		346DD32B2B02FF64001BDF22 /* addMembers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346DD32A2B02FF64001BDF22 /* addMembers.swift */; };
+		346DD32D2B0301BF001BDF22 /* addMembersStack.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 346DD32C2B0301BF001BDF22 /* addMembersStack.storyboard */; };
+		346DD32F2B030401001BDF22 /* cameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346DD32E2B030401001BDF22 /* cameraView.swift */; };
+		346DD3312B030484001BDF22 /* individualClaimStacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346DD3302B030484001BDF22 /* individualClaimStacks.swift */; };
 		349064FA2AFED615007C509A /* onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349064F92AFED615007C509A /* onboarding.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +51,10 @@
 		3465A7272AFC652E006A472A /* testingFlowUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingFlowUITests.swift; sourceTree = "<group>"; };
 		3465A7292AFC652E006A472A /* testingFlowUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingFlowUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3465A73A2AFC7803006A472A /* DivvyStacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivvyStacks.swift; sourceTree = "<group>"; };
+		346DD32A2B02FF64001BDF22 /* addMembers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addMembers.swift; sourceTree = "<group>"; };
+		346DD32C2B0301BF001BDF22 /* addMembersStack.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = addMembersStack.storyboard; sourceTree = "<group>"; };
+		346DD32E2B030401001BDF22 /* cameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraView.swift; sourceTree = "<group>"; };
+		346DD3302B030484001BDF22 /* individualClaimStacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = individualClaimStacks.swift; sourceTree = "<group>"; };
 		349064F92AFED615007C509A /* onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboarding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,8 +110,12 @@
 				3465A70E2AFC652B006A472A /* ContentView.swift */,
 				3465A73A2AFC7803006A472A /* DivvyStacks.swift */,
 				349064F92AFED615007C509A /* onboarding.swift */,
+				346DD32A2B02FF64001BDF22 /* addMembers.swift */,
+				346DD32E2B030401001BDF22 /* cameraView.swift */,
+				346DD3302B030484001BDF22 /* individualClaimStacks.swift */,
 				3465A7102AFC652E006A472A /* Assets.xcassets */,
 				3465A7122AFC652E006A472A /* Preview Content */,
+				346DD32C2B0301BF001BDF22 /* addMembersStack.storyboard */,
 			);
 			path = testingFlow;
 			sourceTree = "<group>";
@@ -237,6 +249,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				346DD32D2B0301BF001BDF22 /* addMembersStack.storyboard in Resources */,
 				3465A7142AFC652E006A472A /* Preview Assets.xcassets in Resources */,
 				3465A7112AFC652E006A472A /* Assets.xcassets in Resources */,
 			);
@@ -263,9 +276,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				346DD3312B030484001BDF22 /* individualClaimStacks.swift in Sources */,
 				3465A73B2AFC7803006A472A /* DivvyStacks.swift in Sources */,
+				346DD32F2B030401001BDF22 /* cameraView.swift in Sources */,
 				3465A70F2AFC652B006A472A /* ContentView.swift in Sources */,
 				349064FA2AFED615007C509A /* onboarding.swift in Sources */,
+				346DD32B2B02FF64001BDF22 /* addMembers.swift in Sources */,
 				3465A70D2AFC652B006A472A /* testingFlowApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
