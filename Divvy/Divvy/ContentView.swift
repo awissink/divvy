@@ -22,6 +22,11 @@ struct ContentView: View {
                 Button(isEditing ? "Done" : "Edit") {
                     isEditing.toggle()
                 }
+                .foregroundColor(.white)
+                .frame(width: 80, height: 40)
+                .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
+                .cornerRadius(10)
+                .font(.system(size:18, weight:.semibold))
             }
             List($viewModel.menuItems) { $item in
                             MenuItemView(menuItem: $item, isEditing: isEditing)
@@ -41,7 +46,12 @@ struct ContentView: View {
                 Spacer()
                 Button("Share") {
                 }
+                .foregroundColor(.white)
+                .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
+                .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
+                .cornerRadius(10)
+                .font(.system(size:18, weight:.semibold))
             }
         }
         .padding()
