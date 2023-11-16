@@ -19,6 +19,7 @@ struct DivvyApp: App {
         
         WindowGroup {
             ContentView()
+            //CameraView()
         }
     }
 }

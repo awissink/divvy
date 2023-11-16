@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		523325412B04355E00FB6889 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523325402B04355E00FB6889 /* FirebaseAuthManager.swift */; };
+		526A00622B06AA8800C4D236 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A00612B06AA8800C4D236 /* CameraView.swift */; };
+		526A00642B06BD2900C4D236 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A00632B06BD2900C4D236 /* ImagePicker.swift */; };
 		5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */; };
 		5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274D51F2AEF382B0091B8C1 /* ContentView.swift */; };
 		5274D5222AEF382C0091B8C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5274D5212AEF382C0091B8C1 /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		523325402B04355E00FB6889 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
+		526A00612B06AA8800C4D236 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		526A00632B06BD2900C4D236 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5274D51A2AEF382B0091B8C1 /* Divvy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Divvy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivvyApp.swift; sourceTree = "<group>"; };
 		5274D51F2AEF382B0091B8C1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 				5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */,
 				523325402B04355E00FB6889 /* FirebaseAuthManager.swift */,
 				5274D51F2AEF382B0091B8C1 /* ContentView.swift */,
+				526A00612B06AA8800C4D236 /* CameraView.swift */,
+				526A00632B06BD2900C4D236 /* ImagePicker.swift */,
 				5274D5212AEF382C0091B8C1 /* Assets.xcassets */,
 				5274D5232AEF382C0091B8C1 /* Preview Content */,
 			);
@@ -220,7 +226,9 @@
 			files = (
 				523325412B04355E00FB6889 /* FirebaseAuthManager.swift in Sources */,
 				5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */,
+				526A00642B06BD2900C4D236 /* ImagePicker.swift in Sources */,
 				5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */,
+				526A00622B06AA8800C4D236 /* CameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
