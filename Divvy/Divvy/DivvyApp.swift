@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@main
+//@main
 struct DivvyApp: App {
     var body: some Scene {
         WindowGroup {
