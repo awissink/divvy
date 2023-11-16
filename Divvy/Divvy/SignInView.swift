@@ -1,21 +1,19 @@
 //
-//  ContentView.swift
+//  SignInView.swift
 //  Divvy
 //
-//  Created by Test Account on 10/29/23.
+//  Created by Grace Perrin on 11/16/23.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct SignInView: View {
     
     @State private var userEmail: String = ""
     @State private var userPassword: String = ""
     
     var body: some View {
-        
         NavigationStack {
-            
             //VStack for all the elements on the signup page
             VStack {
                 
@@ -60,14 +58,13 @@ struct ContentView: View {
                     .cornerRadius(10)
                     .textFieldStyle(PlainTextFieldStyle())
                 
-                Button("Create User") {
-                    print("trying to create a user")
-                    FirebaseAuthManager.createUser(email: userEmail, password: userPassword) { uid, error in
+                Button("Sign In") {
+                    FirebaseAuthManager.signIn(email: userEmail, password: userPassword) { uid, error in
                         if let error = error {
-                            print("Error creating user:", error.localizedDescription)
+                            print("Error signing in:", error.localizedDescription)
                         } else if let uid = uid {
-                            print("User created:", uid)
-                            // Perform actions after user creation (e.g., navigating to another view)
+                            print("User signed in:", uid)
+                            // Perform actions after sign-in (e.g., navigate to the main screen)
                         }
                     }
                 }
@@ -79,22 +76,19 @@ struct ContentView: View {
                 .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
                 .cornerRadius(20)
                 .font(.system(size:18, weight:.semibold))
-
                 
-                NavigationLink(destination: SignInView()) {
-                    Text("already a user? sign in here")
-                        .offset(y: 5)
+                NavigationLink(destination: ContentView()) {
+                    Text("don't have an account? sign up here")
                         .font(.system(size:16, weight:.medium))
                         .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
                         .underline()
                 }
-
+                
             }
         }
     }
 }
 
-
 #Preview {
-    ContentView()
+    SignInView()
 }
