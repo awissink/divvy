@@ -80,6 +80,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C5ED1792B059BCE00D59DF5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5274D5112AEF382A0091B8C1 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +106,7 @@
 		5274D51C2AEF382B0091B8C1 /* Divvy */ = {
 			isa = PBXGroup;
 			children = (
+				4C5ED1792B059BCE00D59DF5 /* Model */,
 				528D4BF52AFED64500282606 /* GoogleService-Info.plist */,
 				5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */,
 				5274D51F2AEF382B0091B8C1 /* ContentView.swift */,
@@ -352,6 +360,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Divvy/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -381,6 +391,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Divvy/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
