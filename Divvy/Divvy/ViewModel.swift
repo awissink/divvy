@@ -26,22 +26,24 @@ class ViewModel: ObservableObject {
         let url = Bundle(for: Self.self).url(forResource: file, withExtension: "jpeg")!
         let fileData = try? Data(contentsOf: url)
         client.processDocument(fileName: file, fileData: fileData!) { result in
-            switch result {
-            case .success(let data):
-                do {
-                    let receipt = try JSONDecoder().decode(Receipt.self, from: data)
-                    self.restaurantName = receipt.vendor.name
-                    self.tax = receipt.tax
-                    self.tip = receipt.tip
-                    self.total = receipt.total
-                    for lineItem in receipt.lineItems {
-                        self.menuItems.append(lineItem)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let data):
+                    do {
+                        let receipt = try JSONDecoder().decode(Receipt.self, from: data)
+                        self.restaurantName = receipt.vendor.name
+                        self.tax = receipt.tax
+                        self.tip = receipt.tip
+                        self.total = receipt.total
+                        for lineItem in receipt.lineItems {
+                            self.menuItems.append(lineItem)
+                        }
+                    } catch {
+                        print(error)
                     }
-                } catch {
+                case .failure(let error):
                     print(error)
                 }
-            case .failure(let error):
-                print(error)
             }
         }
     }
