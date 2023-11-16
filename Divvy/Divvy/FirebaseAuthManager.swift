@@ -11,6 +11,7 @@ import FirebaseAuth
 struct FirebaseAuthManager {
     static func createUser(email: String, password: String, completion: @escaping (String?, Error?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            print("trying to create a new user")
             if let error = error {
                 completion(nil, error)
             } else {
@@ -25,6 +26,7 @@ struct FirebaseAuthManager {
 
     static func signIn(email: String, password: String, completion: @escaping (String?, Error?) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            print("trying to sign in a user")
             if let error = error {
                 completion(nil, error)
             } else {
