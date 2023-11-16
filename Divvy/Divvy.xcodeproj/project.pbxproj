@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0735FE5F2B0666AF00D34A49 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0735FE5E2B0666AF00D34A49 /* ViewModel.swift */; };
+		0735FE612B0668AC00D34A49 /* receipt.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 0735FE602B0668AC00D34A49 /* receipt.jpeg */; };
+		0735FE632B06722F00D34A49 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0735FE622B06722F00D34A49 /* MenuItemView.swift */; };
+		0735FE652B0672A600D34A49 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0735FE642B0672A600D34A49 /* Receipt.swift */; };
+		0735FE672B0672C300D34A49 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0735FE662B0672C300D34A49 /* LineItem.swift */; };
 		075608532B05A79800F708D2 /* VeryfiSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 075608522B05A79800F708D2 /* VeryfiSDK */; };
 		5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */; };
 		5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274D51F2AEF382B0091B8C1 /* ContentView.swift */; };
@@ -39,6 +44,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0735FE5E2B0666AF00D34A49 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		0735FE602B0668AC00D34A49 /* receipt.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = receipt.jpeg; sourceTree = "<group>"; };
+		0735FE622B06722F00D34A49 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
+		0735FE642B0672A600D34A49 /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
+		0735FE662B0672C300D34A49 /* LineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
 		5274D51A2AEF382B0091B8C1 /* Divvy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Divvy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivvyApp.swift; sourceTree = "<group>"; };
 		5274D51F2AEF382B0091B8C1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +114,11 @@
 				528D4BF52AFED64500282606 /* GoogleService-Info.plist */,
 				5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */,
 				5274D51F2AEF382B0091B8C1 /* ContentView.swift */,
+				0735FE622B06722F00D34A49 /* MenuItemView.swift */,
+				0735FE5E2B0666AF00D34A49 /* ViewModel.swift */,
+				0735FE642B0672A600D34A49 /* Receipt.swift */,
+				0735FE662B0672C300D34A49 /* LineItem.swift */,
+				0735FE602B0668AC00D34A49 /* receipt.jpeg */,
 				5274D5212AEF382C0091B8C1 /* Assets.xcassets */,
 				5274D5232AEF382C0091B8C1 /* Preview Content */,
 			);
@@ -206,6 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0735FE612B0668AC00D34A49 /* receipt.jpeg in Resources */,
 				5274D5252AEF382C0091B8C1 /* Preview Assets.xcassets in Resources */,
 				5274D5222AEF382C0091B8C1 /* Assets.xcassets in Resources */,
 				528D4BF62AFED64500282606 /* GoogleService-Info.plist in Resources */,
@@ -219,7 +235,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0735FE672B0672C300D34A49 /* LineItem.swift in Sources */,
+				0735FE652B0672A600D34A49 /* Receipt.swift in Sources */,
+				0735FE632B06722F00D34A49 /* MenuItemView.swift in Sources */,
 				5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */,
+				0735FE5F2B0666AF00D34A49 /* ViewModel.swift in Sources */,
 				5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
