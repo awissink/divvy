@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 @main
 struct DivvyApp: App {
+    init() {
+            FirebaseApp.configure() // Initialize Firebase
+        }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

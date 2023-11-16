@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		523325412B04355E00FB6889 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523325402B04355E00FB6889 /* FirebaseAuthManager.swift */; };
 		5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */; };
 		5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274D51F2AEF382B0091B8C1 /* ContentView.swift */; };
 		5274D5222AEF382C0091B8C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5274D5212AEF382C0091B8C1 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		523325402B04355E00FB6889 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		5274D51A2AEF382B0091B8C1 /* Divvy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Divvy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DivvyApp.swift; sourceTree = "<group>"; };
 		5274D51F2AEF382B0091B8C1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				528D4BF52AFED64500282606 /* GoogleService-Info.plist */,
 				5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */,
+				523325402B04355E00FB6889 /* FirebaseAuthManager.swift */,
 				5274D51F2AEF382B0091B8C1 /* ContentView.swift */,
 				5274D5212AEF382C0091B8C1 /* Assets.xcassets */,
 				5274D5232AEF382C0091B8C1 /* Preview Content */,
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523325412B04355E00FB6889 /* FirebaseAuthManager.swift in Sources */,
 				5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */,
 				5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */,
 			);
