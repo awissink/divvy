@@ -11,7 +11,7 @@ import Foundation
 struct LineItem: Codable, Identifiable {
     let description: String
     let id, order: Int
-    let price: Double?
-    let quantity: Int
-    let total: Double
+    var price: Double?
+    var quantity: Int
+    var total: Double
 }
