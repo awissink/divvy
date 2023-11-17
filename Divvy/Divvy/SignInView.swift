@@ -79,6 +79,7 @@ struct SignInView: View {
                 
                 NavigationLink(destination: ContentView()) {
                     Text("don't have an account? sign up here")
+                        .offset(y: 5)
                         .font(.system(size:16, weight:.medium))
                         .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
                         .underline()
@@ -89,6 +90,6 @@ struct SignInView: View {
     }
 }
 
-#Preview {
-    SignInView()
-}
+//#Preview {
+//    SignInView()
+//}

@@ -13,8 +13,6 @@ struct ContentView: View {
     @State private var userPassword: String = ""
     
     var body: some View {
-        
-        NavigationStack {
             
             //VStack for all the elements on the signup page
             VStack {
@@ -81,16 +79,15 @@ struct ContentView: View {
                 .font(.system(size:18, weight:.semibold))
 
                 
-                NavigationLink(destination: SignInView()) {
-                    Text("already a user? sign in here")
-                        .offset(y: 5)
-                        .font(.system(size:16, weight:.medium))
-                        .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
-                        .underline()
-                }
+//                NavigationLink(destination: SignInView()) {
+//                    Text("already a user? sign in here")
+//                        .offset(y: 5)
+//                        .font(.system(size:16, weight:.medium))
+//                        .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
+//                        .underline()
+//                }
 
             }
-        }
     }
 }
 
