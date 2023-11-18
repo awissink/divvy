@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseAuth
 
-@main
+//@main
 struct DivvyApp: App {
     init() {
             FirebaseApp.configure() // Initialize Firebase
