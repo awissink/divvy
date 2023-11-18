@@ -74,12 +74,12 @@ struct NavBar: View {
 //}
 //
 
-struct ContentView_Previews: PreviewProvider {
-   static var previews: some View {
-       NavBar(viewRouter: ViewRouter())
-           .preferredColorScheme(.light)
-   }
-}
+//struct ContentView_Previews: PreviewProvider {
+//   static var previews: some View {
+//       NavBar(viewRouter: ViewRouter())
+//           .preferredColorScheme(.light)
+//   }
+//}
 
 //struct PlusMenu: View {
 //    let widthAndHeight: CGFloat
@@ -121,19 +121,51 @@ struct ContentView_Previews: PreviewProvider {
 //}
 
 struct PlusMenu: View {
+    //camera code begins
+    
+    @State private var showImagePicker: Bool = false
+    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    
+    @State private var image: UIImage?
+    
+    //camera code ends
+    
     let widthAndHeight: CGFloat
 
     var body: some View {
         HStack(spacing: 50) {
-            NavigationLink(destination: CameraView()) {
-                buttonContent(systemIconName: "camera")
-            }
-
-            NavigationLink(destination: PhotoUploadView()) {
-                buttonContent(systemIconName: "folder")
-            }
+            cameraButton(systemIconName: "camera")
+            photoUploadButton(systemIconName: "folder")
+//            NavigationLink(destination: CameraView()) {
+//                buttonContent(systemIconName: "camera")
+//            }
+//
+//            NavigationLink(destination: PhotoUploadView()) {
+//                buttonContent(systemIconName: "folder")
+//            }
+        }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePicker(image: self.$image, isShown: self.$showImagePicker, sourceType: self.sourceType)
         }
         .transition(.scale)
+    }
+    
+    private func cameraButton(systemIconName: String) -> some View {
+        Button(action: {
+            self.sourceType = .camera
+            self.showImagePicker = true
+        }) {
+            buttonContent(systemIconName: systemIconName)
+        }
+    }
+    
+    private func photoUploadButton(systemIconName: String) -> some View {
+        Button(action: {
+            self.sourceType = .photoLibrary
+            self.showImagePicker = true
+        }) {
+            buttonContent(systemIconName: systemIconName)
+        }
     }
 
     private func buttonContent(systemIconName: String) -> some View {
