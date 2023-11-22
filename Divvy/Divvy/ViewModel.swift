@@ -9,10 +9,10 @@ import Foundation
 import VeryfiSDK
 
 class ViewModel: ObservableObject {
-    let clientId = "vrfzjOIgSdzr7XcK9JFpeiprC2gxUtIs0rayi6e"
-    let clientSecret = "Wf65yIsnhojOj2IkGZHV3ASYAkcvXcY9u8FapykLESFABtBKxMjvJAtftwMxUTuk4CMlXKY51MngaWOxiOspXBGUC3uHvhUogEEHjECBHBs55igwPkDwPhziuw46pPfd"
-    let username = "afw2122"
-    let apiKey = "e60612d2546792c313bd68636d7849b5"
+    let clientId = "vrfrFmw2P8hgakFhhvaMO9gHKSc4Rg9yH0vAElW"
+    let clientSecret = "Er4f1OgYdiOLytIflcMjy3Ax4eDjNyEWCTwcKGJlzM75P4RhpsYlYlKzT6mXmjTvmZf3c7p0vNnALM3cCZG6nCTBm3W5gz8vYlWINrGH1IX0etsDO12G7YzEMpuLpwUV"
+    let username = "amelia4"
+    let apiKey = "69415cd7ce03189c57f9732504d0c3db"
 
     @Published var menuItems: [LineItem] = []
     @Published var restaurantName: String = ""
@@ -32,9 +32,9 @@ class ViewModel: ObservableObject {
                     do {
                         let receipt = try JSONDecoder().decode(Receipt.self, from: data)
                         self.restaurantName = receipt.vendor.name
-                        self.tax = receipt.tax
-                        self.tip = receipt.tip
-                        self.total = receipt.total
+                        self.tax = receipt.tax ?? 0.0
+                        self.tip = receipt.tip ?? 0.0
+                        self.total = receipt.total ?? 0.0
                         for lineItem in receipt.lineItems {
                             self.menuItems.append(lineItem)
                         }

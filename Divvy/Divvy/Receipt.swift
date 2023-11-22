@@ -15,7 +15,7 @@ struct Receipt: Codable {
     let imgThumbnailURL, imgURL: String
     var lineItems: [LineItem]
     let ocrText: String
-    var subtotal, tax, tip, total: Double
+    var subtotal, tax, tip, total: Double?
     let vendor: Vendor
 
     enum CodingKeys: String, CodingKey {
