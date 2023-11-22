@@ -13,23 +13,42 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
     
     @Binding var image: UIImage?
     @Binding var isShown: Bool
+    @Binding var isImageSelected: Bool
     
-    init(image: Binding<UIImage?>, isShown: Binding<Bool>) {
+    init(image: Binding<UIImage?>, isShown: Binding<Bool>, isImageSelected: Binding<Bool>) {
         _image = image
         _isShown = isShown
+        _isImageSelected = isImageSelected
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             image = uiImage
+            saveImage(image: uiImage)
             isShown = false
+            isImageSelected = true
         }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         isShown = false
     }
+    
+    func saveImage(image: UIImage) {
+        if let imageData = image.jpegData(compressionQuality: 1) ?? image.pngData() {
+            let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+            let fileName = "receipt"
+            let fileURL = documentsDirectory?.appendingPathComponent(fileName)
+            do {
+                try imageData.write(to: fileURL!)
+                print("Image Saved Successfully")
+            } catch {
+                print("Error Saving Image: \(error)")
+            }
+        }
+    }
+
     
 }
 
@@ -39,6 +58,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     
     @Binding var image: UIImage?
     @Binding var isShown: Bool
+    @Binding var isImageSelected: Bool
 //    var sourceType: UIImagePickerController.SourceType = .photoLibrary
     var sourceType: UIImagePickerController.SourceType
     
@@ -46,7 +66,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> ImagePicker.Coordinator {
-        return ImagePickerCoordinator(image: $image, isShown: $isShown)
+        return ImagePickerCoordinator(image: $image, isShown: $isShown, isImageSelected: $isImageSelected)
     }
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
