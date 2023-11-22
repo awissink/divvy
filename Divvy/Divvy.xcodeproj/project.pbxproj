@@ -48,6 +48,7 @@
 		528D4BEF2AFECCCE00282606 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BEE2AFECCCE00282606 /* FirebaseStorage */; };
 		528D4BF12AFECCCE00282606 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BF02AFECCCE00282606 /* FirebaseStorageCombine-Community */; };
 		528D4BF62AFED64500282606 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D4BF52AFED64500282606 /* GoogleService-Info.plist */; };
+		D6EF367F2B06BE130037BA0C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF367E2B06BE130037BA0C /* SignInView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		5274D5212AEF382C0091B8C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5274D5242AEF382C0091B8C1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		528D4BF52AFED64500282606 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D6EF367E2B06BE130037BA0C /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				5274D51F2AEF382B0091B8C1 /* ContentView.swift */,
 				526A00612B06AA8800C4D236 /* CameraView.swift */,
 				526A00632B06BD2900C4D236 /* ImagePicker.swift */,
+				D6EF367E2B06BE130037BA0C /* SignInView.swift */,
 				5274D5212AEF382C0091B8C1 /* Assets.xcassets */,
 				5274D5232AEF382C0091B8C1 /* Preview Content */,
 				4C5ED17A2B06C0E800D59DF5 /* CustomTabBarApp.swift */,
@@ -283,6 +286,7 @@
 				5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */,
 				526A00642B06BD2900C4D236 /* ImagePicker.swift in Sources */,
 				4C5ED1932B06C94800D59DF5 /* Draft.swift in Sources */,
+				D6EF367F2B06BE130037BA0C /* SignInView.swift in Sources */,
 				5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

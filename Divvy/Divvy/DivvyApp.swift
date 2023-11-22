@@ -18,7 +18,7 @@ struct DivvyApp: App {
     var body: some Scene {
         
         WindowGroup {
-            ContentView()
+            SignInView()
         }
     }
 }
