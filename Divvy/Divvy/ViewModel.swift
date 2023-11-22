@@ -20,7 +20,7 @@ class ViewModel: ObservableObject {
     @Published var tip: Double = 0.0
     @Published var total: Double = 0.0
     
-    func loadData() {
+    func loadData(completion: @escaping (Bool) -> Void) {
         let client = Client(clientId: clientId, clientSecret: clientSecret, username: username, apiKey: apiKey)
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         let fileName = "receipt"
@@ -51,6 +51,7 @@ class ViewModel: ObservableObject {
                 case .failure(let error):
                     print(error)
                 }
+                completion(true)
             }
         }
     }
