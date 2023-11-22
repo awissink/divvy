@@ -23,11 +23,16 @@ class ViewModel: ObservableObject {
     func loadData() {
         let client = Client(clientId: clientId, clientSecret: clientSecret, username: username, apiKey: apiKey)
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        let fileName = "receipt.jpeg"
-        let file = documentsDirectory?.appendingPathComponent(fileName).path
-        let url = Bundle(for: Self.self).url(forResource: file, withExtension: "jpeg")!
-        let fileData = try? Data(contentsOf: url)
-        client.processDocument(fileName: file!, fileData: fileData!) { result in
+        let fileName = "receipt"
+        guard let fileURL = documentsDirectory?.appendingPathComponent(fileName) else {
+                print("File URL is nil")
+                return
+        }
+        guard let fileData = try? Data(contentsOf: fileURL) else {
+                print("Failed to load data from \(fileURL)")
+                return
+        }
+        client.processDocument(fileName: fileName, fileData: fileData) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):

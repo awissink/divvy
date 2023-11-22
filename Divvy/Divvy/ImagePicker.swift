@@ -38,7 +38,7 @@ class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImageP
     func saveImage(image: UIImage) {
         if let imageData = image.jpegData(compressionQuality: 1) ?? image.pngData() {
             let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-            let fileName = "receipt.jpeg"
+            let fileName = "receipt"
             let fileURL = documentsDirectory?.appendingPathComponent(fileName)
             do {
                 try imageData.write(to: fileURL!)
