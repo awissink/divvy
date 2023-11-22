@@ -14,11 +14,23 @@ class ViewModel: ObservableObject {
     let username = "amelia4"
     let apiKey = "69415cd7ce03189c57f9732504d0c3db"
 
-    @Published var menuItems: [LineItem] = []
     @Published var restaurantName: String = ""
-    @Published var tax: Double = 0.0
-    @Published var tip: Double = 0.0
+    @Published var menuItems: [LineItem] = [] {
+        didSet { recalculateTotal() }
+    }
+    @Published var tax: Double = 0.0 {
+        didSet { recalculateTotal() }
+    }
+    @Published var tip: Double = 0.0 {
+        didSet { recalculateTotal() }
+    }
+    @Published var lineItemsTotal: Double = 0.0
     @Published var total: Double = 0.0
+    
+    private func recalculateTotal() {
+        lineItemsTotal = menuItems.reduce(0) { $0 + $1.total }
+        total = tax + tip + lineItemsTotal
+    }
     
     func loadData(completion: @escaping (Bool) -> Void) {
         let client = Client(clientId: clientId, clientSecret: clientSecret, username: username, apiKey: apiKey)
@@ -43,6 +55,7 @@ class ViewModel: ObservableObject {
                         self.tip = receipt.tip ?? 0.0
                         self.total = receipt.total ?? 0.0
                         for lineItem in receipt.lineItems {
+                            self.lineItemsTotal += lineItem.total
                             self.menuItems.append(lineItem)
                         }
                     } catch {
