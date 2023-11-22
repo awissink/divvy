@@ -1,13 +1,13 @@
 //
-//  SignInView.swift
+//  SignUpView.swift
 //  Divvy
 //
-//  Created by Grace Perrin on 11/16/23.
+//  Created by Grace Perrin on 11/22/23.
 //
 
 import SwiftUI
 
-struct SignInView: View {
+struct SignUpView: View {
     
     @State private var userEmail: String = ""
     @State private var userPassword: String = ""
@@ -15,7 +15,6 @@ struct SignInView: View {
     
     var body: some View {
         
-        NavigationStack {
             //VStack for all the elements on the signup page
             VStack {
                 
@@ -62,15 +61,18 @@ struct SignInView: View {
                 
                 let firebaseAuthManager = FirebaseAuthManager(userData: userData)
                 
-                Button("Sign In") {
-                    firebaseAuthManager.signIn(email: userEmail, password: userPassword) { uid, error in
+                Button("Create User") {
+                    print("trying to create a user")
+                    firebaseAuthManager.createUser(email: userEmail, password: userPassword) { uid, error in
                         if let error = error {
-                            print("Error signing in:", error.localizedDescription)
+                            print("Error creating user:", error.localizedDescription)
                         } else if let uid = uid {
-                            print("User signed in:", uid)
-                            //re route to the homescreen after account validation
+                            print("User created:", uid)
+                            
+                            print("userData value" + String(userData.loggedIn))
+                            print("setting userData to logged in true")
                             userData.loggedIn = true
-
+                            print("userData value" + String(userData.loggedIn))
                         }
                     }
                 }
@@ -82,20 +84,13 @@ struct SignInView: View {
                 .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
                 .cornerRadius(20)
                 .font(.system(size:18, weight:.semibold))
-                
-                NavigationLink(destination: SignUpView()) {
-                    Text("don't have an account? sign up here")
-                        .offset(y: 5)
-                        .font(.system(size:16, weight:.medium))
-                        .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
-                        .underline()
-                }
-                
+
+
             }
-        }
     }
 }
 
-//#Preview {
-//    SignInView()
-//}
+
+#Preview {
+    SignUpView()
+}
