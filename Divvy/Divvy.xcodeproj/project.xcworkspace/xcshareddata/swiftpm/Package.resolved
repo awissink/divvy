@@ -107,6 +107,15 @@
         "revision" : "07f7f26ded8df9645c072f220378879c4642e063",
         "version" : "1.25.1"
       }
+    },
+    {
+      "identity" : "veryfi-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/veryfi/veryfi-swift.git",
+      "state" : {
+        "revision" : "de68db37637ecd5ee36724c8fc01f6a77d392289",
+        "version" : "1.2.0"
+      }
     }
   ],
   "version" : 2

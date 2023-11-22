@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071DE55A2B0E4E6E00C5BF85 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DE5592B0E4E6E00C5BF85 /* MenuView.swift */; };
+		071DE55D2B0E557D00C5BF85 /* VeryfiSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 071DE55C2B0E557D00C5BF85 /* VeryfiSDK */; };
+		071DE55F2B0E55B100C5BF85 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DE55E2B0E55B100C5BF85 /* LineItem.swift */; };
+		071DE5612B0E55CD00C5BF85 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DE5602B0E55CD00C5BF85 /* MenuItemView.swift */; };
+		071DE5632B0E55E400C5BF85 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DE5622B0E55E400C5BF85 /* Receipt.swift */; };
+		071DE5652B0E55FB00C5BF85 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DE5642B0E55FB00C5BF85 /* ViewModel.swift */; };
 		4C5ED17B2B06C0E800D59DF5 /* CustomTabBarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5ED17A2B06C0E800D59DF5 /* CustomTabBarApp.swift */; };
 		4C5ED17F2B06C19500D59DF5 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5ED17E2B06C19500D59DF5 /* NavBar.swift */; };
 		4C5ED1812B06C1B200D59DF5 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5ED1802B06C1B200D59DF5 /* ViewRouter.swift */; };
@@ -18,7 +24,6 @@
 		4C5ED1912B06C65D00D59DF5 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5ED1902B06C65D00D59DF5 /* CameraView.swift */; };
 		4C5ED1932B06C94800D59DF5 /* Draft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5ED1922B06C94800D59DF5 /* Draft.swift */; };
 		523325412B04355E00FB6889 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523325402B04355E00FB6889 /* FirebaseAuthManager.swift */; };
-		526A00622B06AA8800C4D236 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A00612B06AA8800C4D236 /* CameraView.swift */; };
 		526A00642B06BD2900C4D236 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A00632B06BD2900C4D236 /* ImagePicker.swift */; };
 		5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */; };
 		5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274D51F2AEF382B0091B8C1 /* ContentView.swift */; };
@@ -52,6 +57,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		071DE5592B0E4E6E00C5BF85 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		071DE55E2B0E55B100C5BF85 /* LineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
+		071DE5602B0E55CD00C5BF85 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
+		071DE5622B0E55E400C5BF85 /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
+		071DE5642B0E55FB00C5BF85 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		4C5ED17A2B06C0E800D59DF5 /* CustomTabBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarApp.swift; sourceTree = "<group>"; };
 		4C5ED17E2B06C19500D59DF5 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		4C5ED1802B06C1B200D59DF5 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
@@ -87,6 +97,7 @@
 				528D4BDD2AFECCCE00282606 /* FirebaseFirestore in Frameworks */,
 				528D4BC92AFECCCE00282606 /* FirebaseAnalyticsSwift in Frameworks */,
 				528D4BC52AFECCCE00282606 /* FirebaseAnalytics in Frameworks */,
+				071DE55D2B0E557D00C5BF85 /* VeryfiSDK in Frameworks */,
 				528D4BC72AFECCCE00282606 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				528D4BCD2AFECCCE00282606 /* FirebaseAppCheck in Frameworks */,
 				528D4BCB2AFECCCE00282606 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -160,6 +171,11 @@
 				5274D5232AEF382C0091B8C1 /* Preview Content */,
 				4C5ED17A2B06C0E800D59DF5 /* CustomTabBarApp.swift */,
 				4C5ED17E2B06C19500D59DF5 /* NavBar.swift */,
+				071DE5592B0E4E6E00C5BF85 /* MenuView.swift */,
+				071DE55E2B0E55B100C5BF85 /* LineItem.swift */,
+				071DE5602B0E55CD00C5BF85 /* MenuItemView.swift */,
+				071DE5622B0E55E400C5BF85 /* Receipt.swift */,
+				071DE5642B0E55FB00C5BF85 /* ViewModel.swift */,
 				4C5ED1802B06C1B200D59DF5 /* ViewRouter.swift */,
 				4C5ED1922B06C94800D59DF5 /* Draft.swift */,
 			);
@@ -214,6 +230,7 @@
 				528D4BEC2AFECCCE00282606 /* FirebaseRemoteConfigSwift */,
 				528D4BEE2AFECCCE00282606 /* FirebaseStorage */,
 				528D4BF02AFECCCE00282606 /* FirebaseStorageCombine-Community */,
+				071DE55C2B0E557D00C5BF85 /* VeryfiSDK */,
 			);
 			productName = Divvy;
 			productReference = 5274D51A2AEF382B0091B8C1 /* Divvy.app */;
@@ -245,6 +262,7 @@
 			mainGroup = 5274D5112AEF382A0091B8C1;
 			packageReferences = (
 				528D4BC32AFECCCE00282606 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				071DE55B2B0E557C00C5BF85 /* XCRemoteSwiftPackageReference "veryfi-swift" */,
 			);
 			productRefGroup = 5274D51B2AEF382B0091B8C1 /* Products */;
 			projectDirPath = "";
@@ -280,13 +298,18 @@
 				523325412B04355E00FB6889 /* FirebaseAuthManager.swift in Sources */,
 				4C5ED1842B06C1E700D59DF5 /* Tag.swift in Sources */,
 				4C5ED1812B06C1B200D59DF5 /* ViewRouter.swift in Sources */,
+				071DE55F2B0E55B100C5BF85 /* LineItem.swift in Sources */,
 				4C5ED18F2B06C63C00D59DF5 /* PhotoUploadView.swift in Sources */,
 				4C5ED18B2B06C21A00D59DF5 /* HomePage.swift in Sources */,
+				071DE5652B0E55FB00C5BF85 /* ViewModel.swift in Sources */,
+				071DE55A2B0E4E6E00C5BF85 /* MenuView.swift in Sources */,
 				4C5ED1892B06C20E00D59DF5 /* ChipView.swift in Sources */,
 				5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */,
 				526A00642B06BD2900C4D236 /* ImagePicker.swift in Sources */,
 				4C5ED1932B06C94800D59DF5 /* Draft.swift in Sources */,
 				D6EF367F2B06BE130037BA0C /* SignInView.swift in Sources */,
+				071DE5632B0E55E400C5BF85 /* Receipt.swift in Sources */,
+				071DE5612B0E55CD00C5BF85 /* MenuItemView.swift in Sources */,
 				5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -495,6 +518,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		071DE55B2B0E557C00C5BF85 /* XCRemoteSwiftPackageReference "veryfi-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/veryfi/veryfi-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 		528D4BC32AFECCCE00282606 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -506,6 +537,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		071DE55C2B0E557D00C5BF85 /* VeryfiSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 071DE55B2B0E557C00C5BF85 /* XCRemoteSwiftPackageReference "veryfi-swift" */;
+			productName = VeryfiSDK;
+		};
 		528D4BC42AFECCCE00282606 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 528D4BC32AFECCCE00282606 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
