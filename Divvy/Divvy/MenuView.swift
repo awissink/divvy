@@ -43,14 +43,17 @@ struct MenuView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    Button("Share") {
+                    
+                    NavigationLink(destination: ChipView()) {
+                        Text("Share")
+                            .foregroundColor(.white)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .padding()
+                            .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
+                            .cornerRadius(10)
+                            .font(.system(size:18, weight:.semibold))
                     }
-                    .foregroundColor(.white)
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .padding()
-                    .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
-                    .cornerRadius(10)
-                    .font(.system(size:18, weight:.semibold))
+
                 }
             } else {
                 ProgressView("Loading...")

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ChipView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var text: String = ""
     
     //Tags...
@@ -16,6 +17,21 @@ struct ChipView: View {
     
     var body: some View {
         VStack {
+            HStack {
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }) {
+                    HStack {
+                        Image(systemName: "arrow.left") // Use a system image for back arrow
+                            .foregroundColor(.white) // Set the color to white
+                        Text("Back")
+                            .foregroundColor(.white)
+                    }
+                }
+                .padding()
+                Spacer()
+            }
+            
             Text(" \nSend Out Invites")
                 .font(.system(size: 38, weight: .bold))
                 .foregroundColor(.white) //different from tutorial
@@ -55,7 +71,7 @@ struct ChipView: View {
             } label: {
                 Text("Add A Guest")
                     .fontWeight(.semibold)
-                    .foregroundColor(Color("BG"))
+                    .foregroundColor(Color("ForestGreen"))
                     .padding(.vertical, 12)
                     .padding(.horizontal,45)
                     .background(.white)
@@ -65,17 +81,28 @@ struct ChipView: View {
             .disabled(text == "")
             .opacity(text == "" ? 0.6 : 1)
             
+            Button("Send") {
+                        
+            }
+                .fontWeight(.semibold)
+                .foregroundColor(Color("BG"))
+                .padding(.vertical, 12)
+                .padding(.horizontal,45)
+                .background(.white)
+                .cornerRadius(10)
+
+            
         }
         .padding(15)
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity, alignment: .top)
         .background(
-            Color("BG")
+            Color("ForestGreen")
                 .ignoresSafeArea()
         )
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Error"), message: Text("Tag Limit Exceeded - try to delete some tags !!!"), dismissButton: .destructive(Text("Ok")))
         }
-        
+        .navigationBarBackButtonHidden(true)
         
     }
 }
