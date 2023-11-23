@@ -10,14 +10,20 @@ import SwiftUI
 struct ContentView: View {
     
     @EnvironmentObject var userData: UserData
+    @StateObject var viewRouter = ViewRouter()
 
     var body: some View {
         ZStack {
             if userData.loggedIn {
-                HomePage()
+                NavBar(viewRouter: viewRouter)
             } else {
                 SignInView()
             }
         }
     }
+}
+
+
+#Preview {
+    ContentView()
 }
