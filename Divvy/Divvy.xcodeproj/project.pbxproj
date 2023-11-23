@@ -23,6 +23,7 @@
 		4C5ED18F2B06C63C00D59DF5 /* PhotoUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5ED18E2B06C63C00D59DF5 /* PhotoUploadView.swift */; };
 		4C5ED1912B06C65D00D59DF5 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5ED1902B06C65D00D59DF5 /* CameraView.swift */; };
 		4C5ED1932B06C94800D59DF5 /* Draft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5ED1922B06C94800D59DF5 /* Draft.swift */; };
+		4CBDF4CD2B0FD7F8003AC22C /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF4CC2B0FD7F8003AC22C /* UserProfileView.swift */; };
 		523325412B04355E00FB6889 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523325402B04355E00FB6889 /* FirebaseAuthManager.swift */; };
 		526A00642B06BD2900C4D236 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A00632B06BD2900C4D236 /* ImagePicker.swift */; };
 		5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5274D51D2AEF382B0091B8C1 /* DivvyApp.swift */; };
@@ -73,6 +74,7 @@
 		4C5ED18E2B06C63C00D59DF5 /* PhotoUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoUploadView.swift; sourceTree = "<group>"; };
 		4C5ED1902B06C65D00D59DF5 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		4C5ED1922B06C94800D59DF5 /* Draft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draft.swift; sourceTree = "<group>"; };
+		4CBDF4CC2B0FD7F8003AC22C /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		523325402B04355E00FB6889 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		526A00632B06BD2900C4D236 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		5274D51A2AEF382B0091B8C1 /* Divvy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Divvy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,6 +138,7 @@
 				4C5ED18A2B06C21A00D59DF5 /* HomePage.swift */,
 				4C5ED18C2B06C22400D59DF5 /* TagView.swift */,
 				4C5ED1902B06C65D00D59DF5 /* CameraView.swift */,
+				4CBDF4CC2B0FD7F8003AC22C /* UserProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				523325412B04355E00FB6889 /* FirebaseAuthManager.swift in Sources */,
 				4C5ED1842B06C1E700D59DF5 /* Tag.swift in Sources */,
 				4C5ED1812B06C1B200D59DF5 /* ViewRouter.swift in Sources */,
+				4CBDF4CD2B0FD7F8003AC22C /* UserProfileView.swift in Sources */,
 				071DE55F2B0E55B100C5BF85 /* LineItem.swift in Sources */,
 				4C5ED18F2B06C63C00D59DF5 /* PhotoUploadView.swift in Sources */,
 				4C5ED18B2B06C21A00D59DF5 /* HomePage.swift in Sources */,

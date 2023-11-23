@@ -22,7 +22,7 @@ struct NavBar: View {
                         case .home:
                             HomePage()
                         case .user:
-                            Text("User")
+                            UserProfileView()
                         case .menu:
                             MenuView()
                         default:
