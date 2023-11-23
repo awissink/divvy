@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-@main
+//@main
 struct CustomTabBarApp: App {
     
     @StateObject var viewRouter = ViewRouter()
