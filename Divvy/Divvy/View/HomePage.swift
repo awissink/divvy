@@ -40,41 +40,48 @@ struct HomePage: View {
                 }
                 // ... Rest of your code, updating colors as necessary
                 Section(header: Text("Unclaimed Expenses")
-                                            .foregroundColor(.black)
-                                            .font(.headline)
-                                            .textCase(nil)) {
-                                    ForEach(ExpenseData) { expense in
-                                        HStack {
-                                            Image(systemName: expense.icon)
-                                                .foregroundColor(.gray) // Using a gray color for icons
-                                            Text(expense.description)
-                                                .foregroundColor(.black) // Text is black as per your theme
-                                            Spacer()
-                                            Button(action: {
-                                                // Handle the claim action here
-                                            }) {
-                                                Text("Claim")
-                                                    .foregroundColor(.forestGreen) // Blue color for the 'Claim' text
-                                            }
-                                            .tint(.mintGreen)
-                                            .buttonStyle(.borderedProminent)
-                                            .buttonBorderShape(.roundedRectangle(radius: 8))
-                                        }
-                                    }
+                    .foregroundColor(.black)
+                    .font(.headline)
+                    .textCase(nil)) {
+                        ForEach(ExpenseData) { expense in
+                            NavigationLink(destination: ReceiptView()) { // This is the link to the ReceiptView
+                                HStack {
+                                    Image(systemName: expense.icon)
+                                        .foregroundColor(.gray)
+                                    Text(expense.description)
+                                        .foregroundColor(.black)
+//                                    Spacer()
+//                                    Button(action: {
+//                                        
+//                                    }) {
+//                                        Text("Claim")
+//                                            .foregroundColor(.forestGreen)
+//                                    }
+//                                    .tint(.mintGreen)
+//                                    .buttonStyle(.borderedProminent)
+//                                    .buttonBorderShape(.roundedRectangle(radius: 8))
                                 }
+                            }
+                        }
+                    }
                 
                 
-                Section(header: Text("Previously Settled Expenses").foregroundColor(.black).font(.headline).textCase(nil)) {
-                                   HStack {
-                                       Image(systemName: "checkmark.circle.fill")
-                                           .foregroundColor(.green)
-                                       Text("Receipt from Oct 30, 11:58pm")
-                                           .foregroundColor(.black)
-                                       Spacer()
-                                       Text("paid!")
-                                           .foregroundColor(.green)
-                                   }
-                               }
+                Section(header: Text("Previously Settled Expenses")
+                    .foregroundColor(.black)
+                    .font(.headline)
+                    .textCase(nil)) {
+                        NavigationLink(destination: ReceiptView()) {
+                            HStack {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.green)
+                                Text("Receipt from Oct 30, 11:58pm")
+                                    .foregroundColor(.black)
+                                Spacer()
+                                Text("paid!")
+                                    .foregroundColor(.green)
+                            }
+                        }
+                    }
                 
                 
                 
@@ -111,9 +118,7 @@ let ExpenseData = [
     Expense(description: "Receipt from Nov 1, 10:02am", icon: "doc.text"),
     Expense(description: "Receipt from Nov 2, 10:02am", icon: "doc.text"),
     Expense(description: "Receipt from Nov 3, 10:02am", icon: "doc.text"),
-    Expense(description: "Receipt from Nov 4, 10:02am", icon: "doc.text"),
-//    Expense(description: "Receipt from Nov 5, 10:02am", icon: "doc.text"),
-//    Expense(description: "Receipt from Nov 6, 10:02am", icon: "doc.text")
+    Expense(description: "Receipt from Nov 4, 10:02am", icon: "doc.text")
 ]
 
 // Your preview code...
