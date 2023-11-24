@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
+
 struct individualClaims: View {
-    
     
     var body: some View{
         
@@ -118,27 +118,27 @@ struct individualClaims: View {
         
     }
 }
-
-struct MenuItem: Identifiable, Hashable {
-    var id = UUID()
-    var name: String
-    var price: Double
-    
-    var formattedPrice: String {
-        return String(format: "%.2f", price)
-    }
-}
-
-
-let menuItems = [
-    MenuItem(name: "Pasta", price: 12.99),
-    MenuItem(name: "Salad", price: 8.99),
-    MenuItem(name: "Steak", price: 19.99),
-    MenuItem(name: "Subtotal", price: 79.00),
-    MenuItem(name: "Tax", price: 5.53),
-    MenuItem(name: "Tip", price: 15.78),
-    // Add more menu items as needed
-]
+//
+//struct MenuItem: Identifiable, Hashable {
+//    var id = UUID()
+//    var name: String
+//    var price: Double
+//    
+//    var formattedPrice: String {
+//        return String(format: "%.2f", price)
+//    }
+//}
+//
+//
+//let menuItems = [
+//    MenuItem(name: "Pasta", price: 12.99),
+//    MenuItem(name: "Salad", price: 8.99),
+//    MenuItem(name: "Steak", price: 19.99),
+//    MenuItem(name: "Subtotal", price: 79.00),
+//    MenuItem(name: "Tax", price: 5.53),
+//    MenuItem(name: "Tip", price: 15.78),
+//    // Add more menu items as needed
+//]
 
 #Preview{
     individualClaims()

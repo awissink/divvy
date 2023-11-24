@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3410E7902B03D45100FFFEC5 /* playCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3410E78F2B03D45100FFFEC5 /* playCameraView.swift */; };
 		3465A70D2AFC652B006A472A /* testingFlowApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3465A70C2AFC652B006A472A /* testingFlowApp.swift */; };
 		3465A70F2AFC652B006A472A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3465A70E2AFC652B006A472A /* ContentView.swift */; };
 		3465A7112AFC652E006A472A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3465A7102AFC652E006A472A /* Assets.xcassets */; };
@@ -21,6 +20,8 @@
 		346DD32F2B030401001BDF22 /* cameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346DD32E2B030401001BDF22 /* cameraView.swift */; };
 		346DD3312B030484001BDF22 /* individualClaimStacks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346DD3302B030484001BDF22 /* individualClaimStacks.swift */; };
 		349064FA2AFED615007C509A /* onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349064F92AFED615007C509A /* onboarding.swift */; };
+		34E749A02B11253800A185CC /* receiptClaiming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7499F2B11253800A185CC /* receiptClaiming.swift */; };
+		34E749A52B1128FD00A185CC /* customDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E749A42B1128FD00A185CC /* customDropdown.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3410E78F2B03D45100FFFEC5 /* playCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playCameraView.swift; sourceTree = "<group>"; };
 		3465A7092AFC652B006A472A /* testingFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testingFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3465A70C2AFC652B006A472A /* testingFlowApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingFlowApp.swift; sourceTree = "<group>"; };
 		3465A70E2AFC652B006A472A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +58,8 @@
 		346DD32E2B030401001BDF22 /* cameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cameraView.swift; sourceTree = "<group>"; };
 		346DD3302B030484001BDF22 /* individualClaimStacks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = individualClaimStacks.swift; sourceTree = "<group>"; };
 		349064F92AFED615007C509A /* onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboarding.swift; sourceTree = "<group>"; };
+		34E7499F2B11253800A185CC /* receiptClaiming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = receiptClaiming.swift; sourceTree = "<group>"; };
+		34E749A42B1128FD00A185CC /* customDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customDropdown.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +117,8 @@
 				346DD32A2B02FF64001BDF22 /* addMembers.swift */,
 				346DD32E2B030401001BDF22 /* cameraView.swift */,
 				346DD3302B030484001BDF22 /* individualClaimStacks.swift */,
-				3410E78F2B03D45100FFFEC5 /* playCameraView.swift */,
+				34E7499F2B11253800A185CC /* receiptClaiming.swift */,
+				34E749A42B1128FD00A185CC /* customDropdown.swift */,
 				3465A7102AFC652E006A472A /* Assets.xcassets */,
 				3465A7122AFC652E006A472A /* Preview Content */,
 				346DD32C2B0301BF001BDF22 /* addMembersStack.storyboard */,
@@ -279,10 +282,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34E749A02B11253800A185CC /* receiptClaiming.swift in Sources */,
 				346DD3312B030484001BDF22 /* individualClaimStacks.swift in Sources */,
-				3410E7902B03D45100FFFEC5 /* playCameraView.swift in Sources */,
 				3465A73B2AFC7803006A472A /* DivvyStacks.swift in Sources */,
 				346DD32F2B030401001BDF22 /* cameraView.swift in Sources */,
+				34E749A52B1128FD00A185CC /* customDropdown.swift in Sources */,
 				3465A70F2AFC652B006A472A /* ContentView.swift in Sources */,
 				349064FA2AFED615007C509A /* onboarding.swift in Sources */,
 				346DD32B2B02FF64001BDF22 /* addMembers.swift in Sources */,
