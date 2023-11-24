@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var userData: UserData
+    @StateObject var viewRouter = ViewRouter()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            if userData.loggedIn {
+                NavBar(viewRouter: viewRouter)
+            } else {
+                SignInView()
+            }
         }
-        .padding()
     }
 }
+
 
 #Preview {
     ContentView()
