@@ -9,34 +9,52 @@ import SwiftUI
 
 struct HomePage: View {
     // Computed property to construct the header
+    
+    //11.24: removing overall you owe, and adding the three cards do the swipe
+    
+    
+    
         var headerView: some View {
-            Group {
-                Text("Overall, you owe ")
-                    .foregroundColor(.black)
-                + Text("$258.66")
-                    .foregroundColor(.fireyOrange)
-            }
-            .font(.headline) // Apply font to the entire Group
+        
+            
+            Text("Card view here")
+            
+//            Group {
+//                Text("Overall, you owe ")
+//                    .foregroundColor(.black)
+//                + Text("$258.66")
+//                    .foregroundColor(.fireyOrange)
+//            }
+//            .font(.headline) // Apply font to the entire Group
         }
     
     var body: some View {
+        //logo
+        HStack{
+            
+            Image(.logo)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 30)
+                .padding()
+        }
         NavigationView {
             List {
                 Section(header: headerView) {
-                    ForEach(BalanceData) { balance in
-                        HStack {
-                            Circle()
-                                .fill(balance.color)
-                                .frame(width: 30, height: 30)
-                                .overlay(Text(balance.initials)
-                                            .foregroundColor(.white))
-                            Text(balance.name)
-                                .foregroundColor(.black)
-                            Spacer()
-                            Text(balance.amount)
-                                .foregroundColor(balance.amount.contains("owes") ? .fireyOrange : balance.color)
-                        }
-                    }
+//                    ForEach(BalanceData) { balance in
+//                        HStack {
+//                            Circle()
+//                                .fill(balance.color)
+//                                .frame(width: 30, height: 30)
+//                                .overlay(Text(balance.initials)
+//                                            .foregroundColor(.white))
+//                            Text(balance.name)
+//                                .foregroundColor(.black)
+//                            Spacer()
+//                            Text(balance.amount)
+//                                .foregroundColor(balance.amount.contains("owes") ? .fireyOrange : balance.color)
+//                        }
+//                    }
                 }
                 // ... Rest of your code, updating colors as necessary
                 Section(header: Text("Unclaimed Expenses")
@@ -88,7 +106,12 @@ struct HomePage: View {
             }
             .listStyle(PlainListStyle()) // Use PlainListStyle to have a clear background
             .background(Color.white) // Set the background color of the List
-            .navigationBarTitle(Text("Div/vy"), displayMode: .inline)
+            
+            //TO DO: add Logo here
+            
+//            .navigationBarTitle(Text("Div/vy"), displayMode: .inline)
+//            
+            
         }
         .background(Color.white) // Set the background color of the NavigationView
     }
@@ -108,11 +131,11 @@ struct Expense: Identifiable {
     let icon: String
 }
 
-let BalanceData = [
-    Balance(name: "Andrew Yan", amount: "owes you $3.63", color: .babyBlue, initials: "AY"),
-    Balance(name: "Angela Mu", amount: "settled up", color: .mintGreen, initials: "AM"),
-    Balance(name: "Veer Chauhan", amount: "you owe $262.29", color: .forestGreen, initials: "VC")
-]
+//let BalanceData = [
+//    Balance(name: "Andrew Yan", amount: "owes you $3.63", color: .babyBlue, initials: "AY"),
+//    Balance(name: "Angela Mu", amount: "settled up", color: .mintGreen, initials: "AM"),
+//    Balance(name: "Veer Chauhan", amount: "you owe $262.29", color: .forestGreen, initials: "VC")
+//]
 
 let ExpenseData = [
     Expense(description: "Receipt from Nov 1, 10:02am", icon: "doc.text"),

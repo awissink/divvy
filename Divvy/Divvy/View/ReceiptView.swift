@@ -3,7 +3,7 @@
 //  Divvy
 //
 //  Created by Eki Uzamere on 11/23/23.
-//
+//  need to add dropdown - joyce 11/24
 
 import SwiftUI
 
@@ -60,7 +60,19 @@ struct ReceiptView: View {
             }
             .padding(.horizontal)
             .frame(maxWidth: .infinity, alignment: .leading)
-            Spacer()
+            
+            //send invitations
+            Button(action: {
+                   // Handle button tap
+               }) {
+                   Text("Confirm")
+                       .foregroundColor(.black)
+                       .frame(width: 284, height: 52)
+               }
+               .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+               .cornerRadius(28)
+               .padding()
+            
             // Assuming ChipView is your share view, add it here
         }
         .padding()

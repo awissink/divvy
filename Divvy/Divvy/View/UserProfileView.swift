@@ -3,7 +3,7 @@
 //  Divvy
 //
 //  Created by Eki Uzamere on 11/21/23.
-//
+// not done yet - joyce 11/24
 
 import SwiftUI
 
@@ -12,11 +12,13 @@ struct UserProfileView: View {
 
     var body: some View {
         VStack {
+            //Logo and tag line
+            Image(.logo)
+            
             VStack(spacing: 20) {
                 // Profile picture or avatar placeholder
-                Text("Hello Again!")
+                Text("first name last name")
                     .font(.title)
-                    .italic()
                 
                 Image(systemName: "person.circle.fill") // Using a system icon as a placeholder
                         .resizable()
@@ -27,29 +29,48 @@ struct UserProfileView: View {
                         .padding(.top, 50) // Adjust the padding as needed
 
                 // Email display
-                HStack {
+                HStack{
                     Text("Email:")
                         .fontWeight(.semibold)
-                    Text(email)
+                    HStack {
+                        Text(email)
+                    }
+                    .padding()
+                    .background(Color.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 1)
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 1)
+                
+                
+                
             }
             .padding()
 
-            // Logout button
-            Button("Log Out") {
-                // Handle logout action here
-            }
-            .foregroundColor(.white)
-            .frame(width: 200) // Set the width to a fixed size
-            .padding()
-            .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
-            .cornerRadius(10)
-            .font(.system(size: 18, weight: .semibold))
-            .padding(.bottom, 50) // Adjust the padding as needed
+//            // Logout button
+//            Button("Log Out") {
+//                // Handle logout action here
+//            }
+//            .foregroundColor(.white)
+//            .frame(width: 200) // Set the width to a fixed size
+//            .padding()
+//            .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
+//            .cornerRadius(10)
+//            .font(.system(size: 18, weight: .semibold))
+//            .padding(.bottom, 50) // Adjust the padding as needed
+            
+            //send invitations
+            Button(action: {
+                   // Handle button tap
+               }) {
+                   Text("Log Out")
+                       .foregroundColor(.black)
+                       .frame(width: 284, height: 52)
+               }
+               .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+               .cornerRadius(28)
+               .padding()
+            
+            
         }
 //        .background(Color(UIColor.systemGroupedBackground)) // Matches the sign-up background
 //        .edgesIgnoringSafeArea(.all)

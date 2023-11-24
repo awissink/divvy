@@ -11,7 +11,7 @@ struct TagView: View {
     var maxLimit: Int
     @Binding var tags: [Tag]
     
-    var title: String = ("Add Some Guests")
+    var title: String = ("Add some guests")
     var fontSize: CGFloat = 16
     
     @Namespace var animation
@@ -21,7 +21,7 @@ struct TagView: View {
             
             Text(title)
                 .font(.callout)
-                .foregroundColor(.white)
+                .foregroundColor(.secondary)
             //ScrollView...
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 10) {
@@ -46,7 +46,7 @@ struct TagView: View {
             .frame(maxWidth: .infinity)
             .background(
                 RoundedRectangle(cornerRadius: 8)
-                    .strokeBorder(.white.opacity(0.15), lineWidth: 1)
+                    .strokeBorder(.secondary, lineWidth: 1)
             )
             // Animation...
             .animation(.easeInOut, value: tags)
@@ -54,7 +54,7 @@ struct TagView: View {
                 //Limit...
                 Text("\(getSize(tags: tags))/\(maxLimit)")
                     .font(.system(size: 13, weight: .semibold))
-                    .foregroundColor(.white)
+                    .foregroundColor(.secondary)
                     .padding(12),
                 alignment: .bottomTrailing
             )
@@ -87,7 +87,7 @@ struct TagView: View {
             .padding(.vertical, 8)
             .background(
                 Capsule()
-                    .fill(.white)
+                    .fill(.secondary)
             )
             .foregroundColor(Color("BG"))
             .lineLimit(1)
