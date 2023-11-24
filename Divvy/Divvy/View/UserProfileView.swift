@@ -6,9 +6,14 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 struct UserProfileView: View {
+    @EnvironmentObject var userData: UserData
     @State private var email: String = "user@example.com" // Replace with actual data binding
+    
+    @State private var showingSignIn = false
 
     var body: some View {
         VStack {
@@ -19,13 +24,13 @@ struct UserProfileView: View {
                     .italic()
                 
                 Image(systemName: "person.circle.fill") // Using a system icon as a placeholder
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 100, height: 100) // Set desired size for the profile picture
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-                        .padding(.top, 50) // Adjust the padding as needed
-
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 100, height: 100) // Set desired size for the profile picture
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                    .padding(.top, 50) // Adjust the padding as needed
+                
                 // Email display
                 HStack {
                     Text("Email:")
@@ -38,10 +43,21 @@ struct UserProfileView: View {
                 .shadow(radius: 1)
             }
             .padding()
-
+            
+            
+            NavigationLink(destination: SignInView(), isActive: $showingSignIn) {
+                EmptyView()
+            }
+            .hidden()
             // Logout button
             Button("Log Out") {
-                // Handle logout action here
+                do {
+                    try Auth.auth().signOut()
+                    userData.loggedIn = false
+                    showingSignIn = true
+                } catch let signOutError as NSError {
+                    print("Error signing out: \(signOutError.localizedDescription)")
+                }
             }
             .foregroundColor(.white)
             .frame(width: 200) // Set the width to a fixed size
@@ -51,11 +67,13 @@ struct UserProfileView: View {
             .font(.system(size: 18, weight: .semibold))
             .padding(.bottom, 50) // Adjust the padding as needed
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
 //        .background(Color(UIColor.systemGroupedBackground)) // Matches the sign-up background
 //        .edgesIgnoringSafeArea(.all)
     }
 }
 
-#Preview {
-    UserProfileView()
-}
+//#Preview {
+//    UserProfileView()
+//}
