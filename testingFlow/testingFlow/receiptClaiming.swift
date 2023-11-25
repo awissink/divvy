@@ -11,8 +11,6 @@ import SwiftUI
 
 struct receiptClaiming: View {
     
-    
-    
     var body: some View{
         
 //        //Members of a party

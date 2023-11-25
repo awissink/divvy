@@ -57,6 +57,49 @@ struct HomePage: View {
 //                    }
                 }
                 // ... Rest of your code, updating colors as necessary
+                
+                
+                //joyce 11/25 6:15am
+                
+                
+            Section(header: Text("✨ NEW RECEIPTS") //unclained receipts
+                .foregroundColor(Color(red: 0.51, green: 0.51, blue: 0.51))
+                .font(.headline)
+                .textCase(nil))
+                {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 15) { // Adjust the spacing as needed
+                                ForEach(ExpenseData) { expense in
+                                    NavigationLink(destination: ReceiptView()) {
+                                            VStack(alignment: .leading, spacing: 4) {
+                                                Image(systemName: expense.icon)
+                                                    .foregroundColor(.gray)
+                                                Spacer()
+                                                Text("Restaurant")
+                                                    .foregroundColor(.black)
+//                                                Text(expense.description)
+//                                                    .foregroundColor(.black)
+                                              Text(expense.description)
+                                                .font(Font.custom("SF Pro Display", size: 12))
+                                                .foregroundColor(Color(red: 0.05, green: 0.09, blue: 0.13))
+                                                .multilineTextAlignment(.leading)
+                                                
+                                            }
+
+                                    }
+                                    .padding(10)
+                                    .frame(width: 130, height: 138)
+                                    .overlay(
+                                      RoundedRectangle(cornerRadius: 10)
+                                        .strokeBorder(Color.secondary.opacity(0.5), lineWidth: 1)
+                                    )
+                                }
+                            }
+                        }
+                        .frame(height: 160) // Set the fixed height of the ScrollView/Section
+                    }
+            ///
+                
                 Section(header: Text("Unclaimed Expenses")
                     .foregroundColor(.black)
                     .font(.headline)
