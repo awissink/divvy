@@ -50,7 +50,7 @@ struct ReceiptView: View {
                 .frame(width: 80, height: 40)
                 .background(Color.green)
                 .cornerRadius(28)
-                .font(.system(size:18, weight:.semibold))
+                .font(.system(size:15, weight:.semibold))
             }
             List {
                 ForEach($receiptItems) { $item in
@@ -88,6 +88,8 @@ struct ReceiptView: View {
 struct ReceiptItemView: View {
     @Binding var receiptItem: ReceiptItem
     var isEditing: Bool
+    @State private var showDropdown = true // Use a local state for the dropdown
+
     
 //    var body: some View {
 //        // Define your receipt item view
@@ -105,9 +107,12 @@ struct ReceiptItemView: View {
                 Text("\(receiptItem.total, specifier: "%.2f")")
                     .foregroundColor(.secondary)
             }
-            customDropdownView()
-                .frame(maxWidth: .infinity, alignment: .leading)
+            
             .padding(.vertical, 8)
+        }
+        ZStack(alignment: .topLeading) {
+            customDropdownView()
+                .frame (width: .infinity,alignment: .leading)
         }
     }
 }
@@ -169,19 +174,19 @@ struct customDropdownView: View {
                                     }
                                 } label: { //list of names
                                     Text(item.title).foregroundColor(.black)
-                                        .bold()
+                                        
                                         .font(.system(size: 14))
                                     Spacer()
                                 }
                             }
                             .padding(.horizontal)
                         }
-                        .frame (maxWidth: .infinity,alignment: .leading)
+                        
                         .padding(.vertical,15)
                     }
                 }
                 .frame (height: show ? 205 : 0)
-                .offset(y: show ? 190 : -25)
+                .offset(y: show ? 30 : -25)
                 .foregroundColor(Color(red: 0.95, green: 0.95, blue: 0.95))
                 
                 
@@ -191,7 +196,7 @@ struct customDropdownView: View {
                         .foregroundColor(Color.white)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.gray.opacity(0.5), lineWidth: 1)
+                                .stroke(Color.gray.opacity(0.5), lineWidth: 0.5)
                         )
                         .shadow(color: Color.gray.opacity(0.1), radius: 4, x: 0, y: 2) // Apply slight gray shadow
                     HStack{
@@ -206,7 +211,7 @@ struct customDropdownView: View {
                     .foregroundColor(.black)
                 }
                 
-                .offset(y: -25)
+                .offset(y: show ? -105 : -25)
                 .onTapGesture {
                     withAnimation{
                         show .toggle()
@@ -215,7 +220,7 @@ struct customDropdownView: View {
             }
         }
         .padding()
-        
+        .frame (width: .infinity,alignment: .leading)
     }
 }
 
