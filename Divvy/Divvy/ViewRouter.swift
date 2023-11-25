@@ -12,6 +12,9 @@ class ViewRouter: ObservableObject {
     
     @Published var currentPage: Page = .home
     
+    func navigateTo(_ page: Page) {
+            currentPage = page
+        }
 }
 
 

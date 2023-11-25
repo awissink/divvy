@@ -24,7 +24,7 @@ struct NavBar: View {
                         case .user:
                             UserProfileView()
                         case .menu:
-                            MenuView()
+                            MenuView(viewRouter: viewRouter)
                         default:
                             EmptyView()
                         }
