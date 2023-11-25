@@ -1,6 +1,6 @@
 //
 //  customDropdown.swift
-//  testingFlow
+//  Divvy
 //
 //  Created by joyce jiang on 11/24/23.
 //
@@ -46,7 +46,7 @@ struct customDropdownView: View {
                                     }
                                 } label: {
                                     Text(item.title).foregroundColor(.black)
-                                        .bold()
+
                                     Spacer()
                                 }
                             }
@@ -90,9 +90,7 @@ struct customDropdownView: View {
             }
         }
         .padding()
-        .frame(maxWidth: .infinity, alignment: .topLeading)
     }
-    
 }
 
 //#Preview{
