@@ -6,6 +6,7 @@
 //  need to add dropdown - joyce 11/24
 
 import SwiftUI
+import HalfASheet
 
 // Renamed LineItem model to ReceiptItem for convenience
 struct ReceiptItem: Identifiable {
@@ -90,14 +91,13 @@ struct ReceiptItemView: View {
     var isEditing: Bool
     @State private var showDropdown = true // Use a local state for the dropdown
 
-    
 //    var body: some View {
 //        // Define your receipt item view
 //        Text("\(receiptItem.name) - \(receiptItem.total, specifier: "%.2f")")
 //    }
-    
     var body: some View {
         VStack {
+            Spacer()
             HStack {
                 Text(receiptItem.name)
                     .font(.headline)
@@ -107,13 +107,13 @@ struct ReceiptItemView: View {
                 Text("\(receiptItem.total, specifier: "%.2f")")
                     .foregroundColor(.secondary)
             }
-            
-            .padding(.vertical, 8)
+            pickerView()
         }
-        ZStack(alignment: .topLeading) {
-            customDropdownView()
-                .frame (width: .infinity,alignment: .leading)
-        }
+        .padding(.vertical, 3)
+        .frame (maxWidth: .infinity,alignment: .leading)
+//        ZStack(alignment: .topLeading) {
+//            customDropdownView()
+//        }
     }
 }
 
@@ -141,6 +141,75 @@ struct ReceiptEditableValue: View {
         
     }
 }
+
+struct pickerView: View {
+    // Define your data source for the Picker
+    let options = ["joyce", "izzy", "amelia", "grace", "eki", "hannah"]
+    
+    // State variables
+    @State private var selectedOption = ""
+    @State private var isPickerVisible = false
+    @State private var settingsDetent = PresentationDetent.medium
+    
+    var body: some View {
+        VStack {
+            // Display selected option or placeholder text
+            Text(selectedOption.isEmpty ? "who had this item?" : selectedOption)
+                .foregroundColor(selectedOption.isEmpty ? Color(UIColor.systemGray3) : Color.black)
+                .frame (maxWidth: .infinity,alignment: .leading)
+                .padding(5)
+                .font(.subheadline)
+                .onTapGesture {
+                    self.isPickerVisible = true
+                }
+                .overlay(
+                    RoundedRectangle(cornerRadius: 4)
+                        .stroke(Color(.systemGray5), lineWidth: 1) // Add border
+                        .frame(height: 30)
+                )
+
+            Spacer()
+            .sheet(isPresented: $isPickerVisible) {
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        ForEach(options, id: \.self) { option in
+                            HStack {
+                                Text(option)
+                                    .onTapGesture {
+                                                self.selectedOption = option // Update selectedOption
+                                                self.isPickerVisible = false
+                                            }
+                                        Spacer()
+                                        if selectedOption == option {
+                                            Image(systemName: "checkmark")
+                                                .foregroundColor(.blue)
+                                        }
+                                    }
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        self.selectedOption = option // Update selectedOption
+                                        self.isPickerVisible = false
+                                    }
+                                    .padding()
+                                    .background(Color(.systemGray6))
+                                    .cornerRadius(8)
+                                    .padding(.horizontal)
+                                }
+                            }
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .presentationDetents(
+                                            [.medium, .large],
+                                            selection: $settingsDetent
+                                         )
+                
+            }
+        }
+    }
+}
+
+
 
 struct customDropdownView: View {
 
