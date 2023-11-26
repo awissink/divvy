@@ -13,7 +13,7 @@ struct DropItem: Identifiable {
     let title: String
 }
     
-struct customDropdownView: View {
+struct customDropdownView2: View {
 
     let drop: [DropItem] = [
         DropItem(title: "joyce"),
@@ -99,6 +99,6 @@ struct customDropdownView: View {
 
 struct customDropdownView_Previews: PreviewProvider {
     static var previews: some View {
-        customDropdownView()
+        customDropdownView2()
     }
 }
