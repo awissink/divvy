@@ -49,7 +49,7 @@ struct ReceiptView: View {
                 }
                 .foregroundColor(.white)
                 .frame(width: 80, height: 40)
-                .background(Color.green)
+                .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
                 .cornerRadius(28)
                 .font(.system(size:15, weight:.semibold))
             }
@@ -66,15 +66,15 @@ struct ReceiptView: View {
             
             //send invitations
             Button(action: {
-                   // Handle button tap
-               }) {
-                   Text("Confirm")
-                       .foregroundColor(.black)
-                       .frame(width: 284, height: 52)
-               }
-               .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-               .cornerRadius(28)
-               .padding()
+                // Handle button tap
+            }) {
+                Text("Confirm")
+                    .foregroundColor(.black)
+                    .frame(width: 284, height: 52)
+            }
+            .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+            .cornerRadius(28)
+            .padding()
             
             // Assuming ChipView is your share view, add it here
         }
@@ -90,11 +90,11 @@ struct ReceiptItemView: View {
     @Binding var receiptItem: ReceiptItem
     var isEditing: Bool
     @State private var showDropdown = true // Use a local state for the dropdown
-
-//    var body: some View {
-//        // Define your receipt item view
-//        Text("\(receiptItem.name) - \(receiptItem.total, specifier: "%.2f")")
-//    }
+    
+    //    var body: some View {
+    //        // Define your receipt item view
+    //        Text("\(receiptItem.name) - \(receiptItem.total, specifier: "%.2f")")
+    //    }
     var body: some View {
         VStack {
             Spacer()
@@ -107,13 +107,10 @@ struct ReceiptItemView: View {
                 Text("\(receiptItem.total, specifier: "%.2f")")
                     .foregroundColor(.secondary)
             }
+            Spacer()
             pickerView()
         }
-        .padding(.vertical, 3)
         .frame (maxWidth: .infinity,alignment: .leading)
-//        ZStack(alignment: .topLeading) {
-//            customDropdownView()
-//        }
     }
 }
 
@@ -122,7 +119,7 @@ struct ReceiptEditableValue: View {
     var title: String
     @Binding var value: Double
     var isEditing: Bool
-
+    
     var body: some View {
         HStack {
             Text(title)
@@ -154,57 +151,60 @@ struct pickerView: View {
     var body: some View {
         VStack {
             // Display selected option or placeholder text
-            Text(selectedOption.isEmpty ? "who had this item?" : selectedOption)
-                .foregroundColor(selectedOption.isEmpty ? Color(UIColor.systemGray3) : Color.black)
-                .frame (maxWidth: .infinity,alignment: .leading)
-                .padding(5)
-                .font(.subheadline)
-                .onTapGesture {
-                    self.isPickerVisible = true
-                }
-                .overlay(
-                    RoundedRectangle(cornerRadius: 4)
-                        .stroke(Color(.systemGray5), lineWidth: 1) // Add border
-                        .frame(height: 30)
-                )
-
+            VStack{
+                Text(selectedOption.isEmpty ? "who had this item?" : selectedOption)
+                    .foregroundColor(selectedOption.isEmpty ? Color(UIColor.systemGray3) : Color.black)
+                    .frame (maxWidth: .infinity,alignment: .leading)
+                    .padding(5)
+                    .font(.subheadline)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 4)
+                            .stroke(Color(.systemGray5), lineWidth: 1) // Add border
+                            .frame(height: 30)
+                    )
+            }
+            .onTapGesture {
+                self.isPickerVisible = true
+            }
+            
             Spacer()
-            .sheet(isPresented: $isPickerVisible) {
-                ScrollView {
-                    VStack(alignment: .leading) {
-                        ForEach(options, id: \.self) { option in
-                            HStack {
-                                Text(option)
-                                    .onTapGesture {
-                                                self.selectedOption = option // Update selectedOption
-                                                self.isPickerVisible = false
-                                            }
-                                        Spacer()
-                                        if selectedOption == option {
-                                            Image(systemName: "checkmark")
-                                                .foregroundColor(.blue)
+                .sheet(isPresented: $isPickerVisible) {
+                    ScrollView {
+                        Spacer()
+                        VStack(alignment: .leading) {
+                            ForEach(options, id: \.self) { option in
+                                HStack {
+                                    Text(option)
+                                        .onTapGesture {
+                                            self.selectedOption = option // Update selectedOption
+                                            self.isPickerVisible = false
                                         }
+                                    Spacer()
+                                    if selectedOption == option {
+                                        Image(systemName: "checkmark")
+                                            .foregroundColor(.blue)
                                     }
-                                    .contentShape(Rectangle())
-                                    .onTapGesture {
-                                        self.selectedOption = option // Update selectedOption
-                                        self.isPickerVisible = false
-                                    }
-                                    .padding()
-                                    .background(Color(.systemGray6))
-                                    .cornerRadius(8)
-                                    .padding(.horizontal)
                                 }
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    self.selectedOption = option // Update selectedOption
+                                    self.isPickerVisible = false
+                                }
+                                .padding()
+                                .background(Color(.systemGray6))
+                                .cornerRadius(8)
+                                .padding(.horizontal)
                             }
                         }
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .presentationDetents(
-                                            [.medium, .large],
-                                            selection: $settingsDetent
-                                         )
-                
-            }
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .presentationDetents(
+                        [.medium, .large],
+                        selection: $settingsDetent
+                    )
+                    
+                }
         }
     }
 }
@@ -212,7 +212,7 @@ struct pickerView: View {
 
 
 struct customDropdownView: View {
-
+    
     let drop: [DropItem] = [
         DropItem(title: "joyce"),
         DropItem(title: "izzy"),
@@ -225,7 +225,7 @@ struct customDropdownView: View {
     
     @State var show = false
     @State var name = "who had this item?"
-
+    
     
     var body: some View {
         
@@ -243,7 +243,7 @@ struct customDropdownView: View {
                                     }
                                 } label: { //list of names
                                     Text(item.title).foregroundColor(.black)
-                                        
+                                    
                                         .font(.system(size: 14))
                                     Spacer()
                                 }

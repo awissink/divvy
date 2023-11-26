@@ -13,7 +13,6 @@
 		071DE5612B0E55CD00C5BF85 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DE5602B0E55CD00C5BF85 /* MenuItemView.swift */; };
 		071DE5632B0E55E400C5BF85 /* Receipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DE5622B0E55E400C5BF85 /* Receipt.swift */; };
 		071DE5652B0E55FB00C5BF85 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 071DE5642B0E55FB00C5BF85 /* ViewModel.swift */; };
-		34AA578F2B12CBE600D1EDC7 /* UIPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AA578E2B12CBE600D1EDC7 /* UIPickerView.swift */; };
 		34AA57922B12DE3D00D1EDC7 /* HalfASheet in Frameworks */ = {isa = PBXBuildFile; productRef = 34AA57912B12DE3D00D1EDC7 /* HalfASheet */; };
 		34D8785E2B11799200208D6F /* customDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34D8785D2B11799200208D6F /* customDropdown.swift */; };
 		4C5ED17B2B06C0E800D59DF5 /* CustomTabBarApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5ED17A2B06C0E800D59DF5 /* CustomTabBarApp.swift */; };
@@ -68,7 +67,6 @@
 		071DE5602B0E55CD00C5BF85 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		071DE5622B0E55E400C5BF85 /* Receipt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receipt.swift; sourceTree = "<group>"; };
 		071DE5642B0E55FB00C5BF85 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		34AA578E2B12CBE600D1EDC7 /* UIPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPickerView.swift; sourceTree = "<group>"; };
 		34D8785D2B11799200208D6F /* customDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customDropdown.swift; sourceTree = "<group>"; };
 		4C5ED17A2B06C0E800D59DF5 /* CustomTabBarApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarApp.swift; sourceTree = "<group>"; };
 		4C5ED17E2B06C19500D59DF5 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 				4CBDF4CC2B0FD7F8003AC22C /* UserProfileView.swift */,
 				4CBDF4CE2B0FEBB7003AC22C /* ReceiptView.swift */,
 				34D8785D2B11799200208D6F /* customDropdown.swift */,
-				34AA578E2B12CBE600D1EDC7 /* UIPickerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -331,7 +328,6 @@
 				D6EF367F2B06BE130037BA0C /* SignInView.swift in Sources */,
 				071DE5632B0E55E400C5BF85 /* Receipt.swift in Sources */,
 				071DE5612B0E55CD00C5BF85 /* MenuItemView.swift in Sources */,
-				34AA578F2B12CBE600D1EDC7 /* UIPickerView.swift in Sources */,
 				5274D51E2AEF382B0091B8C1 /* DivvyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
