@@ -2,7 +2,7 @@
 //  FirebaseAuthManager.swift
 //  Divvy
 //
-//  Created by Test Account on 11/14/23.
+//  Created by Hannah Luo on 11/14/23.
 //
 
 import Firebase
@@ -47,6 +47,18 @@ class FirebaseAuthManager {
             }
         }
     }
+    
+//    func logout()
+//    {
+//        do 
+//        {
+//            try Auth.auth().signOut()
+//            // Navigate the user to the login screen or perform post-logout action
+//        } catch let signOutError as NSError {
+//            print("Error signing out: \(signOutError.localizedDescription)")
+//        }
+//        print("Successfully signed out!")
+//    }
     
     private func handleAuthenticationSuccess() {
         self.userData.loggedIn = true

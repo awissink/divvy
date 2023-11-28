@@ -6,10 +6,19 @@
 //  user interface and design - joyce 11/24
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 struct UserProfileView: View {
-    @State private var email: String = "user@example.com" // Replace with actual data binding
+    @EnvironmentObject var userData: UserData
+    //@State private var email: String
     
+    var email: String {
+            userData.currentUserEmail
+        }
+    
+    @State private var showingSignIn = false
+
     var body: some View {
         HStack{
             Image(.logo)
@@ -45,25 +54,38 @@ struct UserProfileView: View {
                 }
             }
             .padding()
-            //send invitations
-            Button(action: {
-                // Handle button tap
-            }) {
-                Text("Log Out")
-                    .foregroundColor(.black)
-                    .frame(width: 284, height: 52)
+            
+            
+            NavigationLink(destination: SignInView(), isActive: $showingSignIn) {
+                EmptyView()
             }
-            .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+            .hidden()
+            // Logout button
+            Button("Log Out") {
+                do {
+                    try Auth.auth().signOut()
+                    userData.loggedIn = false
+                    showingSignIn = true
+                } catch let signOutError as NSError {
+                    print("Error signing out: \(signOutError.localizedDescription)")
+                }
+            }
+            .foregroundColor(.black)
+            .frame(width: 284, height: 52)
             .cornerRadius(28)
             .padding()
             Spacer()
             
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+//        .background(Color(UIColor.systemGroupedBackground)) // Matches the sign-up background
+//        .edgesIgnoringSafeArea(.all)
         //                .background(Color(UIColor.systemGroupedBackground)) // Matches the sign-up background
         .edgesIgnoringSafeArea(.all)
     }
 }
 
-#Preview {
-    UserProfileView()
-}
+//#Preview {
+//    UserProfileView()
+//}

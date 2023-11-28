@@ -30,5 +30,7 @@ struct DivvyApp: App {
 
 
 class UserData: ObservableObject {
-   @Published var loggedIn = false
+
+    @Published var loggedIn = false
+    @Published var currentUserEmail = "exampleuser@gmail.com"
 }
