@@ -74,7 +74,7 @@ struct SignInView: View {
                             print("User signed in:", uid)
                             //re route to the homescreen after account validation
                             userData.loggedIn = true
-
+                            userData.currentUserEmail = userEmail
                         }
                     }
                 }

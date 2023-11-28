@@ -79,6 +79,7 @@ struct SignUpView: View {
                             print("userData value" + String(userData.loggedIn))
                             print("setting userData to logged in true")
                             userData.loggedIn = true
+                            userData.currentUserEmail = userEmail
                             print("userData value" + String(userData.loggedIn))
                         }
                     }

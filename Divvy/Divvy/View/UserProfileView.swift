@@ -11,7 +11,11 @@ import FirebaseAuth
 
 struct UserProfileView: View {
     @EnvironmentObject var userData: UserData
-    @State private var email: String = "user@example.com" // Replace with actual data binding
+    //@State private var email: String
+    
+    var email: String {
+            userData.currentUserEmail
+        }
     
     @State private var showingSignIn = false
 
