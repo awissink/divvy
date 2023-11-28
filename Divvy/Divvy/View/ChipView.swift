@@ -23,18 +23,18 @@ struct ChipView: View {
                 }) {
                     HStack {
                         Image(systemName: "arrow.left") // Use a system image for back arrow
-                            .foregroundColor(.white) // Set the color to white
+                            .foregroundColor(.secondary) // Set the color to white
                         Text("Back")
-                            .foregroundColor(.white)
+                            .foregroundColor(.secondary)
                     }
                 }
                 .padding()
                 Spacer()
             }
             
-            Text(" \nSend Out Invites")
-                .font(.system(size: 38, weight: .bold))
-                .foregroundColor(.white) //different from tutorial
+            Text("Send out invites")
+                .font(.system(size: 35, weight: .bold))
+                .foregroundColor(.black) //different from tutorial
                 .frame(maxWidth: .infinity, alignment: .leading)
             // Custom Tag View ...
             TagView(maxLimit: 150, tags: $tags)
@@ -43,16 +43,16 @@ struct ChipView: View {
                 .padding(.top, 20)
             
             // TextField ...
-            TextField("Who's Coming To Divvy?", text: $text)
+            TextField("Who's in the Divvy?", text: $text)
                 .font(.title3)
                 .padding(.vertical, 12)
                 .padding(.horizontal)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder(.white.opacity(0.2), lineWidth: 1)
+                        .strokeBorder(.secondary, lineWidth: 1)
                 )
             // Setting only Textfield as Dark...
-                .environment(\.colorScheme, .dark)
+                .environment(\.colorScheme, .light)
                 .padding(.vertical, 20)
             
             // Add Button...
@@ -69,34 +69,47 @@ struct ChipView: View {
                     }
                 }
             } label: {
-                Text("Add A Guest")
+                Text("Add a guest")
                     .fontWeight(.semibold)
-                    .foregroundColor(Color("ForestGreen"))
+                    .foregroundColor(.white)
                     .padding(.vertical, 12)
                     .padding(.horizontal,45)
-                    .background(.white)
-                    .cornerRadius(10)
+                    .background(Color(red: 0.26, green: 0.26, blue: 0.26))
+                    .cornerRadius(28)
             }
+
             // Disabling Button...
             .disabled(text == "")
             .opacity(text == "" ? 0.6 : 1)
             
-            Button("Send") {
-                        
-            }
-                .fontWeight(.semibold)
-                .foregroundColor(Color("BG"))
-                .padding(.vertical, 12)
-                .padding(.horizontal,45)
-                .background(.white)
-                .cornerRadius(10)
+//            Button("Send") {
+//                        
+//            }
+//                .fontWeight(.semibold)
+//                .foregroundColor(Color("BG"))
+//                .padding(.vertical, 12)
+//                .padding(.horizontal,45)
+//                .background(.white)
+//                .cornerRadius(10)
+            
+            //send
+            Button(action: {
+                   // Handle button tap
+               }) {
+                   Text("Send invitations")
+                       .foregroundColor(.black)
+                       .frame(width: 284, height: 52)
+               }
+               .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+               .cornerRadius(28)
+               .padding()
 
             
         }
         .padding(15)
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity, alignment: .top)
         .background(
-            Color("ForestGreen")
+            Color(.white)
                 .ignoresSafeArea()
         )
         .alert(isPresented: $showAlert) {

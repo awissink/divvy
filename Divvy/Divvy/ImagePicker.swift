@@ -2,7 +2,7 @@
 //  ImagePicker.swift
 //  Divvy
 //
-//  Created by Test Account on 11/16/23.
+//  Created by Hannah Luo on 11/16/23.
 //
 // code referenced from tutorial: https://www.youtube.com/watch?v=Y-65T0YBOm4&ab_channel=azamsharp
 
