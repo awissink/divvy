@@ -10,6 +10,7 @@ import SwiftUI
 struct ChipView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var text: String = ""
+    @State var enteredEmails: [String] = []
     
     //Tags...
     @State var tags: [Tag] = []
@@ -57,6 +58,9 @@ struct ChipView: View {
             
             // Add Button...
             Button {
+                if !text.isEmpty {
+                    enteredEmails.append(text)
+                }
                 // adding Tag...
                 addTag(tags: tags, text: text, fontSize: 16, maxLimit: 150) {
                     alert, tag in
@@ -94,7 +98,8 @@ struct ChipView: View {
             
             //send
             Button(action: {
-                   // Handle button tap
+                    let viewModel = Receipt()
+                    viewModel.sendReceipt(to: "recipientID", receipt: someReceipt)
                }) {
                    Text("Send invitations")
                        .foregroundColor(.black)
@@ -120,6 +125,6 @@ struct ChipView: View {
     }
 }
 
-#Preview {
-    ChipView()
-}
+//#Preview {
+//    ChipView()
+//}
