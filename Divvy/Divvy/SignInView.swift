@@ -104,6 +104,7 @@ struct SignInView: View {
 //    SignInView()
 //}
 
+
 struct SwipeStack: View{
     var body: some View{
         ZStack {
@@ -111,45 +112,27 @@ struct SwipeStack: View{
             ZStack() {
                 //right card
                 ZStack() {
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .frame(width: 182, height: 204.3)
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 9.32)
-                                .inset(by: -0.93)
-                                .stroke(Color(red: 0.95, green: 0.95, blue: 0.95), lineWidth: 0.93)
-                        )
-                        .shadow(
-                            color: Color(red: 0, green: 0, blue: 0, opacity: 0.06), radius: 7.46, y: 3.73
-                        )
-                        .rotationEffect(.degrees(20))
+                    RoundedRectangle(cornerRadius: 30)
+                        .fill(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9512709975, green: 1, blue: 0.930760324, alpha: 1)), Color(#colorLiteral(red: 0.7515366077, green: 0.8420163989, blue: 0.7321715951, alpha: 1))]), startPoint: .center, endPoint: .bottomTrailing))
+                        .shadow(color: Color.gray.opacity(0.3), radius: 4, x: 0, y: 2)
+                    
                 }
                 .frame(width: 182, height: 204.3)
                 .offset(x: 40)
-                .rotationEffect(.degrees(-4))
-                
+                .rotationEffect(.degrees(10))
                 
                 //left card
                 ZStack() {
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .frame(width: 182, height: 204.3)
-                        .cornerRadius(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .inset(by: -0.93)
-                                .stroke(Color(red: 0.95, green: 0.95, blue: 0.95), lineWidth: 0.93)
-                        )
-                        .offset(x: 0, y: 0)
-                        .shadow(
-                            color: Color(red: 0, green: 0, blue: 0, opacity: 0.06), radius: 7.46, y: 3.73
-                        )
-                    Text("September")
-                        .font(.system(size: 18))
-                        .offset(x: -32, y: -80)
+                    RoundedRectangle(cornerRadius: 30)
+                        .fill(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9512709975, green: 1, blue: 0.930760324, alpha: 1)), Color(#colorLiteral(red: 0.7515366077, green: 0.8420163989, blue: 0.7321715951, alpha: 1))]), startPoint: .center, endPoint: .bottomTrailing))
+                        .shadow(color: Color.gray.opacity(0.3), radius: 4, x: 0, y: 2)
+            
+                    Image(systemName: "doc.text")
+                        .resizable()
+                        .frame(width: 20, height: 24)
+                        .foregroundColor(.gray)
                     Spacer()
-
+                    
                 }
                 .frame(width: 182, height: 204.3)
                 .offset(x: -40, y: -10)
@@ -157,68 +140,36 @@ struct SwipeStack: View{
                 
                 //center card
                 ZStack{
-                    Rectangle()
-                        .foregroundColor(.clear)
-                        .frame(width: 182, height: 204.3)
-                        .background(.white)
-                        .cornerRadius(9.32)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 9.32)
-                                .inset(by: -0.93)
-                                .stroke(Color(red: 0.95, green: 0.95, blue: 0.95), lineWidth: 0.93)
-                        )
-                        .shadow(
-                            color: Color(red: 0, green: 0, blue: 0, opacity: 0.06), radius: 7.46, y: 3.73
-                        )
+                    RoundedRectangle(cornerRadius: 30)
+                        .fill(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9512709975, green: 1, blue: 0.930760324, alpha: 1)), Color(#colorLiteral(red: 0.7515366077, green: 0.8420163989, blue: 0.7321715951, alpha: 1))]), startPoint: .center, endPoint: .bottomTrailing))
+                        .shadow(color: Color.gray.opacity(0.5), radius: 4, x: 0, y: 2)
+                    //content
+                    VStack(alignment: .leading, spacing: 4){
+                        Image(systemName: "doc.text")
+                            .resizable()
+                            .frame(width: 20, height: 24)
+                            .foregroundColor(.gray)
+                        Spacer()
+                        Text("Thai Diner")
+                            .font(.system(size: 18))
+                            .fontWeight(.semibold)
+                        Text("Nov 16, 2023")
+                            .font(.system(size: 14))
+                    }
+                    .padding(24)
+                    .multilineTextAlignment(.leading)
+                    .foregroundColor(.primary)
+                    .offset(x: -24)
                 }
-            }
-            VStack(alignment: .leading){
-                Text("November 8")
-                    .font(.system(size: 18))
-                Text("✨ New divvy")
-                    .font(.system(size: 12))
-                    .foregroundColor(Color(red: 0.92, green: 0.34, blue: 0.34))
-                Spacer()
-                //users?
-                HStack(alignment: .top, spacing: -18.64) {
-                    ZStack{
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 40, height: 40)
-                            .background(Color(red: 255/255, green: 232/255, blue: 165/255))
-                            .cornerRadius(45)
-                        Text("JJ")
-                            .foregroundColor(.secondary)
-                    }
-                    ZStack{
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 40, height: 40)
-                            .background(Color(red: 223/255, green: 215/255, blue: 251/255))
-                            .cornerRadius(45)
-                        Text("IL")
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    ZStack{
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 40, height: 40)
-                            .background(Color(red: 201/255, green: 236/255, blue: 253/255))
-                            .cornerRadius(45)
-                        Text("AW")
-                            .foregroundColor(.secondary)
-                    }
-                    
-
-                }
+                .frame(width: 188, height: 210)
                 
-                Text("OBAO")
-                    .font(.system(size: 22))
             }
-            .frame(height: 180)
-            .offset(x: -24)
+            
         }
     }
 }
 
+
+#Preview{
+    SwipeStack()
+}

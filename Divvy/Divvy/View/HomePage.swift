@@ -32,7 +32,6 @@ struct HomePage: View {
                                 perspective: 1.0
                             )
                             .shadow(color: Color.gray.opacity(0.3), radius: 4, x: 0, y: 2)
-                        //                            .strokeBorder(Color.secondary.opacity(0.5), lineWidth: 1)
                         
                         //content
                         
@@ -47,7 +46,7 @@ struct HomePage: View {
                                 
                                 
                                 Spacer()
-                                Text("Restaurant")
+                                Text("restaurant name")
                                     .font(.system(size: 24))
                                     .fontWeight(.semibold)
                                 Text(expense.description)
