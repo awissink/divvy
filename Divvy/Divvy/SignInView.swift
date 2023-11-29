@@ -126,8 +126,8 @@ struct SwipeStack: View{
                     RoundedRectangle(cornerRadius: 30)
                         .fill(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9512709975, green: 1, blue: 0.930760324, alpha: 1)), Color(#colorLiteral(red: 0.7515366077, green: 0.8420163989, blue: 0.7321715951, alpha: 1))]), startPoint: .center, endPoint: .bottomTrailing))
                         .shadow(color: Color.gray.opacity(0.3), radius: 4, x: 0, y: 2)
-                    
-                    Image("doc.text")
+            
+                    Image(systemName: "doc.text")
                         .resizable()
                         .frame(width: 20, height: 24)
                         .foregroundColor(.gray)
@@ -145,10 +145,10 @@ struct SwipeStack: View{
                         .shadow(color: Color.gray.opacity(0.5), radius: 4, x: 0, y: 2)
                     //content
                     VStack(alignment: .leading, spacing: 4){
-                        //                Image(systemName: expense.icon)
-                        //                    .resizable()
-                        //                    .frame(width: 20, height: 24)
-                        //                    .foregroundColor(.gray)
+                        Image(systemName: "doc.text")
+                            .resizable()
+                            .frame(width: 20, height: 24)
+                            .foregroundColor(.gray)
                         Spacer()
                         Text("Thai Diner")
                             .font(.system(size: 18))
