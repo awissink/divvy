@@ -53,7 +53,7 @@ struct HomePage: View {
         //        Text("Card view here")
         ScrollView(.horizontal, showsIndicators: false){
             HStack(spacing:-5){
-                ForEach(ExpenseData) { expense in
+                ForEach(expenseData) { expense in
                     GeometryReader { geometry in
                         //background
                         RoundedRectangle(cornerRadius: 30)
