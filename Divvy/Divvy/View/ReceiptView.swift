@@ -30,58 +30,82 @@ struct ReceiptView: View {
     @State private var total: Double = 0.0
     @State private var isEditing = false
     
+    @Environment(\.presentationMode) var presentationMode // Access to presentation mode
+    
+    
     // Function to recalculate the total
     private func recalculateTotal() {
         total = receiptItems.reduce(0) { $0 + $1.total }
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Image(systemName: "fork.knife")
-                    .foregroundColor(.secondary)
-                Spacer()
-                Text(restaurantName)
-                    .font(.title)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                Button(isEditing ? "Done" : "Edit") {
-                    isEditing.toggle()
+        NavigationView{
+            VStack {
+                HStack {
+                    Image(systemName: "fork.knife")
+                        .foregroundColor(.secondary)
+                    Spacer()
+                    Text(restaurantName)
+                        .font(.title)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    Button(isEditing ? "Done" : "Edit") {
+                        isEditing.toggle()
+                    }
+                    .foregroundColor(.white)
+                    .frame(width: 80, height: 40)
+                    .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
+                    .cornerRadius(28)
+                    .font(.system(size:15, weight:.semibold))
                 }
-                .foregroundColor(.white)
-                .frame(width: 80, height: 40)
-                .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
+                List {
+                    ForEach($receiptItems) { $item in
+                        ReceiptItemView(receiptItem: $item, isEditing: isEditing)
+                    }
+                }
+                Group {
+                    ReceiptEditableValue(title: "Total", value: $total, isEditing: isEditing)
+                }
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                
+                //send invitations
+                Button(action: {
+                    // Handle button tap
+                }) {
+                    Text("Confirm")
+                        .foregroundColor(.black)
+                        .frame(width: 284, height: 52)
+                }
+                .background(Color(red: 0.95, green: 0.95, blue: 0.95))
                 .cornerRadius(28)
-                .font(.system(size:15, weight:.semibold))
+                .padding()
+                
+                // Assuming ChipView is your share view, add it here
             }
-            List {
-                ForEach($receiptItems) { $item in
-                    ReceiptItemView(receiptItem: $item, isEditing: isEditing)
-                }
-            }
-            Group {
-                ReceiptEditableValue(title: "Total", value: $total, isEditing: isEditing)
-            }
-            .padding(.horizontal)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            
-            //send invitations
-            Button(action: {
-                // Handle button tap
-            }) {
-                Text("Confirm")
-                    .foregroundColor(.black)
-                    .frame(width: 284, height: 52)
-            }
-            .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-            .cornerRadius(28)
             .padding()
+            .onAppear {
+                recalculateTotal()
+            }
             
-            // Assuming ChipView is your share view, add it here
+            .navigationBarItems(leading: (
+                Button(action: {
+                    presentationMode.wrappedValue.dismiss() // Dismiss current view
+                }) {
+                    HStack {
+                        Image(systemName: "chevron.left")
+                            .foregroundColor(.black)
+                            .imageScale(.large)
+                        Text("Back")
+                            .foregroundColor(.black)
+                    }
+                }
+            ))
+            .navigationViewStyle(StackNavigationViewStyle()) // Use StackNavigationViewStyle for full-screen back swipe gesture
+            
         }
-        .padding()
-        .onAppear {
-            recalculateTotal()
-        }
+        .navigationBarTitle("", displayMode: .inline)
+        .navigationBarBackButtonHidden(true) // Hide default back button
+        
     }
 }
 
@@ -208,8 +232,6 @@ struct pickerView: View {
         }
     }
 }
-
-
 
 struct customDropdownView: View {
     
