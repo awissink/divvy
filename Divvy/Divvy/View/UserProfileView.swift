@@ -27,23 +27,19 @@ struct UserProfileView: View {
                     .frame(width: 100, height: 100) // Set desired size for the profile picture
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-                Text("Jane Doe")
-                    .font(.title)
                 
                 // Email display
-                HStack{
-                    Text("Email:")
-                        .fontWeight(.semibold)
-                    Spacer().frame(width: 8)
+                
                     HStack {
                         Text(email)
                     }
+                    .frame (maxWidth: .infinity,alignment: .leading)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(10)
                     .shadow(radius: 1)
                 }
-            }
+            
             .padding()
             //send invitations
             Button(action: {
