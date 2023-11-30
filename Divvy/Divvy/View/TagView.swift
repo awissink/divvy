@@ -21,7 +21,7 @@ struct TagView: View {
             
             Text(title)
                 .font(.callout)
-                .foregroundColor(.secondary)
+                .foregroundColor(.primary)
             //ScrollView...
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 10) {
@@ -59,21 +59,6 @@ struct TagView: View {
                 alignment: .bottomTrailing
             )
         }
-//        .onChange(of: tags) {
-//            //getting newly inserted Value...
-//            guard let last = tags.last else {
-//                return
-//            }
-//
-//            // getting Text Size...
-//            let font = UIFont.systemFont(ofSize: fontSize)
-//            let attributes = [NSAttributedString.Key.font: font]
-//            let size = (last.text as NSString).size(withAttributes: attributes)
-//
-//            // Updating Size...
-//            tags[getIndex(tag: last)].size = size.width
-//
-//        }
     }
     
     @ViewBuilder
@@ -87,9 +72,15 @@ struct TagView: View {
             .padding(.vertical, 8)
             .background(
                 Capsule()
-                    .fill(.secondary)
+//                    .fill(.secondary)
+                    .fill(Color.white)
+                    .overlay(
+                            Capsule()
+                                .stroke(Color.secondary, lineWidth: 1) // Border color and width
+                        )
             )
-            .foregroundColor(Color("BG"))
+//            .foregroundColor(Color("BG"))
+            .foregroundColor(Color.primary)
             .lineLimit(1)
         // Delete ...
             .contentShape(Capsule())
@@ -111,7 +102,6 @@ struct TagView: View {
     
     //Basic Logic...
     //Splitting the array when it exceeds the screen size...
-    
     func getRows()->[[Tag]]{
         var rows: [[Tag]] = []
         var currentRow: [Tag] = []
@@ -155,9 +145,6 @@ struct TagView: View {
       
 }
 
-#Preview {
-    ContentView()
-}
 
 //Global Function...
 func addTag(tags: [Tag], text: String, fontSize: CGFloat, maxLimit: Int, completion: @escaping (Bool, Tag)->()){

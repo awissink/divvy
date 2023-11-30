@@ -11,7 +11,6 @@ import FirebaseAuth
 
 struct UserProfileView: View {
     @EnvironmentObject var userData: UserData
-    //@State private var email: String
     
     var email: String {
             userData.currentUserEmail
@@ -36,23 +35,19 @@ struct UserProfileView: View {
                     .frame(width: 100, height: 100) // Set desired size for the profile picture
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-                Text("Jane Doe")
-                    .font(.title)
                 
                 // Email display
-                HStack{
-                    Text("Email:")
-                        .fontWeight(.semibold)
-                    Spacer().frame(width: 8)
+                
                     HStack {
                         Text(email)
                     }
+                    .frame (maxWidth: .infinity,alignment: .leading)
                     .padding()
                     .background(Color.white)
                     .cornerRadius(10)
                     .shadow(radius: 1)
                 }
-            }
+            
             .padding()
             
             
@@ -60,6 +55,29 @@ struct UserProfileView: View {
                 EmptyView()
             }
             .hidden()
+
+            
+            
+//            // Logout button
+//            Button("Log Out") {
+//                do {
+//                    try Auth.auth().signOut()
+//                    userData.loggedIn = false
+//                    showingSignIn = true
+//                } catch let signOutError as NSError {
+//                    print("Error signing out: \(signOutError.localizedDescription)")
+//                }
+//            }
+//            .foregroundColor(.black)
+//            .frame(width: 284, height: 52)
+//
+//            .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+//            .overlay{
+//                .cornerRadius(28)
+//            }
+//            .padding()
+//            Spacer()
+            
             // Logout button
             Button("Log Out") {
                 do {
@@ -72,20 +90,20 @@ struct UserProfileView: View {
             }
             .foregroundColor(.black)
             .frame(width: 284, height: 52)
-            .cornerRadius(28)
+            .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+            .cornerRadius(28) // Apply corner radius directly to the button
             .padding()
+
             Spacer()
+            
             
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-//        .background(Color(UIColor.systemGroupedBackground)) // Matches the sign-up background
-//        .edgesIgnoringSafeArea(.all)
-        //                .background(Color(UIColor.systemGroupedBackground)) // Matches the sign-up background
         .edgesIgnoringSafeArea(.all)
     }
 }
 
-//#Preview {
-//    UserProfileView()
-//}
+#Preview{
+    UserProfileView()
+}

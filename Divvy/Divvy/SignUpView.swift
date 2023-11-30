@@ -18,8 +18,6 @@ struct SignUpView: View {
             //VStack for all the elements on the signup page
             VStack {
                 
-                //Placeholder image for the swipe stack animation
-//                Image(.exampleStack)
                 SwipeStack()
                 
                 Spacer().frame(height:40)
@@ -57,6 +55,7 @@ struct SignUpView: View {
                     .font(.system(size:16, weight:.medium))
                     .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
                 Spacer().frame(height: 8)
+                //how come if changed to SecureField to hide the password it doesn't let the user login?
                 TextField("", text: $userPassword)
                     .padding(.leading, 10) //add padding so the cursor is not on the very edge
                     .frame(width: 326, height: 40)

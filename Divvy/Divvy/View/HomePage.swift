@@ -49,19 +49,18 @@ struct HomePage: View {
         }
     }
     
-    var headerView: some View {
-//        Text("Card view here")
+    var swipeCardView: some View {
+        //        Text("Card view here")
         ScrollView(.horizontal, showsIndicators: false){
-            HStack(spacing: 16) {
-                ForEach(expenseData) { expense in
+            HStack(spacing:-5){
+                ForEach(ExpenseData) { expense in
                     GeometryReader { geometry in
-                        
                         //background
                         RoundedRectangle(cornerRadius: 30)
                             .fill(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9512709975, green: 1, blue: 0.930760324, alpha: 1)), Color(#colorLiteral(red: 0.7515366077, green: 0.8420163989, blue: 0.7321715951, alpha: 1))]), startPoint: .center, endPoint: .bottomTrailing))
                             .rotation3DEffect(
                                 Angle(
-                                    degrees: Double((geometry.frame(in: .global).minX - 20) / -20)
+                                    degrees: Double((geometry.frame(in: .global).minX - 15) / -20)
                                 ),
                                 axis: (x: 0, y: 1, z: 0),
                                 anchor: .center,
@@ -69,61 +68,57 @@ struct HomePage: View {
                                 perspective: 1.0
                             )
                             .shadow(color: Color.gray.opacity(0.3), radius: 4, x: 0, y: 2)
-                        //                            .strokeBorder(Color.secondary.opacity(0.5), lineWidth: 1)
                         
                         //content
-                        
-                        NavigationLink(destination: ReceiptView()) {
+                        NavigationLink(destination: ClaimItemsView()) {
                             VStack(alignment: .leading, spacing: 4) {
-                                
-                                
                                 Image(systemName: expense.icon)
                                     .resizable()
                                     .frame(width: 20, height: 24)
                                     .foregroundColor(.gray)
-                                
-                                
                                 Spacer()
-                                Text("Restaurant")
+                                Text("Restaurant name")
                                     .font(.system(size: 24))
-                                    .fontWeight(.semibold)
+                                    .fontWeight(.medium)
                                 Text(expense.description)
                                     .font(.system(size: 16))
                             }
-                            .padding(32)
+                            .padding(24)
                             .multilineTextAlignment(.leading)
                             .foregroundColor(.primary)
                         }
                         
                     }
-                    .frame(width: 280, height: 300)
+                    .frame(width: 220, height: 280)
                 }
+                .padding()
             }
-            .padding()
         }
     }
     
     var body: some View {
         //logo
-        HStack{
-            Image(.logo)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 30)
-                .padding()
-        }
         NavigationView {
             
             List {
-//                newReceiptsView()
-                Section(header: headerView) {
+                HStack {
+                    Spacer()
+                    Image(.logo)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 30)
+                        .padding()
+                    Spacer()
                 }
                 
-                Section(header: Text("Previously Settled Expenses")
+                Section(header: swipeCardView) {
+                }
+                
+                Section(header: Text("Previously settled expenses")
                     .foregroundColor(.black)
                     .font(.headline)
                     .textCase(nil)) {
-                        NavigationLink(destination: ReceiptView()) {
+                        NavigationLink(destination: ClaimItemsView()) {
                             HStack {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(.green)
@@ -136,16 +131,9 @@ struct HomePage: View {
                         }
                     }
                 
-                
-                
             }
             .listStyle(PlainListStyle()) // Use PlainListStyle to have a clear background
             .background(Color.white) // Set the background color of the List
-            
-            //TO DO: add Logo here
-            
-            //            .navigationBarTitle(Text("Div/vy"), displayMode: .inline)
-            //
             
         }
         .background(Color.white) // Set the background color of the NavigationView
@@ -163,6 +151,8 @@ struct HomePage: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 

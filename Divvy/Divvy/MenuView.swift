@@ -22,8 +22,11 @@ struct MenuView: View {
                                     viewRouter.navigateTo(.home) // Navigate to the desired page
                                 }) {
                                     HStack {
-                                        Image(systemName: "arrow.backward") // Back button icon
-                                        Text("Back") // Text for the back button
+                                        Image(systemName: "Chevron.left") // Back button icon
+                                            .foregroundColor(.secondary)
+                                            
+                                        Text("Back")
+                                            .foregroundColor(.secondary)// Text for the back button
                                     }
                                 }
                                 .padding()
@@ -37,7 +40,7 @@ struct MenuView: View {
                     .foregroundColor(.white)
                     .frame(width: 80, height: 40)
                     .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
-                    .cornerRadius(10)
+                    .cornerRadius(28)
                     .font(.system(size:18, weight:.semibold))
                 }
                 List($viewModel.menuItems) { $item in
@@ -60,8 +63,9 @@ struct MenuView: View {
                             .frame(minWidth: 0, maxWidth: .infinity)
                             .padding()
                             .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
-                            .cornerRadius(10)
+                            .cornerRadius(28)
                             .font(.system(size:18, weight:.semibold))
+
                     }
 
                 }
@@ -103,3 +107,4 @@ struct EditableTextValue: View {
         .padding()
     }
 }
+
