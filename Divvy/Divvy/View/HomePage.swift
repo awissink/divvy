@@ -11,9 +11,80 @@ import FirebaseAuth
 import FirebaseFirestore
 
 struct HomePage: View {
+    @State private var receivedReceipts: [Receipt] = []
+    //@EnvironmentObject var userData: UserData
     // Computed property to construct the header
     
     //11.24 jo: removing overall you owe, and adding the three cards do the swipe
+    
+    func listenForReceipts() {
+        let currentUserID = Auth.auth().currentUser?.email
+        guard let userID = currentUserID else { return }
+        
+        let db = Firestore.firestore()
+        let claimedRef = db.collection("recipients").document(currentUserID!).collection("claimed")
+        
+        claimedRef.addSnapshotListener {
+            querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(String(describing: error))")
+                return
+            }
+            
+            // processing received receipts
+            for document in documents {
+                let data = document.data()
+                //print("DATA IS: ", data)
+                
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+                    let receipt = try JSONDecoder().decode(Receipt.self, from: jsonData)
+                    
+                    receivedReceipts.append(receipt)
+                    print("RECEIVED RECEIPT LIST: ", receivedReceipts)
+                    
+                    // Handle the receipt object
+                } catch {
+                    print("Error decoding: \(error.localizedDescription)")
+                }
+                
+                
+                // make receipt objects from data and display/process them in the app
+    //            let createdDate = data["createdDate"] as? String ?? ""
+    //            let currencyCode = data["currencyCode"] as? String ?? ""
+    //            let id = data["id"] as? Int ?? 0
+    //            let imgFileName = data["imgFileName"] as? String ?? ""
+    //            let imgThumbnailURL = data["imgThumbnailURL"] as? String ?? ""
+    //            let imgURL = data["imgURL"] as? String ?? ""
+    //            let lineItems = data["lineItems"] as? [LineItem] ?? []
+    //            let ocrText = data["ocrText"] as? String ?? ""
+    //            let subtotal = data["subtotal"] as? Double ?? 0.0
+    //            let tax = data["tax"] as? Double ?? 0.0
+    //            print("TAX IS: ", tax)
+    //            let tip = data["tip"] as? Double ?? 0.0
+    //            print("TIP IS: ", tip)
+    //            let total = data["total"] as? Double ?? 0.0
+    //            let vendor = data["vendor"] as? Vendor ?? nil
+    //            print("VENDOR DATA: ", vendor)
+    //
+    //            let receivedReceipt = Receipt(
+    //                createdDate: createdDate,
+    //                currencyCode: currencyCode,
+    //                id: id,
+    //                imgFileName: imgFileName,
+    //                imgThumbnailURL: imgThumbnailURL,
+    //                imgURL: imgURL,
+    //                lineItems: lineItems,
+    //                ocrText: ocrText,
+    //                subtotal: subtotal,
+    //                tax: tax,
+    //                tip: tip,
+    //                total: total,
+    //                vendor: vendor!
+    //            )
+            }
+        }
+    }
     
     var headerView: some View {
 //        Text("Card view here")
@@ -196,60 +267,6 @@ let ExpenseData = [
     Expense(description: "Receipt from Nov 3, 10:02am", icon: "doc.text"),
     Expense(description: "Receipt from Nov 4, 10:02am", icon: "doc.text")
 ]
-
-func listenForReceipts() {
-    let currentUserID = Auth.auth().currentUser?.email
-    guard let userID = currentUserID else { return }
-    
-    let db = Firestore.firestore()
-    let claimedRef = db.collection("recipients").document(currentUserID!).collection("claimed")
-    
-    claimedRef.addSnapshotListener {
-        querySnapshot, error in
-        guard let documents = querySnapshot?.documents else {
-            print("Error fetching documents: \(String(describing: error))")
-            return
-        }
-        
-        // processing received receipts
-        for document in documents {
-            let data = document.data()
-            print("DATA IS: ", data)
-            // make receipt objects from data and display/process them in the app
-            let createdDate = data["createdDate"] as? String ?? ""
-            let currencyCode = data["currencyCode"] as? String ?? ""
-            let id = data["id"] as? Int ?? 0
-            let imgFileName = data["imgFileName"] as? String ?? ""
-            let imgThumbnailURL = data["imgThumbnailURL"] as? String ?? ""
-            let imgURL = data["imgURL"] as? String ?? ""
-            let lineItems = data["lineItems"] as? [LineItem] ?? []
-            let ocrText = data["ocrText"] as? String ?? ""
-            let subtotal = data["subtotal"] as? Double ?? 0.0
-            let tax = data["tax"] as? Double ?? 0.0
-            print("TAX IS: ", tax)
-            let tip = data["tip"] as? Double ?? 0.0
-            print("TIP IS: ", tip)
-            let total = data["total"] as? Double ?? 0.0
-            let vendor = data["vendor"] as? Vendor ?? nil
-            print("VENDOR DATA: ", vendor)
-            
-            let receivedReceipt = Receipt(
-                createdDate: createdDate,
-                currencyCode: currencyCode,
-                id: id,
-                imgFileName: imgFileName,
-                imgThumbnailURL: imgThumbnailURL,
-                imgURL: imgURL,
-                lineItems: lineItems,
-                ocrText: ocrText,
-                subtotal: subtotal,
-                tax: tax,
-                tip: tip,
-                total: total,
-                vendor: vendor!
-        )}
-    }
-}
 
 
 #Preview {
