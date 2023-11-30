@@ -15,6 +15,8 @@ struct DivvyApp: App {
     
     
     init() {
+        let providerFactory = AppCheckDebugProviderFactory()
+        AppCheck.setAppCheckProviderFactory(providerFactory)
         FirebaseApp.configure() // Initialize Firebase
         @StateObject var viewRouter = ViewRouter()
     }

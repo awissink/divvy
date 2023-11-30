@@ -6,6 +6,10 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import SwiftUI
+import FirebaseFirestore
 
 struct ChipView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -15,6 +19,8 @@ struct ChipView: View {
     //Tags...
     @State var tags: [Tag] = []
     @State var showAlert: Bool = false
+    
+    @ObservedObject var viewModel: ViewModel
     
     var body: some View {
         VStack {
@@ -98,8 +104,12 @@ struct ChipView: View {
             
             //send
             Button(action: {
-                    let viewModel = Receipt()
-                    viewModel.sendReceipt(to: "recipientID", receipt: someReceipt)
+                //getting the receipt
+                let someReceipt = viewModel.currReceipt
+                print("someReceipt is currently: ", someReceipt as Any)
+                for email in enteredEmails{
+                    sendReceipt(to: email, receipt: convertToDictionary(receipt: someReceipt!))
+                }
                }) {
                    Text("Send invitations")
                        .foregroundColor(.black)
@@ -124,6 +134,75 @@ struct ChipView: View {
         
     }
 }
+
+//send and listen TO-DO: move listen for receipt func to homescreen later
+
+func sendReceipt(to recipientID: String, receipt: [String: Any]?) {
+    let db = Firestore.firestore()
+    db.collection("receipts").document(recipientID).setData(receipt!)
+}
+
+func listenForReceipts() {
+    let currentUserID = Auth.auth().currentUser?.email
+    guard let userID = currentUserID else { return }
+    
+    let db = Firestore.firestore()
+    db.collection("receipts").document(userID).collection("received").addSnapshotListener { querySnapshot, error in
+        guard let documents = querySnapshot?.documents else {
+            print("Error fetching documents: \(String(describing: error))")
+            return
+        }
+        
+        // processing received receipts
+        for document in documents {
+            let data = document.data()
+            // make receipt objects from data and display/process them in the app
+            let createdDate = data["createdDate"] as? String ?? ""
+            let currencyCode = data["currencyCode"] as? String ?? ""
+            let id = data["id"] as? Int ?? 0
+            let imgFileName = data["imgFileName"] as? String ?? ""
+            let imgThumbnailURL = data["imgThumbnailURL"] as? String ?? ""
+            let imgURL = data["imgURL"] as? String ?? ""
+            let lineItems = data["lineItems"] as? [LineItem] ?? []
+            let ocrText = data["ocrText"] as? String ?? ""
+            let subtotal = data["subtotal"] as? Double ?? 0.0
+            let tax = data["tax"] as? Double ?? 0.0
+            let tip = data["tip"] as? Double ?? 0.0
+            let total = data["total"] as? Double ?? 0.0
+            let vendor = data["vendor"] as? Vendor ?? nil
+            
+            let receivedReceipt = Receipt(
+                createdDate: createdDate,
+                currencyCode: currencyCode,
+                id: id,
+                imgFileName: imgFileName,
+                imgThumbnailURL: imgThumbnailURL,
+                imgURL: imgURL,
+                lineItems: lineItems,
+                ocrText: ocrText,
+                subtotal: subtotal,
+                tax: tax,
+                tip: tip,
+                total: total,
+                vendor: vendor!
+            )
+        }
+    }
+}
+
+func convertToDictionary(receipt: Receipt) -> [String: Any]? {
+    do {
+        let data = try JSONEncoder().encode(receipt)
+        print("DATA IS: ", data)
+        let dictionary = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
+        print("DICTIONARY IS: ", dictionary ?? "doesn't exist")
+        return dictionary
+    } catch {
+        print("Error converting to dictionary: \(error)")
+        return nil
+    }
+}
+
 
 //#Preview {
 //    ChipView()
