@@ -35,6 +35,8 @@ struct ClaimItemsView: View {
     
     @Environment(\.presentationMode) var presentationMode // Access to presentation mode
     
+    @Environment(\.openURL) var openURL //open url var
+    
     //modified function to recalculate total based on what is checked
     
     private func recalculateTotal() {
@@ -82,6 +84,9 @@ struct ClaimItemsView: View {
                 //send invitations
                 Button(action: {
                     // Handle button tap
+                    //"https://venmo.com/?txn=pay&note=" + $restaurantName + "&amount=" + $total
+                    let venmoDeeplink = "https://venmo.com/?txn=pay&note=" + String($restaurantName) + "&amount=" + String($total)
+                    openURL(URL(string: venmoDeeplink)!)
                 }) {
                     Text("Confirm")
                         .foregroundColor(.black)
@@ -155,6 +160,6 @@ struct ClaimItemCheckmarkView: View {
 
 
 
-#Preview {
-    ClaimItemsView()
-}
+//#Preview {
+//    ClaimItemsView()
+//}
