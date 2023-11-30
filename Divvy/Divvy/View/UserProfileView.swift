@@ -11,7 +11,6 @@ import FirebaseAuth
 
 struct UserProfileView: View {
     @EnvironmentObject var userData: UserData
-    //@State private var email: String
     
     var email: String {
             userData.currentUserEmail
@@ -79,9 +78,6 @@ struct UserProfileView: View {
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
-//        .background(Color(UIColor.systemGroupedBackground)) // Matches the sign-up background
-//        .edgesIgnoringSafeArea(.all)
-        //                .background(Color(UIColor.systemGroupedBackground)) // Matches the sign-up background
         .edgesIgnoringSafeArea(.all)
     }
 }

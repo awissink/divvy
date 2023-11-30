@@ -87,42 +87,16 @@ struct ChipView: View {
             .disabled(text == "")
             .opacity(text == "" ? 0.6 : 1)
             
-            
-            //old send button
-//            Button(action: {
-//                   // Handle button tap
-//           }) {
-//               Text("Send invitations")
-//                   .foregroundColor(.black)
-//                   .frame(width: 284, height: 52)
-//           }
-//           .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-//           .cornerRadius(28)
-//           .padding()
-            
-//            NavigationLink(destination: SignUpView()) {
-//                Text("don't have an account? sign up here")
-//                    .offset(y: 5)
-//                    .font(.system(size:14, weight:.medium))
-//                    .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
-//                    .underline()
-//            }
-            
-            //new send receipt button
+            //send receipt button
             NavigationLink(destination: NavBar(viewRouter: viewRouter), isActive: $sentReceipt) {
                 EmptyView()
             }
             .hidden()
             Button {
-            
                 //show popup alert
-                showSentReceiptAlert.toggle()
+//                showSentReceiptAlert.toggle()
                 //set to true and reroute
                 sentReceipt = true
-                    
-                
-                    
-                    
             } label: {
                 Text("Send Invitations")
                     .frame(width: 284, height: 52)
@@ -131,9 +105,9 @@ struct ChipView: View {
                     .cornerRadius(28)
                     .padding()
             }
-            .alert(isPresented: $showSentReceiptAlert) {
-                Alert(title: Text("Alert"), message: Text("Receipts successfully sent!"), dismissButton: .default(Text("ok")))
-            }
+//            .alert(isPresented: $showSentReceiptAlert) {
+//                Alert(title: Text("Alert"), message: Text("Receipts successfully sent!"), dismissButton: .default(Text("ok")))
+//            }
             
             
         }
@@ -151,7 +125,3 @@ struct ChipView: View {
         
     }
 }
-//
-//#Preview {
-//    ChipView()
-//}
