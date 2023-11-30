@@ -18,6 +18,7 @@ struct ChipView: View {
     //Tags...
     @State var tags: [Tag] = []
     @State var showAlert: Bool = false
+    @State var alertMessage: String = ""
     
     var body: some View {
         VStack {
@@ -107,25 +108,33 @@ struct ChipView: View {
 //            }
             
             //new send receipt button
-            NavigationLink(destination: HomePage(), isActive: $sentReceipt) {
-                EmptyView()
-            }
-            .hidden()
-            // Logout button
-            Button("Send Invitations") {
+            Button {
                 do {
                     userData.loggedIn = false
                     sentReceipt = true
+                    
+                    //show popup alert
+                    showAlert.toggle()
+                    alertMessage = "Receipts successfully sent!"
+                    
+                    
+                    
                 } catch let signOutError as NSError {
-                    print("Error signing out: \(signOutError.localizedDescription)")
+                    print("Error sending receipts: \(signOutError.localizedDescription)")
                 }
+            } label: {
+                Text("Send Invitations")
+                    .frame(width: 284, height: 52)
+                    .foregroundColor(.black)
+                    .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+                    .cornerRadius(28)
+                    .padding()
             }
             .hidden()
-            .foregroundColor(.black)
-            .frame(width: 284, height: 52)
-            .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-            .cornerRadius(28)
-            .padding()
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Alert"), message: Text(alertMessage), dismissButton: .default(Text("ok")))
+            }
+            
             
         }
         .padding(15)
