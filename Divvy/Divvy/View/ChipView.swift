@@ -11,6 +11,10 @@ struct ChipView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var text: String = ""
     
+    @StateObject var viewRouter = ViewRouter()
+    @EnvironmentObject var userData: UserData
+    @State private var sentReceipt = false
+    
     //Tags...
     @State var tags: [Tag] = []
     @State var showAlert: Bool = false
@@ -77,33 +81,51 @@ struct ChipView: View {
                     .background(Color(red: 0.26, green: 0.26, blue: 0.26))
                     .cornerRadius(28)
             }
-
             // Disabling Button...
             .disabled(text == "")
             .opacity(text == "" ? 0.6 : 1)
             
-//            Button("Send") {
-//                        
-//            }
-//                .fontWeight(.semibold)
-//                .foregroundColor(Color("BG"))
-//                .padding(.vertical, 12)
-//                .padding(.horizontal,45)
-//                .background(.white)
-//                .cornerRadius(10)
             
-            //send
-            Button(action: {
-                   // Handle button tap
-               }) {
-                   Text("Send invitations")
-                       .foregroundColor(.black)
-                       .frame(width: 284, height: 52)
-               }
-               .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-               .cornerRadius(28)
-               .padding()
-
+            //old send button
+//            Button(action: {
+//                   // Handle button tap
+//           }) {
+//               Text("Send invitations")
+//                   .foregroundColor(.black)
+//                   .frame(width: 284, height: 52)
+//           }
+//           .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+//           .cornerRadius(28)
+//           .padding()
+            
+//            NavigationLink(destination: SignUpView()) {
+//                Text("don't have an account? sign up here")
+//                    .offset(y: 5)
+//                    .font(.system(size:14, weight:.medium))
+//                    .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
+//                    .underline()
+//            }
+            
+            //new send receipt button
+            NavigationLink(destination: HomePage(), isActive: $sentReceipt) {
+                EmptyView()
+            }
+            .hidden()
+            // Logout button
+            Button("Send Invitations") {
+                do {
+                    userData.loggedIn = false
+                    sentReceipt = true
+                } catch let signOutError as NSError {
+                    print("Error signing out: \(signOutError.localizedDescription)")
+                }
+            }
+            .hidden()
+            .foregroundColor(.black)
+            .frame(width: 284, height: 52)
+            .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+            .cornerRadius(28)
+            .padding()
             
         }
         .padding(15)
@@ -119,7 +141,7 @@ struct ChipView: View {
         
     }
 }
-
-#Preview {
-    ChipView()
-}
+//
+//#Preview {
+//    ChipView()
+//}
