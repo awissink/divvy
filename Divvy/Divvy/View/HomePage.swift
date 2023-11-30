@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 struct HomePage: View {
     // Computed property to construct the header
@@ -80,91 +83,7 @@ struct HomePage: View {
             List {
 //                newReceiptsView()
                 Section(header: headerView) {
-                    //                    ForEach(BalanceData) { balance in
-                    //                        HStack {
-                    //                            Circle()
-                    //                                .fill(balance.color)
-                    //                                .frame(width: 30, height: 30)
-                    //                                .overlay(Text(balance.initials)
-                    //                                            .foregroundColor(.white))
-                    //                            Text(balance.name)
-                    //                                .foregroundColor(.black)
-                    //                            Spacer()
-                    //                            Text(balance.amount)
-                    //                                .foregroundColor(balance.amount.contains("owes") ? .fireyOrange : balance.color)
-                    //                        }
-                    //                    }
                 }
-                // ... Rest of your code, updating colors as necessary
-                
-                
-                //joyce 11/25 6:15am
-                
-                
-                //                Section(header: Text("✨ NEW RECEIPTS") //unclained receipts
-                //                    .foregroundColor(Color(red: 0.51, green: 0.51, blue: 0.51))
-                //                    .font(.headline)
-                //                    .textCase(nil))
-                //                {
-                //                    ScrollView(.horizontal, showsIndicators: false) {
-                //                        HStack(spacing: 15) { // Adjust the spacing as needed
-                //                            ForEach(ExpenseData) { expense in
-                //                                NavigationLink(destination: ReceiptView()) {
-                //                                    VStack(alignment: .leading, spacing: 4) {
-                //                                        Image(systemName: expense.icon)
-                //                                            .foregroundColor(.gray)
-                //                                        Spacer()
-                //                                        Text("Restaurant")
-                //                                            .foregroundColor(.black)
-                //                                        //                                                Text(expense.description)
-                //                                        //                                                    .foregroundColor(.black)
-                //                                        Text(expense.description)
-                //                                            .font(Font.custom("SF Pro Display", size: 12))
-                //                                            .foregroundColor(Color(red: 0.05, green: 0.09, blue: 0.13))
-                //                                            .multilineTextAlignment(.leading)
-                //
-                //                                    }
-                //
-                //                                }
-                //                                .padding(10)
-                //                                .frame(width: 130, height: 138)
-                //                                .overlay(
-                //                                    RoundedRectangle(cornerRadius: 10)
-                //                                        .strokeBorder(Color.secondary.opacity(0.5), lineWidth: 1)
-                //                                )
-                //                            }
-                //                        }
-                //                    }
-                //                    .frame(height: 160) // Set the fixed height of the ScrollView/Section
-                //                }
-                ///
-                
-//                Section(header: Text("Unclaimed Expenses")
-//                    .foregroundColor(.black)
-//                    .font(.headline)
-//                    .textCase(nil)) {
-//                        ForEach(ExpenseData) { expense in
-//                            NavigationLink(destination: ReceiptView()) { // This is the link to the ReceiptView
-//                                HStack {
-//                                    Image(systemName: expense.icon)
-//                                        .foregroundColor(.gray)
-//                                    Text(expense.description)
-//                                        .foregroundColor(.black)
-//                                    Spacer()
-//                                    //                                    Button(action: {
-//                                    //
-//                                    //                                    }) {
-//                                    //                                        Text("Claim")
-//                                    //                                            .foregroundColor(.forestGreen)
-//                                    //                                    }
-//                                    //                                    .tint(.mintGreen)
-//                                    //                                    .buttonStyle(.borderedProminent)
-//                                    //                                    .buttonBorderShape(.roundedRectangle(radius: 8))
-//                                }
-//                            }
-//                        }
-//                    }
-//                
                 
                 Section(header: Text("Previously Settled Expenses")
                     .foregroundColor(.black)
@@ -196,6 +115,9 @@ struct HomePage: View {
             
         }
         .background(Color.white) // Set the background color of the NavigationView
+        .onAppear {
+            listenForReceipts()
+        }
     }
 }
 
@@ -268,12 +190,6 @@ struct Expense: Identifiable {
     let icon: String
 }
 
-//let BalanceData = [
-//    Balance(name: "Andrew Yan", amount: "owes you $3.63", color: .babyBlue, initials: "AY"),
-//    Balance(name: "Angela Mu", amount: "settled up", color: .mintGreen, initials: "AM"),
-//    Balance(name: "Veer Chauhan", amount: "you owe $262.29", color: .forestGreen, initials: "VC")
-//]
-
 let ExpenseData = [
     Expense(description: "Receipt from Nov 1, 10:02am", icon: "doc.text"),
     Expense(description: "Receipt from Nov 2, 10:02am", icon: "doc.text"),
@@ -281,9 +197,59 @@ let ExpenseData = [
     Expense(description: "Receipt from Nov 4, 10:02am", icon: "doc.text")
 ]
 
-
-
-// Your preview code...
+func listenForReceipts() {
+    let currentUserID = Auth.auth().currentUser?.email
+    guard let userID = currentUserID else { return }
+    
+    let db = Firestore.firestore()
+    let claimedRef = db.collection("recipients").document(currentUserID!).collection("claimed")
+    
+    claimedRef.addSnapshotListener {
+        querySnapshot, error in
+        guard let documents = querySnapshot?.documents else {
+            print("Error fetching documents: \(String(describing: error))")
+            return
+        }
+        
+        // processing received receipts
+        for document in documents {
+            let data = document.data()
+            print("DATA IS: ", data)
+            // make receipt objects from data and display/process them in the app
+            let createdDate = data["createdDate"] as? String ?? ""
+            let currencyCode = data["currencyCode"] as? String ?? ""
+            let id = data["id"] as? Int ?? 0
+            let imgFileName = data["imgFileName"] as? String ?? ""
+            let imgThumbnailURL = data["imgThumbnailURL"] as? String ?? ""
+            let imgURL = data["imgURL"] as? String ?? ""
+            let lineItems = data["lineItems"] as? [LineItem] ?? []
+            let ocrText = data["ocrText"] as? String ?? ""
+            let subtotal = data["subtotal"] as? Double ?? 0.0
+            let tax = data["tax"] as? Double ?? 0.0
+            print("TAX IS: ", tax)
+            let tip = data["tip"] as? Double ?? 0.0
+            print("TIP IS: ", tip)
+            let total = data["total"] as? Double ?? 0.0
+            let vendor = data["vendor"] as? Vendor ?? nil
+            print("VENDOR DATA: ", vendor)
+            
+            let receivedReceipt = Receipt(
+                createdDate: createdDate,
+                currencyCode: currencyCode,
+                id: id,
+                imgFileName: imgFileName,
+                imgThumbnailURL: imgThumbnailURL,
+                imgURL: imgURL,
+                lineItems: lineItems,
+                ocrText: ocrText,
+                subtotal: subtotal,
+                tax: tax,
+                tip: tip,
+                total: total,
+                vendor: vendor!
+        )}
+    }
+}
 
 
 #Preview {
