@@ -21,7 +21,7 @@ struct TagView: View {
             
             Text(title)
                 .font(.callout)
-                .foregroundColor(.secondary)
+                .foregroundColor(.primary)
             //ScrollView...
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 10) {
@@ -72,9 +72,15 @@ struct TagView: View {
             .padding(.vertical, 8)
             .background(
                 Capsule()
-                    .fill(.secondary)
+//                    .fill(.secondary)
+                    .fill(Color.white)
+                    .overlay(
+                            Capsule()
+                                .stroke(Color.secondary, lineWidth: 1) // Border color and width
+                        )
             )
-            .foregroundColor(Color("BG"))
+//            .foregroundColor(Color("BG"))
+            .foregroundColor(Color.primary)
             .lineLimit(1)
         // Delete ...
             .contentShape(Capsule())
@@ -139,9 +145,6 @@ struct TagView: View {
       
 }
 
-#Preview {
-    ContentView()
-}
 
 //Global Function...
 func addTag(tags: [Tag], text: String, fontSize: CGFloat, maxLimit: Int, completion: @escaping (Bool, Tag)->()){
