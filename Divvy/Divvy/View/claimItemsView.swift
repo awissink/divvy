@@ -19,13 +19,23 @@ struct ClaimItemsView: View {
     @State private var total: Double = 0.0
     @State private var isEditing = false
     
+    
+    @State private var isChecked = false
+    
     @Environment(\.presentationMode) var presentationMode // Access to presentation mode
     
     
-    // Function to recalculate the total
+    //    // Function to recalculate the total
+    //    private func recalculateTotal() {
+    //        total = receiptItems.reduce(0) { $0 + $1.total }
+    //    }
+    
+    //modified function to recalculate total based on what is checked
+    
     private func recalculateTotal() {
-        total = receiptItems.reduce(0) { $0 + $1.total }
+        total = receiptItems.reduce(0) { $0 + ($1.isChecked ? $1.total : 0) }
     }
+    
     
     var body: some View {
         
@@ -49,18 +59,28 @@ struct ClaimItemsView: View {
                 }
                 .padding(.bottom, 16)
                 
+                
+                
                 List {
-                    
-                    
                     ForEach($receiptItems) { $item in
-                        ClaimItemCheckmarkView(receiptItem: $item)
+                        ClaimItemCheckmarkView(receiptItem: $item, recalculateTotal: recalculateTotal)
                     }
                     .listRowInsets(EdgeInsets()) // Remove separator for each item
                 }
                 
                 
+                //                List {
+                //
+                //
+                //                    ForEach($receiptItems) { $item in
+                //                        ClaimItemCheckmarkView(receiptItem: $item)
+                //                    }
+                //                    .listRowInsets(EdgeInsets()) // Remove separator for each item
+                //                }
+                
+                
                 Group {
-                    ReceiptEditableValue(title: "Total", value: $total, isEditing: isEditing)
+                    ReceiptEditableValue(title: "Your total", value: $total, isEditing: isEditing)
                 }
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .center)
@@ -106,43 +126,39 @@ struct ClaimItemsView: View {
     }
 }
 
-// Renamed MenuItemView to ReceiptItemView
 struct ClaimItemCheckmarkView: View {
     @Binding var receiptItem: ReceiptItem
-    
-    @State private var isChecked = false
+    var recalculateTotal: () -> Void // Closure to recalculate total
     
     var body: some View {
         VStack {
-            
             HStack {
                 Text(receiptItem.name)
                     .font(.subheadline)
                 
                 Spacer()
                 
-                //pricing
                 HStack(spacing: 8){
                     Text("\(receiptItem.total, specifier: "%.2f")")
                         .foregroundColor(.secondary)
                     
-                    //checkbox
                     Button(action: {
-                        isChecked.toggle()
+                        receiptItem.isChecked.toggle() // Toggle isChecked property of ReceiptItem
+                        recalculateTotal() // Recalculate total when the item is toggled
                     }) {
-                        Image(systemName: isChecked ? "checkmark.square.fill" : "square")
-                            .foregroundColor(isChecked ? .green : .gray)
+                        Image(systemName: receiptItem.isChecked ? "checkmark.square.fill" : "square")
+                            .foregroundColor(receiptItem.isChecked ? .green : .gray)
                             .font(.system(size: 20))
                     }
                 }
             }
             .padding(16)
             .padding(.trailing, 0)
-            
         }
         .frame (maxWidth: .infinity, alignment: .leading)
     }
 }
+
 
 
 #Preview {

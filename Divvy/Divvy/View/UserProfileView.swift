@@ -78,6 +78,6 @@ struct UserProfileView: View {
     }
 }
 
-//#Preview {
-//    UserProfileView()
-//}
+#Preview {
+    UserProfileView()
+}

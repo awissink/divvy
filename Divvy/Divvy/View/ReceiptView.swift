@@ -14,10 +14,13 @@ struct ReceiptItem: Identifiable {
     let name: String
     let price: Double
     let quantity: Int
+    
+    var isChecked = false //added isChecked property for the total amt
     var total: Double {
         return price * Double(quantity)
     }
 }
+
 
 // Updated ReceiptView with the ViewModel's functionality
 struct ReceiptView: View {
