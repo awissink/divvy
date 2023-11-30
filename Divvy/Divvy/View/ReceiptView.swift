@@ -93,10 +93,10 @@ struct ReceiptView: View {
                 }) {
                     HStack {
                         Image(systemName: "chevron.left")
-                            .foregroundColor(.black)
+                            .foregroundColor(.secondary)
                             .imageScale(.large)
                         Text("Back")
-                            .foregroundColor(.black)
+                            .foregroundColor(.secondary)
                     }
                 }
             ))
