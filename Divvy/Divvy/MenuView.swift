@@ -54,7 +54,7 @@ struct MenuView: View {
                 HStack {
                     Spacer()
                     
-                    NavigationLink(destination: ChipView()) {
+                    NavigationLink(destination: ChipView(viewModel: viewModel)) {
                         Text("Share")
                             .foregroundColor(.white)
                             .frame(minWidth: 0, maxWidth: .infinity)

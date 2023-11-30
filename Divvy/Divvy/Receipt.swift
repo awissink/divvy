@@ -6,6 +6,10 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseAuth
+import SwiftUI
+import FirebaseFirestore
 
 // MARK: - Receipt
 struct Receipt: Codable {

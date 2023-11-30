@@ -27,6 +27,8 @@ class ViewModel: ObservableObject {
     @Published var lineItemsTotal: Double = 0.0
     @Published var total: Double = 0.0
     
+    @Published var currReceipt: Receipt!
+    
     private func recalculateTotal() {
         lineItemsTotal = menuItems.reduce(0) { $0 + $1.total }
         total = tax + tip + lineItemsTotal
@@ -58,6 +60,10 @@ class ViewModel: ObservableObject {
                             self.lineItemsTotal += lineItem.total
                             self.menuItems.append(lineItem)
                         }
+                        
+                        //set currReceipt to receipt, which will be the populated receipt object
+                        self.currReceipt = receipt
+                        print("RECEIPT IS: ", self.currReceipt as Any)
                     } catch {
                         print(error)
                     }
