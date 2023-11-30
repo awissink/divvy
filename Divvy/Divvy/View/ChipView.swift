@@ -108,7 +108,7 @@ struct ChipView: View {
                 let someReceipt = viewModel.currReceipt
                 print("someReceipt is currently: ", someReceipt as Any)
                 for email in enteredEmails{
-                    sendReceipt(to: email, receipt: convertToDictionary(receipt: someReceipt!))
+                    sendReceipt(to: email, receipt: convertToDictionary(receipt: someReceipt!), restaurantName: viewModel.restaurantName)
                 }
                }) {
                    Text("Send invitations")
@@ -137,12 +137,19 @@ struct ChipView: View {
 
 //send and listen TO-DO: move listen for receipt func to homescreen later
 
-func sendReceipt(to recipientID: String, receipt: [String: Any]?) {
+func sendReceipt(to recipientID: String, receipt: [String: Any]?, restaurantName: String) {
     let db = Firestore.firestore()
-    db.collection("receipts").document(recipientID).setData(receipt!)
+    let claimedRef = db.collection("recipients").document(recipientID).collection("claimed")
+    claimedRef.document(restaurantName).setData(receipt!) { error in
+            if let error = error {
+                print("Error sending receipt: \(error)")
+            } else {
+                print("Receipt sent successfully to \(restaurantName)")
+            }
+        }
 }
 
-func listenForReceipts() {
+func listenForReceipts(restaurantName: String) {
     let currentUserID = Auth.auth().currentUser?.email
     guard let userID = currentUserID else { return }
     
