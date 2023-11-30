@@ -22,8 +22,11 @@ struct MenuView: View {
                                     viewRouter.navigateTo(.home) // Navigate to the desired page
                                 }) {
                                     HStack {
-                                        Image(systemName: "arrow.backward") // Back button icon
-                                        Text("Back") // Text for the back button
+                                        Image(systemName: "Chevron.left") // Back button icon
+                                            .foregroundColor(.secondary)
+                                            
+                                        Text("Back")
+                                            .foregroundColor(.secondary)// Text for the back button
                                     }
                                 }
                                 .padding()
@@ -104,3 +107,4 @@ struct EditableTextValue: View {
         .padding()
     }
 }
+

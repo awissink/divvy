@@ -55,6 +55,7 @@ struct SignUpView: View {
                     .font(.system(size:16, weight:.medium))
                     .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
                 Spacer().frame(height: 8)
+                
                 TextField("", text: $userPassword)
                     .padding(.leading, 10) //add padding so the cursor is not on the very edge
                     .frame(width: 326, height: 40)

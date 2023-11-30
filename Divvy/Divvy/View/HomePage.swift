@@ -38,19 +38,19 @@ struct HomePage: View {
                                     .frame(width: 20, height: 24)
                                     .foregroundColor(.gray)
                                 Spacer()
-                                Text("restaurant name")
+                                Text("Restaurant name")
                                     .font(.system(size: 24))
-                                    .fontWeight(.semibold)
+                                    .fontWeight(.medium)
                                 Text(expense.description)
                                     .font(.system(size: 16))
                             }
-                            .padding(32)
+                            .padding(24)
                             .multilineTextAlignment(.leading)
                             .foregroundColor(.primary)
                         }
                         
                     }
-                    .frame(width: 280, height: 300)
+                    .frame(width: 220, height: 280)
                 }
                 .padding()
             }
@@ -75,7 +75,7 @@ struct HomePage: View {
                 Section(header: swipeCardView) {
                 }
                 
-                Section(header: Text("Previously Settled Expenses")
+                Section(header: Text("Previously settled expenses")
                     .foregroundColor(.black)
                     .font(.headline)
                     .textCase(nil)) {
