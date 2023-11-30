@@ -85,8 +85,10 @@ struct ClaimItemsView: View {
                 Button(action: {
                     // Handle button tap
                     //"https://venmo.com/?txn=pay&note=" + $restaurantName + "&amount=" + $total
-                    let venmoDeeplink = "https://venmo.com/?txn=pay&note=" + String($restaurantName) + "&amount=" + String($total)
-                    openURL(URL(string: venmoDeeplink)!)
+                    if let encodedRestaurantName = restaurantName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                           let venmoDeeplink = URL(string: "https://venmo.com/?txn=pay&note=" + encodedRestaurantName + "&amount=" + String(total)) {
+                                            openURL(venmoDeeplink)
+                                        }
                 }) {
                     Text("Confirm")
                         .foregroundColor(.black)
