@@ -59,21 +59,6 @@ struct TagView: View {
                 alignment: .bottomTrailing
             )
         }
-//        .onChange(of: tags) {
-//            //getting newly inserted Value...
-//            guard let last = tags.last else {
-//                return
-//            }
-//
-//            // getting Text Size...
-//            let font = UIFont.systemFont(ofSize: fontSize)
-//            let attributes = [NSAttributedString.Key.font: font]
-//            let size = (last.text as NSString).size(withAttributes: attributes)
-//
-//            // Updating Size...
-//            tags[getIndex(tag: last)].size = size.width
-//
-//        }
     }
     
     @ViewBuilder
@@ -111,7 +96,6 @@ struct TagView: View {
     
     //Basic Logic...
     //Splitting the array when it exceeds the screen size...
-    
     func getRows()->[[Tag]]{
         var rows: [[Tag]] = []
         var currentRow: [Tag] = []

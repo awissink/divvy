@@ -18,8 +18,6 @@ struct SignUpView: View {
             //VStack for all the elements on the signup page
             VStack {
                 
-                //Placeholder image for the swipe stack animation
-//                Image(.exampleStack)
                 SwipeStack()
                 
                 Spacer().frame(height:40)
@@ -79,6 +77,7 @@ struct SignUpView: View {
                             print("userData value" + String(userData.loggedIn))
                             print("setting userData to logged in true")
                             userData.loggedIn = true
+                            userData.currentUserEmail = userEmail
                             print("userData value" + String(userData.loggedIn))
                         }
                     }

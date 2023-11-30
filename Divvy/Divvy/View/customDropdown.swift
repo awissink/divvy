@@ -93,10 +93,6 @@ struct customDropdownView2: View {
     }
 }
 
-//#Preview{
-//    customDropdownView()
-//}
-
 struct customDropdownView_Previews: PreviewProvider {
     static var previews: some View {
         customDropdownView2()

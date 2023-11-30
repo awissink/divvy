@@ -90,11 +90,7 @@ struct ReceiptItemView: View {
     @Binding var receiptItem: ReceiptItem
     var isEditing: Bool
     @State private var showDropdown = true // Use a local state for the dropdown
-    
-    //    var body: some View {
-    //        // Define your receipt item view
-    //        Text("\(receiptItem.name) - \(receiptItem.total, specifier: "%.2f")")
-    //    }
+
     var body: some View {
         VStack {
             Spacer()
