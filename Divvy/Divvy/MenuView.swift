@@ -9,6 +9,7 @@ import SwiftUI
 import VeryfiSDK
 
 struct MenuView: View {
+    @StateObject var viewRouter: ViewRouter
     @StateObject var viewModel = ViewModel()
     @State private var isEditing = false
     @State private var isDataLoaded = false
@@ -17,6 +18,15 @@ struct MenuView: View {
         VStack {
             if isDataLoaded {
                 HStack {
+                    Button(action: {
+                                    viewRouter.navigateTo(.home) // Navigate to the desired page
+                                }) {
+                                    HStack {
+                                        Image(systemName: "arrow.backward") // Back button icon
+                                        Text("Back") // Text for the back button
+                                    }
+                                }
+                                .padding()
                     Spacer()
                     Text(viewModel.restaurantName)
                         .font(.title)
