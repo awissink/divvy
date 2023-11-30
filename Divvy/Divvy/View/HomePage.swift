@@ -63,6 +63,8 @@ struct HomePage: View {
                 }
             }
             .padding()
+//            .navigationBarBackButtonHidden(true)
+//            .navigationBarHidden(true)
         }
     }
     
@@ -75,6 +77,8 @@ struct HomePage: View {
                 .frame(height: 30)
                 .padding()
         }
+//        .navigationBarBackButtonHidden(true)
+//        .navigationBarHidden(true)
         NavigationView {
             
             List {
@@ -164,7 +168,7 @@ struct HomePage: View {
 //                            }
 //                        }
 //                    }
-//                
+//
                 
                 Section(header: Text("Previously Settled Expenses")
                     .foregroundColor(.black)
@@ -195,7 +199,10 @@ struct HomePage: View {
             //
             
         }
-        .background(Color.white) // Set the background color of the NavigationView
+        .background(Color.white)
+//        .navigationBarBackButtonHidden(true)
+//        .navigationBarHidden(true)
+        // Set the background color of the NavigationView
     }
 }
 
@@ -251,6 +258,8 @@ struct newReceiptsView: View {
             }
             .padding()
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 }
 

@@ -47,6 +47,8 @@ struct NavBar: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 
     @ViewBuilder
@@ -104,11 +106,11 @@ struct NavBar: View {
 //                        EmptyView()
 //                    }
 //                    Spacer()
-//                    
+//
 //                    if viewRouter.currentPage != .menu {
 //                        bottomBar(geometry: geometry)
 //                    }
-//                    
+//
 //                    if showPopUp {
 //                                            PlusMenu(widthAndHeight: geometry.size.width/7, onImageSelected: {
 //                                                viewRouter.currentPage = .menu
@@ -121,7 +123,7 @@ struct NavBar: View {
 //        }
 //        .navigationViewStyle(StackNavigationViewStyle())
 //    }
-//    
+//
 //    @ViewBuilder
 //    private func bottomBar(geometry: GeometryProxy) -> some View {
 //            HStack {

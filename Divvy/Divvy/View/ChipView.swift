@@ -18,6 +18,7 @@ struct ChipView: View {
     //Tags...
     @State var tags: [Tag] = []
     @State var showAlert: Bool = false
+    @State var showSentReceiptAlert: Bool = false
     @State var alertMessage: String = ""
     
     var body: some View {
@@ -108,20 +109,20 @@ struct ChipView: View {
 //            }
             
             //new send receipt button
+            NavigationLink(destination: NavBar(viewRouter: viewRouter), isActive: $sentReceipt) {
+                EmptyView()
+            }
+            .hidden()
             Button {
-                do {
-                    userData.loggedIn = false
-                    sentReceipt = true
+            
+                //show popup alert
+                showSentReceiptAlert.toggle()
+                //set to true and reroute
+                sentReceipt = true
                     
-                    //show popup alert
-                    showAlert.toggle()
-                    alertMessage = "Receipts successfully sent!"
+                
                     
                     
-                    
-                } catch let signOutError as NSError {
-                    print("Error sending receipts: \(signOutError.localizedDescription)")
-                }
             } label: {
                 Text("Send Invitations")
                     .frame(width: 284, height: 52)
@@ -130,9 +131,8 @@ struct ChipView: View {
                     .cornerRadius(28)
                     .padding()
             }
-            .hidden()
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("Alert"), message: Text(alertMessage), dismissButton: .default(Text("ok")))
+            .alert(isPresented: $showSentReceiptAlert) {
+                Alert(title: Text("Alert"), message: Text("Receipts successfully sent!"), dismissButton: .default(Text("ok")))
             }
             
             
@@ -147,6 +147,7 @@ struct ChipView: View {
             Alert(title: Text("Error"), message: Text("Tag Limit Exceeded - try to delete some tags !!!"), dismissButton: .destructive(Text("Ok")))
         }
         .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
         
     }
 }
