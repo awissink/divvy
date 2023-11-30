@@ -8,18 +8,20 @@
 import SwiftUI
 import HalfASheet
 
-// Renamed LineItem model to ReceiptItem for convenience
-struct ReceiptItem: Identifiable {
-    let id = UUID()
-    let name: String
-    let price: Double
-    let quantity: Int
-    
-    var isChecked = false //added isChecked property for the total amt
-    var total: Double {
-        return price * Double(quantity)
-    }
-}
+//DEPRACATED -> Using claimItemsView instead
+
+//// Renamed LineItem model to ReceiptItem for convenience
+//struct ReceiptItem: Identifiable {
+//    let id = UUID()
+//    let name: String
+//    let price: Double
+//    let quantity: Int
+//    
+//    var isChecked = false //added isChecked property for the total amt
+//    var total: Double {
+//        return price * Double(quantity)
+//    }
+//}
 
 
 // Updated ReceiptView with the ViewModel's functionality

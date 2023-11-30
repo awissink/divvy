@@ -31,7 +31,7 @@ struct HomePage: View {
                             .shadow(color: Color.gray.opacity(0.3), radius: 4, x: 0, y: 2)
                         
                         //content
-                        NavigationLink(destination: ReceiptView()) {
+                        NavigationLink(destination: ClaimItemsView()) {
                             VStack(alignment: .leading, spacing: 4) {
                                 Image(systemName: expense.icon)
                                     .resizable()
@@ -79,7 +79,7 @@ struct HomePage: View {
                     .foregroundColor(.black)
                     .font(.headline)
                     .textCase(nil)) {
-                        NavigationLink(destination: ReceiptView()) {
+                        NavigationLink(destination: ClaimItemsView()) {
                             HStack {
                                 Image(systemName: "checkmark.circle.fill")
                                     .foregroundColor(.green)
@@ -123,7 +123,7 @@ struct newReceiptsView: View {
                             .shadow(color: Color.gray.opacity(0.3), radius: 4, x: 0, y: 2)
                         
                         //content
-                        NavigationLink(destination: ReceiptView()) {
+                        NavigationLink(destination: ClaimItemsView()) {
                             VStack(alignment: .leading, spacing: 4) {
                                 
                                 

@@ -8,6 +8,17 @@
 import Foundation
 import SwiftUI
 
+struct ReceiptItem: Identifiable {
+    let id = UUID()
+    let name: String
+    let price: Double
+    let quantity: Int
+    
+    var isChecked = false //added isChecked property for the total amt
+    var total: Double {
+        return price * Double(quantity)
+    }
+}
 
 struct ClaimItemsView: View {
     @State private var restaurantName: String = "Restaurant name"
@@ -24,12 +35,6 @@ struct ClaimItemsView: View {
     
     @Environment(\.presentationMode) var presentationMode // Access to presentation mode
     
-    
-    //    // Function to recalculate the total
-    //    private func recalculateTotal() {
-    //        total = receiptItems.reduce(0) { $0 + $1.total }
-    //    }
-    
     //modified function to recalculate total based on what is checked
     
     private func recalculateTotal() {
@@ -40,7 +45,6 @@ struct ClaimItemsView: View {
     var body: some View {
         
         NavigationView{
-            
             VStack {
                 HStack {
                     Image(systemName: "fork.knife")
@@ -67,17 +71,7 @@ struct ClaimItemsView: View {
                     }
                     .listRowInsets(EdgeInsets()) // Remove separator for each item
                 }
-                
-                
-                //                List {
-                //
-                //
-                //                    ForEach($receiptItems) { $item in
-                //                        ClaimItemCheckmarkView(receiptItem: $item)
-                //                    }
-                //                    .listRowInsets(EdgeInsets()) // Remove separator for each item
-                //                }
-                
+
                 
                 Group {
                     ReceiptEditableValue(title: "Your total", value: $total, isEditing: isEditing)
