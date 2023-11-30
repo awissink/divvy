@@ -18,8 +18,6 @@ struct SignUpView: View {
             //VStack for all the elements on the signup page
             VStack {
                 
-                //Placeholder image for the swipe stack animation
-//                Image(.exampleStack)
                 SwipeStack()
                 
                 Spacer().frame(height:40)

@@ -16,9 +16,15 @@ struct ChipView: View {
     @State var text: String = ""
     @State var enteredEmails: [String] = []
     
+    @StateObject var viewRouter = ViewRouter()
+    @EnvironmentObject var userData: UserData
+    @State private var sentReceipt = false
+    
     //Tags...
     @State var tags: [Tag] = []
     @State var showAlert: Bool = false
+    @State var showSentReceiptAlert: Bool = false
+    @State var alertMessage: String = ""
     
     @ObservedObject var viewModel: ViewModel
     
@@ -87,38 +93,32 @@ struct ChipView: View {
                     .background(Color(red: 0.26, green: 0.26, blue: 0.26))
                     .cornerRadius(28)
             }
-
             // Disabling Button...
             .disabled(text == "")
             .opacity(text == "" ? 0.6 : 1)
             
-//            Button("Send") {
-//                        
+            //send receipt button
+            NavigationLink(destination: NavBar(viewRouter: viewRouter), isActive: $sentReceipt) {
+                EmptyView()
+            }
+            .hidden()
+            Button {
+                //show popup alert
+//                showSentReceiptAlert.toggle()
+                //set to true and reroute
+                sentReceipt = true
+            } label: {
+                Text("Send Invitations")
+                    .frame(width: 284, height: 52)
+                    .foregroundColor(.black)
+                    .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+                    .cornerRadius(28)
+                    .padding()
+            }
+//            .alert(isPresented: $showSentReceiptAlert) {
+//                Alert(title: Text("Alert"), message: Text("Receipts successfully sent!"), dismissButton: .default(Text("ok")))
 //            }
-//                .fontWeight(.semibold)
-//                .foregroundColor(Color("BG"))
-//                .padding(.vertical, 12)
-//                .padding(.horizontal,45)
-//                .background(.white)
-//                .cornerRadius(10)
             
-            //send
-            Button(action: {
-                //getting the receipt
-                let someReceipt = viewModel.currReceipt
-                print("someReceipt is currently: ", someReceipt as Any)
-                for email in enteredEmails{
-                    sendReceipt(to: email, receipt: convertToDictionary(receipt: someReceipt!), restaurantName: viewModel.restaurantName)
-                }
-               }) {
-                   Text("Send invitations")
-                       .foregroundColor(.black)
-                       .frame(width: 284, height: 52)
-               }
-               .background(Color(red: 0.95, green: 0.95, blue: 0.95))
-               .cornerRadius(28)
-               .padding()
-
             
         }
         .padding(15)
@@ -131,6 +131,7 @@ struct ChipView: View {
             Alert(title: Text("Error"), message: Text("Tag Limit Exceeded - try to delete some tags !!!"), dismissButton: .destructive(Text("Ok")))
         }
         .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
         
     }
 }
