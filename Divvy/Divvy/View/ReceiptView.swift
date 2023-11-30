@@ -114,13 +114,13 @@ struct ReceiptItemView: View {
     @Binding var receiptItem: ReceiptItem
     var isEditing: Bool
     @State private var showDropdown = true // Use a local state for the dropdown
-
+    
     var body: some View {
         VStack {
             Spacer()
             HStack {
                 Text(receiptItem.name)
-                    .font(.headline)
+                    .font(.subheadline)
                 
                 Spacer()
                 
@@ -229,87 +229,6 @@ struct pickerView: View {
     }
 }
 
-struct customDropdownView: View {
-    
-    let drop: [DropItem] = [
-        DropItem(title: "joyce"),
-        DropItem(title: "izzy"),
-        DropItem(title: "grace"),
-        DropItem(title: "eki"),
-        DropItem(title: "amelia"),
-        DropItem(title: "hannah")
-        // Add more items as needed
-    ]
-    
-    @State var show = false
-    @State var name = "who had this item?"
-    
-    
-    var body: some View {
-        
-        VStack {
-            ZStack{
-                ZStack{
-                    RoundedRectangle(cornerRadius: 10)
-                    ScrollView{
-                        VStack(spacing: 17){
-                            ForEach (drop) { item in
-                                Button {
-                                    withAnimation {
-                                        name = item.title
-                                        show.toggle()
-                                    }
-                                } label: { //list of names
-                                    Text(item.title).foregroundColor(.black)
-                                    
-                                        .font(.system(size: 14))
-                                    Spacer()
-                                }
-                            }
-                            .padding(.horizontal)
-                        }
-                        
-                        .padding(.vertical,15)
-                    }
-                }
-                .frame (height: show ? 205 : 0)
-                .offset(y: show ? 30 : -25)
-                .foregroundColor(Color(red: 0.95, green: 0.95, blue: 0.95))
-                
-                
-                //who had item for dropdown
-                ZStack{
-                    RoundedRectangle(cornerRadius: 5).frame(height: 40)
-                        .foregroundColor(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color.gray.opacity(0.5), lineWidth: 0.5)
-                        )
-                        .shadow(color: Color.gray.opacity(0.1), radius: 4, x: 0, y: 2) // Apply slight gray shadow
-                    HStack{
-                        Text(name).font(.subheadline)
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .rotationEffect(.degrees(show ? -90 : 0))
-                            .font(.system(size: 12))
-                    }
-                    
-                    .padding(.horizontal)
-                    .foregroundColor(.black)
-                }
-                
-                .offset(y: show ? -105 : -25)
-                .onTapGesture {
-                    withAnimation{
-                        show .toggle()
-                    }
-                }
-            }
-        }
-        .padding()
-        .frame (width: .infinity,alignment: .leading)
-    }
-}
 
 #Preview {
     ReceiptView()
