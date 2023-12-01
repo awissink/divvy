@@ -12,10 +12,13 @@ import FirebaseFirestore
 
 struct HomePage: View {
     @State private var receivedReceipts: [Receipt] = []
+    @State private var claimedReceipts: [Receipt] = []
     @State private var expenseData: [Expense] = []
+    @State private var claimedExpenseData: [Expense] = []
     @State private var doneListening: Bool = false
+    @State private var doneClaimedListening: Bool = false
     
-    func listenForReceipts() {
+    func listenForUnclaimedReceipts() {
         let currentUserID = Auth.auth().currentUser?.email
         
         let db = Firestore.firestore()
@@ -37,7 +40,6 @@ struct HomePage: View {
                     let receipt = try JSONDecoder().decode(Receipt.self, from: jsonData)
                     
                     receivedReceipts.append(receipt)
-                    print("RECEIVED RECEIPT LIST: ", receivedReceipts)
                     
                     // Handle the receipt object
                 } catch {
@@ -46,6 +48,40 @@ struct HomePage: View {
                 
             }
             doneListening = true
+        }
+    }
+    
+    func listenForClaimedReceipts() {
+        let currentUserID = Auth.auth().currentUser?.email
+        
+        let db = Firestore.firestore()
+        let ClaimedRef = db.collection("recipients").document(currentUserID!).collection("claimed")
+        
+        ClaimedRef.addSnapshotListener {
+            querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("Error fetching documents: \(String(describing: error))")
+                return
+            }
+            
+            // processing received receipts
+            for document in documents {
+                let data = document.data()
+                
+                do {
+                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+                    let receipt = try JSONDecoder().decode(Receipt.self, from: jsonData)
+                    
+                    claimedReceipts.append(receipt)
+                    print("RECEIVED RECEIPT LIST: ", claimedReceipts)
+                    
+                    // Handle the receipt object
+                } catch {
+                    print("Error decoding: \(error.localizedDescription)")
+                }
+                
+            }
+            doneClaimedListening = true
         }
     }
     
@@ -113,23 +149,30 @@ struct HomePage: View {
                 
                 Section(header: swipeCardView) {
                 }
-// TO-DO: FIX THIS
-//                Section(header: Text("Claimed Divvys")
-//                    .foregroundColor(.black)
-//                    .font(.headline)
-//                    .textCase(nil)) {
-//                        NavigationLink(destination: UnclaimedView()) {
-//                            HStack {
-//                                Image(systemName: "checkmark.circle.fill")
-//                                    .foregroundColor(.green)
-//                                Text("Receipt from Oct 30, 11:58pm")
-//                                    .foregroundColor(.black)
-//                                Spacer()
-//                                Text("paid!")
-//                                    .foregroundColor(.green)
-//                            }
-//                        }
-//                    }
+
+                Section(header: Text("Claimed Divvys")
+                    .foregroundColor(.black)
+                    .font(.headline)
+                    .textCase(nil)) {
+                        ForEach(claimedExpenseData) { expense in
+                                                GeometryReader { geometry in
+                                NavigationLink(destination: ClaimedReceipt(expense: expense)) {
+                                    HStack {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .foregroundColor(.green)
+                                        Text("Receipt from Oct 30, 11:58pm")
+                                            .foregroundColor(.black)
+                                        Spacer()
+                                        Text("paid!")
+                                            .foregroundColor(.green)
+                                    }
+                                }
+                            }
+                        }
+                        
+                        
+                        
+                    }
                 
             }
             .listStyle(PlainListStyle()) // Use PlainListStyle to have a clear background
@@ -138,17 +181,28 @@ struct HomePage: View {
         }
         .background(Color.white) // Set the background color of the NavigationView
         .onAppear {
-            listenForReceipts()
+            listenForUnclaimedReceipts()
+            listenForClaimedReceipts()
         }
         .onChange(of: doneListening) { newDataLoaded in
             if newDataLoaded {
-                print("RECEIVED RECEIPTS VARIABLE CONTAINS: ", receivedReceipts)
                 //populate expenseData array
                 for receipt in receivedReceipts {
-                    print("DOING A RECEIPT: ", receipt.vendor.name)
                     let expense = Expense(description: receipt.createdDate ?? receipt.createdDate!, icon: "doc.text",
                                           receipt: receipt)
                     expenseData.append(expense)
+                }
+            }
+        }
+        .onChange(of: doneClaimedListening) { newDataLoaded in
+            if newDataLoaded {
+                //populate expenseData array
+                for receipt in claimedReceipts {
+                    let expense = Expense(description: receipt.createdDate ?? receipt.createdDate!, icon: "doc.text",
+                                          receipt: receipt)
+                    claimedExpenseData.append(expense)
+                    
+                    print("CLAIMED EXPENSE DATA: ", claimedExpenseData)
                 }
             }
         }
