@@ -23,7 +23,6 @@ struct ClaimedReceipt: View {
     @State private var receiptItems: [ClaimedReceiptItem]
         
     @Environment(\.presentationMode) var presentationMode
-    @Environment(\.openURL) var openURL
     
     init(expense: Expense) {
         self.expense = expense
@@ -56,13 +55,20 @@ struct ClaimedReceipt: View {
                     Text(restaurantName)
                         .font(.title)
                         .fontWeight(.medium)
+                    
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 .listRowInsets(EdgeInsets()) // Remove separator for the first row
-                HStack{
-                    
+                
+                
+                List {
+                    ForEach($receiptItems) { $item in
+                        ItemView(receiptItem: $item)
+                    }
+                    .listRowInsets(EdgeInsets()) // Remove separator for each item
                 }
-                .padding(.bottom, 16)
+                
+                
                 
                 
                 // Assuming ChipView is your share view, add it here
@@ -91,7 +97,29 @@ struct ClaimedReceipt: View {
     }
 }
 
-
+struct ItemView: View {
+    @Binding var receiptItem: ClaimedReceiptItem
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Text(receiptItem.name)
+                    .font(.subheadline)
+                
+                Spacer()
+                
+                HStack(spacing: 8){
+                    Text("\(receiptItem.price, specifier: "%.2f")")
+                        .foregroundColor(.secondary)
+                    
+                }
+            }
+            .padding(16)
+            .padding(.trailing, 0)
+        }
+        .frame (maxWidth: .infinity, alignment: .leading)
+    }
+}
 
 
 //#Preview {

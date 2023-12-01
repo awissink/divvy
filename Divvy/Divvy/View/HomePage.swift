@@ -159,12 +159,13 @@ struct HomePage: View {
                                 NavigationLink(destination: ClaimedReceipt(expense: expense)) {
                                     HStack {
                                         Image(systemName: "checkmark.circle.fill")
-                                            .foregroundColor(.green)
-                                        Text("Receipt from Oct 30, 11:58pm")
+                                            .foregroundColor(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
+                                        let receiptField = expense.receipt.vendor.name
+                                        Text(receiptField)
                                             .foregroundColor(.black)
                                         Spacer()
                                         Text("paid!")
-                                            .foregroundColor(.green)
+                                            .foregroundColor(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
                                     }
                                 }
                             }
