@@ -39,6 +39,7 @@ struct SignInView: View {
                     .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
                 Spacer().frame(height: 8)
                 TextField("", text: $userEmail)
+                    .autocapitalization(.none)
                     .padding(.leading, 10) //add padding so the cursor is not on the very edge
                     .frame(width: 326, height: 40)
                     .background(Color(red: 0xE0 / 240.0, green: 0xE0 / 240.0, blue: 0xE0 / 240.0))
@@ -54,7 +55,9 @@ struct SignInView: View {
                 Spacer().frame(height: 8)
                 
                 //how come if changed to SecureField to hide the password it doesn't let the user login?
-                TextField("", text: $userPassword)
+                SecureField("", text: $userPassword)
+                    .autocapitalization(.none)
+                    .accessibilityLabel("Password")
                     .padding(.leading, 10) //add padding so the cursor is not on the very edge
                     .frame(width: 326, height: 40)
                     .background(Color(red: 0xE0 / 240.0, green: 0xE0 / 240.0, blue: 0xE0 / 240.0))

@@ -59,6 +59,7 @@ struct ChipView: View {
                 .font(.title3)
                 .padding(.vertical, 12)
                 .padding(.horizontal)
+                .autocapitalization(.none)
                 .background(
                     RoundedRectangle(cornerRadius: 10)
                         .strokeBorder(.secondary, lineWidth: 1)
