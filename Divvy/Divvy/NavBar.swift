@@ -66,7 +66,7 @@ struct NavBar: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: geometry.size.width/7-6, height: geometry.size.width/7-6)
-                    .foregroundColor(Color(#colorLiteral(red: 0.7515366077, green: 0.8420163989, blue: 0.7321715951, alpha: 1)))
+                    .foregroundColor(Color("ForestGreen"))
                     .rotationEffect(Angle(degrees: showPopUp ? 90 : 0))
             }
             .offset(y: -geometry.size.height/8/2)
@@ -139,7 +139,7 @@ struct PlusMenu: View {
     private func buttonContent(systemIconName: String) -> some View {
         ZStack {
             Circle()
-                .foregroundColor(Color(#colorLiteral(red: 0.7515366077, green: 0.8420163989, blue: 0.7321715951, alpha: 1)))
+                .foregroundColor(Color("ForestGreen"))
                 .frame(width: widthAndHeight, height: widthAndHeight)
             Image(systemName: systemIconName)
                 .resizable()
