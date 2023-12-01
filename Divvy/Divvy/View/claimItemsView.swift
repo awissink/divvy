@@ -7,6 +7,9 @@
 
 import Foundation
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 struct ReceiptItem: Identifiable {
     let id = UUID()
@@ -95,6 +98,31 @@ struct ClaimItemsView: View {
                 
                 //send invitations
                 Button(action: {
+                    //TO-DO: NEED TO ROUTE BACK TO HOMEPAGE
+                    
+                    //TO-DO: MOVE DOCUMENT TO "CLAIMED" COLLECTION
+                    let db = Firestore.firestore()
+                    let currentUserID = Auth.auth().currentUser?.email
+                    let unclaimedRef = db.collection("recipients").document(currentUserID!).collection("unclaimed")
+                    
+                    let claimedRef = db.collection("recipients").document(currentUserID!).collection("claimed")
+                    claimedRef.document(restaurantName).setData(convertToDictionary(receipt: expense.receipt)!) { error in
+                           if let error = error {
+                               print("Error sending receipt: \(error)")
+                           } else {
+                               print("Receipt sent successfully to \(restaurantName)")
+                           }
+                       }
+                    
+                    //delete the receipt from unclaimed collect
+                    unclaimedRef.document(restaurantName).delete { error in
+                        if let error = error {
+                            print("Error deleting document: \(error)")
+                        } else {
+                            print("Document deleted successfully")
+                        }
+                    }
+                    
                     // Handle button tap
                     //"https://venmo.com/?txn=pay&note=" + $restaurantName + "&amount=" + $total
                     if let encodedRestaurantName = restaurantName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
