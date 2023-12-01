@@ -1,14 +1,14 @@
 //
-//  claimItemsView.swift
+//  ClaimedReceipt.swift
 //  Divvy
 //
-//  Created by joyce jiang on 11/30/23.
+//  Created by Hannah Grace and Amelia on 11/30/23.
 //
 
 import Foundation
 import SwiftUI
 
-struct UnclaimedReceiptItem: Identifiable {
+struct ClaimedReceiptItem: Identifiable {
     let id = UUID()
     let name: String
     let price: Double
@@ -20,7 +20,7 @@ struct ClaimedReceipt: View {
     
     let expense: Expense
     @State private var restaurantName: String
-    @State private var receiptItems: [UnclaimedReceiptItem]
+    @State private var receiptItems: [ClaimedReceiptItem]
         
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.openURL) var openURL
@@ -32,10 +32,10 @@ struct ClaimedReceipt: View {
         let tempRestaurantName = expense.receipt.vendor.name
 
         // Temporary array for receipt items
-        var tempReceiptItems: [UnclaimedReceiptItem] = []
+        var tempReceiptItems: [ClaimedReceiptItem] = []
 
         for item in expense.receipt.lineItems {
-            let newItem = UnclaimedReceiptItem(name: item.description, price: item.total, quantity: item.quantity)
+            let newItem = ClaimedReceiptItem(name: item.description, price: item.total, quantity: item.quantity)
             tempReceiptItems.append(newItem)
         }
 
