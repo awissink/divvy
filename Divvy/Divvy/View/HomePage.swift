@@ -70,14 +70,14 @@ struct HomePage: View {
                             .shadow(color: Color.gray.opacity(0.3), radius: 4, x: 0, y: 2)
                         
                         //content
-                        NavigationLink(destination: ClaimItemsView()) {
+                        NavigationLink(destination: ClaimItemsView(expense: expense)) {
                             VStack(alignment: .leading, spacing: 4) {
                                 Image(systemName: expense.icon)
                                     .resizable()
                                     .frame(width: 20, height: 24)
                                     .foregroundColor(.gray)
                                 Spacer()
-                                Text("Restaurant name")
+                                Text(expense.receipt.vendor.name)
                                     .font(.system(size: 24))
                                     .fontWeight(.medium)
                                 Text(expense.description)
@@ -114,22 +114,22 @@ struct HomePage: View {
                 Section(header: swipeCardView) {
                 }
                 
-                Section(header: Text("Previously settled expenses")
-                    .foregroundColor(.black)
-                    .font(.headline)
-                    .textCase(nil)) {
-                        NavigationLink(destination: ClaimItemsView()) {
-                            HStack {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.green)
-                                Text("Receipt from Oct 30, 11:58pm")
-                                    .foregroundColor(.black)
-                                Spacer()
-                                Text("paid!")
-                                    .foregroundColor(.green)
-                            }
-                        }
-                    }
+//                Section(header: Text("Previously settled expenses")
+//                    .foregroundColor(.black)
+//                    .font(.headline)
+//                    .textCase(nil)) {
+//                        NavigationLink(destination: ClaimItemsView()) {
+//                            HStack {
+//                                Image(systemName: "checkmark.circle.fill")
+//                                    .foregroundColor(.green)
+//                                Text("Receipt from Oct 30, 11:58pm")
+//                                    .foregroundColor(.black)
+//                                Spacer()
+//                                Text("paid!")
+//                                    .foregroundColor(.green)
+//                            }
+//                        }
+//                    }
                 
             }
             .listStyle(PlainListStyle()) // Use PlainListStyle to have a clear background
@@ -146,7 +146,8 @@ struct HomePage: View {
                 //populate expenseData array
                 for receipt in receivedReceipts {
                     print("DOING A RECEIPT: ", receipt.vendor.name)
-                    let expense = Expense(description: (receipt.vendor.name + " " + (receipt.createdDate ?? receipt.createdDate!)), icon: "doc.text")
+                    let expense = Expense(description: receipt.createdDate ?? receipt.createdDate!, icon: "doc.text",
+                                          receipt: receipt)
                     expenseData.append(expense)
                 }
             }
@@ -168,6 +169,7 @@ struct Expense: Identifiable {
     let id = UUID()
     let description: String
     let icon: String
+    let receipt: Receipt
 }
 
 

@@ -35,5 +35,4 @@ class UserData: ObservableObject {
 
     @Published var loggedIn = false
     @Published var currentUserEmail = "exampleuser@gmail.com"
-    @Published var expenseData = []
 }
