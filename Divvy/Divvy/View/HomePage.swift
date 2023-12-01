@@ -113,12 +113,12 @@ struct HomePage: View {
                 
                 Section(header: swipeCardView) {
                 }
-                
-//                Section(header: Text("Previously settled expenses")
+// TO-DO: FIX THIS
+//                Section(header: Text("Claimed Divvys")
 //                    .foregroundColor(.black)
 //                    .font(.headline)
 //                    .textCase(nil)) {
-//                        NavigationLink(destination: ClaimItemsView()) {
+//                        NavigationLink(destination: UnclaimedView()) {
 //                            HStack {
 //                                Image(systemName: "checkmark.circle.fill")
 //                                    .foregroundColor(.green)
