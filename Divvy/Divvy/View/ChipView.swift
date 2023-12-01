@@ -152,8 +152,8 @@ struct ChipView: View {
 
 func sendReceipt(to recipientID: String, receipt: [String: Any]?, restaurantName: String) {
     let db = Firestore.firestore()
-    let claimedRef = db.collection("recipients").document(recipientID).collection("claimed")
-    claimedRef.document(restaurantName).setData(receipt!) { error in
+    let unclaimedRef = db.collection("recipients").document(recipientID).collection("unclaimed")
+    unclaimedRef.document(restaurantName).setData(receipt!) { error in
             if let error = error {
                 print("Error sending receipt: \(error)")
             } else {
