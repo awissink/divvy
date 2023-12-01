@@ -19,9 +19,9 @@ struct HomePage: View {
         let currentUserID = Auth.auth().currentUser?.email
         
         let db = Firestore.firestore()
-        let claimedRef = db.collection("recipients").document(currentUserID!).collection("claimed")
+        let unclaimedRef = db.collection("recipients").document(currentUserID!).collection("unclaimed")
         
-        claimedRef.addSnapshotListener {
+        unclaimedRef.addSnapshotListener {
             querySnapshot, error in
             guard let documents = querySnapshot?.documents else {
                 print("Error fetching documents: \(String(describing: error))")
