@@ -106,6 +106,11 @@ struct ChipView: View {
                 //show popup alert
 //                showSentReceiptAlert.toggle()
                 //set to true and reroute
+                let someReceipt = viewModel.currReceipt
+                print("someReceipt is currently: ", someReceipt as Any)
+                for email in enteredEmails{
+                    sendReceipt(to: email, receipt: convertToDictionary(receipt: someReceipt!), restaurantName: viewModel.restaurantName)
+                }
                 sentReceipt = true
             } label: {
                 Text("Send Invitations")
