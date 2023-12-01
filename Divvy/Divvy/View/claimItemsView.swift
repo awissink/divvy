@@ -21,24 +21,36 @@ struct ReceiptItem: Identifiable {
 }
 
 struct ClaimItemsView: View {
-    @State private var restaurantName: String = "Restaurant name"
-    @State private var receiptItems: [ReceiptItem] = [
-        ReceiptItem(name: "Burger", price: 9.99, quantity: 1),
-        ReceiptItem(name: "Fries", price: 4.99, quantity: 2),
-        ReceiptItem(name: "Soda", price: 1.99, quantity: 1)
-    ]
+    
+    let expense: Expense
+    @State private var restaurantName: String
+    @State private var receiptItems: [ReceiptItem]
     @State private var total: Double = 0.0
     @State private var isEditing = false
-    
-    
     @State private var isChecked = false
+        
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.openURL) var openURL
     
-    @Environment(\.presentationMode) var presentationMode // Access to presentation mode
-    
-    @Environment(\.openURL) var openURL //open url var
-    
-    //modified function to recalculate total based on what is checked
-    
+    init(expense: Expense) {
+        self.expense = expense
+
+        // Temporary variable for restaurant name
+        let tempRestaurantName = expense.receipt.vendor.name
+
+        // Temporary array for receipt items
+        var tempReceiptItems: [ReceiptItem] = []
+
+        for item in expense.receipt.lineItems {
+            let newItem = ReceiptItem(name: item.description, price: item.total, quantity: item.quantity, isChecked: false)
+            tempReceiptItems.append(newItem)
+        }
+
+        // Initializing @State properties
+        _restaurantName = State(initialValue: tempRestaurantName)
+        _receiptItems = State(initialValue: tempReceiptItems)
+    }
+
     private func recalculateTotal() {
         total = receiptItems.reduce(0) { $0 + ($1.isChecked ? $1.total : 0) }
     }
@@ -160,6 +172,29 @@ struct ClaimItemCheckmarkView: View {
     }
 }
 
+struct ReceiptEditableValue: View {
+    var title: String
+    @Binding var value: Double
+    var isEditing: Bool
+    
+    var body: some View {
+        HStack {
+            Text(title)
+            Spacer()
+            if isEditing {
+                TextField("", value: $value, format: .number)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .keyboardType(.decimalPad)
+                    .multilineTextAlignment(.trailing)
+                    .frame(minWidth: 50, alignment: .trailing)
+            } else {
+                Text("\(value, specifier: "%.2f")")
+            }
+        }
+        .padding()
+        
+    }
+}
 
 
 //#Preview {
