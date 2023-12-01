@@ -56,7 +56,7 @@
 		528D4BEF2AFECCCE00282606 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BEE2AFECCCE00282606 /* FirebaseStorage */; };
 		528D4BF12AFECCCE00282606 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 528D4BF02AFECCCE00282606 /* FirebaseStorageCombine-Community */; };
 		528D4BF62AFED64500282606 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D4BF52AFED64500282606 /* GoogleService-Info.plist */; };
-		52F092D02B1A9FA700EBCE05 /* ClaimedReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F092CF2B1A9FA700EBCE05 /* ClaimedReceipt.swift */; };
+		52F092D12B1AA1FC00EBCE05 /* ClaimedReceipt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F092CF2B1A9FA700EBCE05 /* ClaimedReceipt.swift */; };
 		D6811ABA2B0E288700FB14A7 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6811AB92B0E288700FB14A7 /* SignUpView.swift */; };
 		D6EF367F2B06BE130037BA0C /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EF367E2B06BE130037BA0C /* SignInView.swift */; };
 /* End PBXBuildFile section */
@@ -305,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F092D12B1AA1FC00EBCE05 /* ClaimedReceipt.swift in Sources */,
 				4C5ED17F2B06C19500D59DF5 /* NavBar.swift in Sources */,
 				4C5ED17B2B06C0E800D59DF5 /* CustomTabBarApp.swift in Sources */,
 				4C5ED18D2B06C22400D59DF5 /* TagView.swift in Sources */,
@@ -323,7 +324,6 @@
 				4C5ED1892B06C20E00D59DF5 /* ChipView.swift in Sources */,
 				5274D5202AEF382B0091B8C1 /* ContentView.swift in Sources */,
 				526A00642B06BD2900C4D236 /* ImagePicker.swift in Sources */,
-				52F092D02B1A9FA700EBCE05 /* ClaimedReceipt.swift in Sources */,
 				D6811ABA2B0E288700FB14A7 /* SignUpView.swift in Sources */,
 				D6EF367F2B06BE130037BA0C /* SignInView.swift in Sources */,
 				071DE5632B0E55E400C5BF85 /* Receipt.swift in Sources */,
