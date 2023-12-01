@@ -16,8 +16,12 @@ struct UserProfileView: View {
             userData.currentUserEmail
         }
     
+    var createdAt: String {
+        userData.createdAt
+    }
+    
     @State private var showingSignIn = false
-
+    
     var body: some View {
         HStack{
             Image(.logo)
@@ -68,7 +72,7 @@ struct UserProfileView: View {
                         }
                         
                         HStack(spacing: 12) {
-                            Text("MM/YY")
+                            Text("\(createdAt)")
                             Spacer(minLength: 0)
                             Text("CVV")
                                 .frame(width: 35)
