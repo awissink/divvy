@@ -15,6 +15,8 @@ struct DivvyApp: App {
     
     
     init() {
+        let providerFactory = AppCheckDebugProviderFactory()
+        AppCheck.setAppCheckProviderFactory(providerFactory)
         FirebaseApp.configure() // Initialize Firebase
         @StateObject var viewRouter = ViewRouter()
     }
@@ -30,5 +32,8 @@ struct DivvyApp: App {
 
 
 class UserData: ObservableObject {
-   @Published var loggedIn = false
+
+    @Published var loggedIn = false
+    @Published var currentUserEmail = "exampleuser@gmail.com"
+    @Published var createdAt = "11/30"
 }

@@ -3,59 +3,129 @@
 //  Divvy
 //
 //  Created by Eki Uzamere on 11/21/23.
-//
+//  user interface and design - joyce 11/24
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 struct UserProfileView: View {
-    @State private var email: String = "user@example.com" // Replace with actual data binding
-
+    @EnvironmentObject var userData: UserData
+    
+    var email: String {
+            userData.currentUserEmail
+        }
+    
+    var createdAt: String {
+        userData.createdAt
+    }
+    
+    @State private var showingSignIn = false
+    
     var body: some View {
+        HStack{
+            Image(.logo)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 30)
+                .padding()
+        }
         VStack {
             VStack(spacing: 20) {
                 // Profile picture or avatar placeholder
-                Text("Hello Again!")
-                    .font(.title)
-                    .italic()
-                
-                Image(systemName: "person.circle.fill") // Using a system icon as a placeholder
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 100, height: 100) // Set desired size for the profile picture
-                        .clipShape(Circle())
-                        .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-                        .padding(.top, 50) // Adjust the padding as needed
-
-                // Email display
-                HStack {
-                    Text("Email:")
-                        .fontWeight(.semibold)
-                    Text(email)
+//                Image(systemName: "person.circle.fill") // Using a system icon as a placeholder
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
+//                    .frame(width: 100, height: 100) // Set desired size for the profile picture
+//                    .clipShape(Circle())
+//                    .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+//                
+//                // Email display
+//                
+//                    HStack {
+//                        Text(email)
+//                    }
+//                    .frame (maxWidth: .infinity,alignment: .leading)
+//                    .padding()
+//                    .background(Color.white)
+//                    .cornerRadius(10)
+//                    .shadow(radius: 1)
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .fill(.linearGradient(colors: [Color(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)),
+                                                       Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1))], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    
+                    VStack(spacing: 10) {
+                        HStack {
+                            Image("EMVChip")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 50)
+                            
+                            Spacer(minLength: 0)
+                            
+                            Image("CardLogo")
+                                .resizable()
+                                .renderingMode(.template)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 50)
+                        }
+                        
+                        HStack(spacing: 12) {
+                            Text("\(createdAt)")
+                            Spacer(minLength: 0)
+                            Text("CVV")
+                                .frame(width: 35)
+                        }
+                        .padding(.top,15)
+                        Spacer(minLength: 0)
+                        Text(email)
+                            .font(.title3)
+                        
+                    }
+                    .padding(20)
+                    .environment(\.colorScheme, .dark)
+                    .tint(.white)
                 }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 1)
-            }
+                .frame(height: 200)
+                .padding(.top, 35)
+                
+                }
+            
             .padding()
-
+            
+            
+            NavigationLink(destination: SignInView(), isActive: $showingSignIn) {
+                EmptyView()
+            }
+            .hidden()
+            
             // Logout button
             Button("Log Out") {
-                // Handle logout action here
+                do {
+                    try Auth.auth().signOut()
+                    userData.loggedIn = false
+                    showingSignIn = true
+                } catch let signOutError as NSError {
+                    print("Error signing out: \(signOutError.localizedDescription)")
+                }
             }
-            .foregroundColor(.white)
-            .frame(width: 200) // Set the width to a fixed size
+            .foregroundColor(.black)
+            .frame(width: 284, height: 52)
+            .background(Color(red: 0.95, green: 0.95, blue: 0.95))
+            .cornerRadius(28) // Apply corner radius directly to the button
             .padding()
-            .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
-            .cornerRadius(10)
-            .font(.system(size: 18, weight: .semibold))
-            .padding(.bottom, 50) // Adjust the padding as needed
+
+            Spacer()
+            
+            
         }
-//        .background(Color(UIColor.systemGroupedBackground)) // Matches the sign-up background
-//        .edgesIgnoringSafeArea(.all)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
-#Preview {
+#Preview{
     UserProfileView()
 }

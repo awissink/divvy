@@ -18,18 +18,19 @@ struct SignUpView: View {
             //VStack for all the elements on the signup page
             VStack {
                 
-                //Placeholder image for the swipe stack animation
-                Image(.exampleStack)
+                SwipeStack()
                 
-                Spacer().frame(height:30)
+                Spacer().frame(height:40)
                 
                 //Logo and tag line
                 Image(.logo)
+                    .resizable() // Make the image resizable
+                    .frame(width: 105, height: 37)
                 Text("the new way to split the bill")
-                    .font(.system(size:26))
+                    .font(.system(size:18))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
-                Spacer().frame(height: 30)
+                Spacer().frame(height: 48)
                 
                 //email field
                 Text("enter your email")
@@ -37,8 +38,11 @@ struct SignUpView: View {
                     .padding(.leading, 35)
                     .font(.system(size:16, weight:.medium))
                     .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
-                Spacer().frame(height: 5)
+                
+                Spacer().frame(height: 8)
+                
                 TextField("", text: $userEmail)
+                    .autocapitalization(.none)
                     .padding(.leading, 10) //add padding so the cursor is not on the very edge
                     .frame(width: 326, height: 40)
                     .background(Color(red: 0xE0 / 240.0, green: 0xE0 / 240.0, blue: 0xE0 / 240.0))
@@ -51,8 +55,11 @@ struct SignUpView: View {
                     .padding(.leading, 35)
                     .font(.system(size:16, weight:.medium))
                     .foregroundColor(Color(red: 0xE0 / 330.0, green: 0xE0 / 330.0, blue: 0xE0 / 330.0))
-                Spacer().frame(height: 5)
-                TextField("", text: $userPassword)
+                Spacer().frame(height: 8)
+                //how come if changed to SecureField to hide the password it doesn't let the user login?
+                SecureField("", text: $userPassword)
+                    .autocapitalization(.none)
+                    .accessibilityLabel("Password")
                     .padding(.leading, 10) //add padding so the cursor is not on the very edge
                     .frame(width: 326, height: 40)
                     .background(Color(red: 0xE0 / 240.0, green: 0xE0 / 240.0, blue: 0xE0 / 240.0))
@@ -61,7 +68,9 @@ struct SignUpView: View {
                 
                 let firebaseAuthManager = FirebaseAuthManager(userData: userData)
                 
-                Button("Create User") {
+                Spacer().frame(height: 24)
+                
+                Button("Create account") {
                     print("trying to create a user")
                     firebaseAuthManager.createUser(email: userEmail, password: userPassword) { uid, error in
                         if let error = error {
@@ -72,6 +81,7 @@ struct SignUpView: View {
                             print("userData value" + String(userData.loggedIn))
                             print("setting userData to logged in true")
                             userData.loggedIn = true
+                            userData.currentUserEmail = userEmail
                             print("userData value" + String(userData.loggedIn))
                         }
                     }
@@ -82,7 +92,7 @@ struct SignUpView: View {
                 .padding(.top, 15)
                 .padding(.bottom, 15)
                 .background(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
-                .cornerRadius(20)
+                .cornerRadius(28)
                 .font(.system(size:18, weight:.semibold))
 
 
@@ -91,6 +101,6 @@ struct SignUpView: View {
 }
 
 
-#Preview {
-    SignUpView()
-}
+//#Preview {
+//    SignUpView()
+//}

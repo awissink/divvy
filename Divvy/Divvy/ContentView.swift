@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Divvy
 //
-//  Created by Test Account on 10/29/23.
+//  Created by Hannah Luo on 10/29/23.
 //
 
 import SwiftUI

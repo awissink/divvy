@@ -24,7 +24,7 @@ struct NavBar: View {
                         case .user:
                             UserProfileView()
                         case .menu:
-                            MenuView()
+                            MenuView(viewRouter: viewRouter)
                         default:
                             EmptyView()
                         }
@@ -47,13 +47,15 @@ struct NavBar: View {
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .navigationBarBackButtonHidden(true)
+        .navigationBarHidden(true)
     }
 
     @ViewBuilder
     private func bottomBar(geometry: GeometryProxy) -> some View {
         HStack {
             Spacer(minLength: 0)
-            TabBarIcon(viewRouter: viewRouter, assignedPage: .home, width: geometry.size.width/5, height: geometry.size.height/28, systemIconName: "homekit", tabName: "Home")
+            TabBarIcon(viewRouter: viewRouter, assignedPage: .home, width: geometry.size.width/5, height: geometry.size.height/28, systemIconName: "house.circle", tabName: "Home")
             Spacer(minLength: 0)
             ZStack {
                 Circle()
@@ -81,130 +83,6 @@ struct NavBar: View {
         .background(Color("TabBarBackground").shadow(radius: 2))
     }
 }
-
-
-//struct NavBar: View {
-//    @StateObject var viewRouter: ViewRouter
-//    @State var showPopUp = false
-//
-//    var body: some View {
-//        NavigationView {
-//            GeometryReader { geometry in
-//                VStack {
-//                    Spacer()
-//                    switch viewRouter.currentPage {
-//                    case .home:
-//                        HomePage()
-//                    case .user:
-//                        Text("User")
-//                    case .menu:
-//                        MenuView()
-//                        // Remove cases for .camera and .photoUpload if not needed elsewhere
-//                    default:
-//                        EmptyView()
-//                    }
-//                    Spacer()
-//                    
-//                    if viewRouter.currentPage != .menu {
-//                        bottomBar(geometry: geometry)
-//                    }
-//                    
-//                    if showPopUp {
-//                                            PlusMenu(widthAndHeight: geometry.size.width/7, onImageSelected: {
-//                                                viewRouter.currentPage = .menu
-//                                            })
-//                                            .offset(y: -geometry.size.height/6)
-//                                        }
-//                }
-//                .edgesIgnoringSafeArea(.bottom)
-//            }
-//        }
-//        .navigationViewStyle(StackNavigationViewStyle())
-//    }
-//    
-//    @ViewBuilder
-//    private func bottomBar(geometry: GeometryProxy) -> some View {
-//            HStack {
-//                Spacer(minLength: 0)
-//                TabBarIcon(viewRouter: viewRouter, assignedPage: .home, width: geometry.size.width/5, height: geometry.size.height/28, systemIconName: "homekit", tabName: "Home")
-//                Spacer(minLength: 0)
-//                ZStack {
-//                    Circle()
-//                        .foregroundColor(.white)
-//                        .frame(width: geometry.size.width/7, height: geometry.size.width/7)
-//                        .shadow(radius: 4)
-//                    Image(systemName: "plus.circle.fill")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: geometry.size.width/7-6, height: geometry.size.width/7-6)
-//                        .foregroundColor(Color("ForestGreen"))
-//                        .rotationEffect(Angle(degrees: showPopUp ? 90 : 0))
-//                }
-//                .offset(y: -geometry.size.height/8/2)
-//                .onTapGesture {
-//                    withAnimation {
-//                        showPopUp.toggle()
-//                    }
-//                }
-//                Spacer(minLength: 0)
-//                TabBarIcon(viewRouter: viewRouter, assignedPage: .user, width: geometry.size.width/5, height: geometry.size.height/28, systemIconName: "person.crop.circle", tabName: "Account")
-//                Spacer(minLength: 0)
-//            }
-//            .frame(width: geometry.size.width, height: geometry.size.height/8)
-//            .background(Color("TabBarBackground").shadow(radius: 2))
-//    }
-//}
-
-//#Preview {
-//    NavBar()
-//}
-//
-
-//struct ContentView_Previews: PreviewProvider {
-//   static var previews: some View {
-//       NavBar(viewRouter: ViewRouter())
-//           .preferredColorScheme(.light)
-//   }
-//}
-
-//struct PlusMenu: View {
-//    let widthAndHeight: CGFloat
-//    var onCameraSelected: () -> Void
-//    var onPhotoUploadSelected: () -> Void
-//
-//    var body: some View {
-//        HStack(spacing: 50) {
-//            Button(action: onCameraSelected) {
-//                ZStack {
-//                    Circle()
-//                        .foregroundColor(Color("ForestGreen"))
-//                        .frame(width: widthAndHeight, height: widthAndHeight)
-//                    Image(systemName: "camera")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .padding(15)
-//                        .frame(width: widthAndHeight, height: widthAndHeight)
-//                        .foregroundColor(.white)
-//                }
-//            }
-//
-//            Button(action: onPhotoUploadSelected) {
-//                ZStack {
-//                    Circle()
-//                        .foregroundColor(Color("ForestGreen"))
-//                        .frame(width: widthAndHeight, height: widthAndHeight)
-//                    Image(systemName: "folder")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .padding(15)
-//                        .frame(width: widthAndHeight, height: widthAndHeight)
-//                        .foregroundColor(.white)
-//                }
-//            }
-//        }
-//        .transition(.scale)
-//    }
-//}
 
 struct PlusMenu: View {
     //camera code begins
@@ -237,7 +115,6 @@ struct PlusMenu: View {
                 }
             }
             .background(Color.clear)
-//            .frame(width: widthAndHeight * 2 + 50, height: widthAndHeight)
             .transition(.scale)
     }
     
