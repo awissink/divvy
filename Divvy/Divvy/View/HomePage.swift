@@ -187,7 +187,6 @@ struct HomePage: View {
             
         }
         .background(Color.white) // Set the background color of the NavigationView
-        .ignoresSafeArea() //ADDED THIS
         .onAppear {
             listenForUnclaimedReceipts()
             listenForClaimedReceipts()
