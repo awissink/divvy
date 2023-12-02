@@ -162,7 +162,7 @@ struct HomePage: View {
                                         HStack {
                                             Image(systemName: "checkmark.circle.fill")
                                                 .foregroundColor(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
-                                            let createdDate = expense.receipt.createdDate ?? ""
+                                            let createdDate = String(expense.receipt.createdDate!.prefix(10)) ?? ""
                                             let restaurantName = expense.receipt.vendor.name ?? ""
                                             let receiptField = restaurantName + ", " + createdDate
                                             Text(receiptField)
