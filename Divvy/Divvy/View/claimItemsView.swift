@@ -7,6 +7,9 @@
 
 import Foundation
 import SwiftUI
+import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 struct ReceiptItem: Identifiable {
     let id = UUID()
@@ -21,22 +24,36 @@ struct ReceiptItem: Identifiable {
 }
 
 struct ClaimItemsView: View {
-    @State private var restaurantName: String = "Restaurant name"
-    @State private var receiptItems: [ReceiptItem] = [
-        ReceiptItem(name: "Burger", price: 9.99, quantity: 1),
-        ReceiptItem(name: "Fries", price: 4.99, quantity: 2),
-        ReceiptItem(name: "Soda", price: 1.99, quantity: 1)
-    ]
+    
+    let expense: Expense
+    @State private var restaurantName: String
+    @State private var receiptItems: [ReceiptItem]
     @State private var total: Double = 0.0
     @State private var isEditing = false
-    
-    
     @State private var isChecked = false
+        
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.openURL) var openURL
     
-    @Environment(\.presentationMode) var presentationMode // Access to presentation mode
-    
-    //modified function to recalculate total based on what is checked
-    
+    init(expense: Expense) {
+        self.expense = expense
+
+        // Temporary variable for restaurant name
+        let tempRestaurantName = expense.receipt.vendor.name
+
+        // Temporary array for receipt items
+        var tempReceiptItems: [ReceiptItem] = []
+
+        for item in expense.receipt.lineItems {
+            let newItem = ReceiptItem(name: item.description, price: item.total, quantity: item.quantity, isChecked: false)
+            tempReceiptItems.append(newItem)
+        }
+
+        // Initializing @State properties
+        _restaurantName = State(initialValue: tempRestaurantName)
+        _receiptItems = State(initialValue: tempReceiptItems)
+    }
+
     private func recalculateTotal() {
         total = receiptItems.reduce(0) { $0 + ($1.isChecked ? $1.total : 0) }
     }
@@ -81,7 +98,37 @@ struct ClaimItemsView: View {
                 
                 //send invitations
                 Button(action: {
+                    //TO-DO: NEED TO ROUTE BACK TO HOMEPAGE
+                    
+                    //TO-DO: MOVE DOCUMENT TO "CLAIMED" COLLECTION
+                    let db = Firestore.firestore()
+                    let currentUserID = Auth.auth().currentUser?.email
+                    let unclaimedRef = db.collection("recipients").document(currentUserID!).collection("unclaimed")
+                    
+                    let claimedRef = db.collection("recipients").document(currentUserID!).collection("claimed")
+                    claimedRef.document(restaurantName).setData(convertToDictionary(receipt: expense.receipt)!) { error in
+                           if let error = error {
+                               print("Error sending receipt: \(error)")
+                           } else {
+                               print("Receipt sent successfully to \(restaurantName)")
+                           }
+                       }
+                    
+                    //delete the receipt from unclaimed collect
+                    unclaimedRef.document(restaurantName).delete { error in
+                        if let error = error {
+                            print("Error deleting document: \(error)")
+                        } else {
+                            print("Document deleted successfully")
+                        }
+                    }
+                    
                     // Handle button tap
+                    //"https://venmo.com/?txn=pay&note=" + $restaurantName + "&amount=" + $total
+                    if let encodedRestaurantName = restaurantName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                                           let venmoDeeplink = URL(string: "https://venmo.com/?txn=pay&note=" + encodedRestaurantName + "&amount=" + String(total)) {
+                                            openURL(venmoDeeplink)
+                                        }
                 }) {
                     Text("Confirm")
                         .foregroundColor(.black)
@@ -153,8 +200,31 @@ struct ClaimItemCheckmarkView: View {
     }
 }
 
-
-
-#Preview {
-    ClaimItemsView()
+struct ReceiptEditableValue: View {
+    var title: String
+    @Binding var value: Double
+    var isEditing: Bool
+    
+    var body: some View {
+        HStack {
+            Text(title)
+            Spacer()
+            if isEditing {
+                TextField("", value: $value, format: .number)
+                    .textFieldStyle(PlainTextFieldStyle())
+                    .keyboardType(.decimalPad)
+                    .multilineTextAlignment(.trailing)
+                    .frame(minWidth: 50, alignment: .trailing)
+            } else {
+                Text("\(value, specifier: "%.2f")")
+            }
+        }
+        .padding()
+        
+    }
 }
+
+
+//#Preview {
+//    ClaimItemsView()
+//}
