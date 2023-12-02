@@ -36,6 +36,7 @@ struct TagView: View {
                                 
                             }
                         }
+                        .padding(8)
                         
                     }
                 }
@@ -69,7 +70,7 @@ struct TagView: View {
             .font(.system(size: fontSize))
         // adding capsule...
             .padding(.horizontal, 14)
-            .padding(.vertical, 8)
+            .padding(.vertical, 8) //8
             .background(
                 Capsule()
 //                    .fill(.secondary)
