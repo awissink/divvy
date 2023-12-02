@@ -155,17 +155,23 @@ struct HomePage: View {
                     .font(.headline)
                     .textCase(nil)) {
                         ForEach(claimedExpenseData) { expense in
-                                                GeometryReader { geometry in
+                            GeometryReader { geometry in
                                 NavigationLink(destination: ClaimedReceipt(expense: expense)) {
-                                    HStack {
-                                        Image(systemName: "checkmark.circle.fill")
-                                            .foregroundColor(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
-                                        let receiptField = expense.receipt.vendor.name
-                                        Text(receiptField)
-                                            .foregroundColor(.black)
-                                        Spacer()
-                                        Text("paid!")
-                                            .foregroundColor(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
+                                    VStack{
+                                        Spacer() //ADDED THIS
+                                        HStack {
+                                            Image(systemName: "checkmark.circle.fill")
+                                                .foregroundColor(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
+                                            let createdDate = String(expense.receipt.createdDate!.prefix(10)) ?? ""
+                                            let restaurantName = expense.receipt.vendor.name ?? ""
+                                            let receiptField = restaurantName + ", " + createdDate
+                                            Text(receiptField)
+                                                .foregroundColor(.black)
+                                            Spacer()
+                                            Text("paid!")
+                                                .foregroundColor(Color(red: 0x3E / 255.0, green: 0x88 / 255.0, blue: 0x5B / 255.0))
+                                        }
+                                        Spacer() //ADDED THIS
                                     }
                                 }
                             }
