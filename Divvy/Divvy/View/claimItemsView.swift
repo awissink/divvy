@@ -129,6 +129,7 @@ struct ClaimItemsView: View {
                                            let venmoDeeplink = URL(string: "https://venmo.com/?txn=pay&note=" + encodedRestaurantName + "&amount=" + String(total)) {
                                             openURL(venmoDeeplink)
                                         }
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Confirm")
                         .foregroundColor(.black)
@@ -188,7 +189,7 @@ struct ClaimItemCheckmarkView: View {
                         recalculateTotal() // Recalculate total when the item is toggled
                     }) {
                         Image(systemName: receiptItem.isChecked ? "checkmark.square.fill" : "square")
-                            .foregroundColor(receiptItem.isChecked ? .green : .gray)
+                            .foregroundColor(receiptItem.isChecked ? Color("ForestGreen") : .gray)
                             .font(.system(size: 20))
                     }
                 }
