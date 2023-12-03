@@ -129,6 +129,7 @@ struct ClaimItemsView: View {
                                            let venmoDeeplink = URL(string: "https://venmo.com/?txn=pay&note=" + encodedRestaurantName + "&amount=" + String(total)) {
                                             openURL(venmoDeeplink)
                                         }
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Confirm")
                         .foregroundColor(.black)
