@@ -15,73 +15,52 @@ struct HomePage: View {
     @State private var claimedReceipts: [Receipt] = []
     @State private var expenseData: [Expense] = []
     @State private var claimedExpenseData: [Expense] = []
-    @State private var doneListening: Bool = false
-    @State private var doneClaimedListening: Bool = false
     
-    func listenForUnclaimedReceipts() {
+    func listenForUnclaimedReceipts() async {
         let currentUserID = Auth.auth().currentUser?.email
-        
         let db = Firestore.firestore()
         let unclaimedRef = db.collection("recipients").document(currentUserID!).collection("unclaimed")
-        
-        unclaimedRef.addSnapshotListener {
-            querySnapshot, error in
-            guard let documents = querySnapshot?.documents else {
-                print("Error fetching documents: \(String(describing: error))")
-                return
-            }
-            
-            // processing received receipts
-            for document in documents {
-                let data = document.data()
-                
-                do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-                    let receipt = try JSONDecoder().decode(Receipt.self, from: jsonData)
-                    
-                    receivedReceipts.append(receipt)
-                    
-                    // Handle the receipt object
-                } catch {
-                    print("Error decoding: \(error.localizedDescription)")
+
+        do {
+            let querySnapshot = try await unclaimedRef.getDocuments()
+            DispatchQueue.main.async {
+                self.receivedReceipts.removeAll()
+                for document in querySnapshot.documents {
+                    let data = document.data()
+                    if let receipt = try? JSONDecoder().decode(Receipt.self, from: JSONSerialization.data(withJSONObject: data)) {
+                        self.receivedReceipts.append(receipt)
+                    }
                 }
+                // Trigger UI update
+                updateExpenseData()
+            }
+        } catch {
+            print("Error fetching documents: \(error)")
+
                 
             }
-            doneListening = true
-        }
     }
     
-    func listenForClaimedReceipts() {
+    
+    func listenForClaimedReceipts() async {
         let currentUserID = Auth.auth().currentUser?.email
-        
-        let db = Firestore.firestore()
-        let ClaimedRef = db.collection("recipients").document(currentUserID!).collection("claimed")
-        
-        ClaimedRef.addSnapshotListener {
-            querySnapshot, error in
-            guard let documents = querySnapshot?.documents else {
-                print("Error fetching documents: \(String(describing: error))")
-                return
-            }
-            
-            // processing received receipts
-            for document in documents {
-                let data = document.data()
-                
-                do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-                    let receipt = try JSONDecoder().decode(Receipt.self, from: jsonData)
-                    
-                    claimedReceipts.append(receipt)
-                    print("RECEIVED RECEIPT LIST: ", claimedReceipts)
-                    
-                    // Handle the receipt object
-                } catch {
-                    print("Error decoding: \(error.localizedDescription)")
+        let claimedRef = Firestore.firestore().collection("recipients").document(currentUserID!).collection("claimed")
+
+        do {
+            let querySnapshot = try await claimedRef.getDocuments()
+            DispatchQueue.main.async {
+                self.claimedReceipts.removeAll()
+                for document in querySnapshot.documents {
+                    let data = document.data()
+                    if let receipt = try? JSONDecoder().decode(Receipt.self, from: JSONSerialization.data(withJSONObject: data)) {
+                        self.claimedReceipts.append(receipt)
+                    }
                 }
-                
+                // Trigger UI update
+                updateClaimedExpenseData()
             }
-            doneClaimedListening = true
+        } catch {
+            print("Error fetching documents: \(error)")
         }
     }
     
@@ -147,7 +126,50 @@ struct HomePage: View {
                     Spacer()
                 }
                 
-                Section(header: swipeCardView) {
+                // if no new divvys, show EmptyDivvy struct
+                if expenseData.isEmpty {
+                    HStack{
+                        Spacer()
+                        GeometryReader { geometry in
+                            //background
+                            RoundedRectangle(cornerRadius: 30)
+                                .fill(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9512709975, green: 1, blue: 0.930760324, alpha: 1)), Color(#colorLiteral(red: 0.7515366077, green: 0.8420163989, blue: 0.7321715951, alpha: 1))]), startPoint: .center, endPoint: .bottomTrailing))
+                                .rotation3DEffect(
+                                    Angle(
+                                        degrees: Double((geometry.frame(in: .global).minX - 15) / -20)
+                                    ),
+                                    axis: (x: 0, y: 1, z: 0),
+                                    anchor: .center,
+                                    anchorZ: 0.0,
+                                    perspective: 1.0
+                                )
+                                .shadow(color: Color.gray.opacity(0.3), radius: 4, x: 0, y: 2)
+                            
+                            //content
+                            
+                            VStack {
+                                
+                                Text("No new Divvys")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(.secondary)
+                                
+                            }
+                            .padding(24)
+                            .padding(.top, 100)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.primary)
+                            .frame (maxWidth: .infinity, alignment: .center)
+                        }
+                        .frame(width: 220, height: 280)
+                        Spacer()
+                    }
+                    
+                    
+                    
+                } else {
+                    Section(header: swipeCardView) {
+                    }
+
                 }
 
                 Section(header: Text("Claimed Divvys")
@@ -182,39 +204,50 @@ struct HomePage: View {
                     }
                 
             }
+            .refreshable {
+                // Call functions to fetch new data
+                await refreshData()
+            }
             .listStyle(PlainListStyle()) // Use PlainListStyle to have a clear background
             .background(Color.white) // Set the background color of the List
             
         }
         .background(Color.white) // Set the background color of the NavigationView
         .onAppear {
-            listenForUnclaimedReceipts()
-            listenForClaimedReceipts()
-        }
-        .onChange(of: doneListening) { newDataLoaded in
-            if newDataLoaded {
-                //populate expenseData array
-                for receipt in receivedReceipts {
-                    let expense = Expense(description: receipt.createdDate ?? receipt.createdDate!, icon: "doc.text",
-                                          receipt: receipt)
-                    expenseData.append(expense)
-                }
-            }
-        }
-        .onChange(of: doneClaimedListening) { newDataLoaded in
-            if newDataLoaded {
-                //populate expenseData array
-                for receipt in claimedReceipts {
-                    let expense = Expense(description: receipt.createdDate ?? receipt.createdDate!, icon: "doc.text",
-                                          receipt: receipt)
-                    claimedExpenseData.append(expense)
-                    
-                    print("CLAIMED EXPENSE DATA: ", claimedExpenseData)
-                }
-            }
+            fetchData()
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
+    }
+    private func refreshData() async {
+
+                // Reload data
+                await listenForUnclaimedReceipts()
+                await listenForClaimedReceipts()
+                
+                // Since these functions are asynchronous,
+                // you may need to wait for them to complete
+                // or use other ways to ensure the data is fully loaded.
+            }
+        
+    private func updateExpenseData() {
+            expenseData = receivedReceipts.map { receipt in
+                Expense(description: receipt.createdDate ?? "", icon: "doc.text", receipt: receipt)
+            }
+        }
+
+    private func updateClaimedExpenseData() {
+        claimedExpenseData = claimedReceipts.map { receipt in
+            Expense(description: receipt.createdDate ?? "", icon: "doc.text", receipt: receipt)
+        }
+    }
+
+// Add this function to handle async calls
+    private func fetchData() {
+        Task {
+            await listenForUnclaimedReceipts()
+            await listenForClaimedReceipts()
+        }
     }
 }
 
@@ -231,9 +264,4 @@ struct Expense: Identifiable {
     let description: String
     let icon: String
     let receipt: Receipt
-}
-
-
-#Preview {
-    HomePage()
 }

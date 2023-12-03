@@ -44,29 +44,44 @@ struct ChipView: View {
                 Spacer()
             }
             
-            Text("Send out invites")
-                .font(.system(size: 35, weight: .bold))
-                .foregroundColor(.black) //different from tutorial
+            HStack {
+                Text("Send out invites")
+                    .font(.system(size: 35, weight: .bold))
+                    .foregroundColor(.black) //different from tutorial
                 .frame(maxWidth: .infinity, alignment: .leading)
-            // Custom Tag View ...
-            TagView(maxLimit: 150, tags: $tags)
-            // Default Height
-                .frame(height: 280)
-                .padding(.top, 20)
+            }
+            .padding(.leading, 20)
+            .padding(.trailing, 20)
             
-            // TextField ...
-            TextField("Who's in the Divvy?", text: $text)
-                .font(.title3)
-                .padding(.vertical, 12)
-                .padding(.horizontal)
-                .autocapitalization(.none)
-                .background(
-                    RoundedRectangle(cornerRadius: 10)
-                        .strokeBorder(.secondary, lineWidth: 1)
-                )
-            // Setting only Textfield as Dark...
-                .environment(\.colorScheme, .light)
-                .padding(.vertical, 20)
+            HStack {
+                // Custom Tag View ...
+                TagView(maxLimit: 150, tags: $tags)
+                // Default Height
+                    .frame(height: 280)
+                    .padding(.top, 20)
+            }
+            .padding(.leading, 20)
+            .padding(.trailing, 20)
+            
+            HStack{
+                
+                // TextField ...
+                TextField("Who's in the Divvy?", text: $text)
+                    .font(.title3)
+                    .padding(.vertical, 12)
+                    .padding(.horizontal)
+                    .autocapitalization(.none)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10)
+                            .strokeBorder(.secondary, lineWidth: 1)
+                    )
+                // Setting only Textfield as Dark...
+                    .environment(\.colorScheme, .light)
+                    .padding(.vertical, 20)
+            }
+            .padding(.leading, 20)
+            .padding(.trailing, 20)
+
             
             // Add Button...
             Button {
