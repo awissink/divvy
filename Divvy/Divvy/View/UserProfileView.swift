@@ -39,9 +39,9 @@ struct UserProfileView: View {
 //                    .frame(width: 100, height: 100) // Set desired size for the profile picture
 //                    .clipShape(Circle())
 //                    .overlay(Circle().stroke(Color.gray, lineWidth: 1))
-//                
+//
 //                // Email display
-//                
+//
 //                    HStack {
 //                        Text(email)
 //                    }
@@ -52,7 +52,7 @@ struct UserProfileView: View {
 //                    .shadow(radius: 1)
                 ZStack {
                     RoundedRectangle(cornerRadius: 20, style: .continuous)
-                        .fill(.linearGradient(colors: [Color(#colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)),
+                        .fill(.linearGradient(colors: [Color(#colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)),
                                                        Color(#colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1))], startPoint: .topLeading, endPoint: .bottomTrailing))
                     
                     VStack(spacing: 10) {

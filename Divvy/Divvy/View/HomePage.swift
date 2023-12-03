@@ -18,75 +18,54 @@ struct HomePage: View {
     @State private var doneListening: Bool = false
     @State private var doneClaimedListening: Bool = false
     
-    func listenForUnclaimedReceipts() {
-        let currentUserID = Auth.auth().currentUser?.email
-        
-        let db = Firestore.firestore()
-        let unclaimedRef = db.collection("recipients").document(currentUserID!).collection("unclaimed")
-        
-        unclaimedRef.addSnapshotListener {
-            querySnapshot, error in
-            guard let documents = querySnapshot?.documents else {
-                print("Error fetching documents: \(String(describing: error))")
-                return
-            }
-            
-            // processing received receipts
-            for document in documents {
-                let data = document.data()
-                
-                do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-                    let receipt = try JSONDecoder().decode(Receipt.self, from: jsonData)
-                    
-                    receivedReceipts.append(receipt)
-                    
-                    // Handle the receipt object
-                } catch {
-                    print("Error decoding: \(error.localizedDescription)")
+    func listenForUnclaimedReceipts() async {
+            let currentUserID = Auth.auth().currentUser?.email
+            let db = Firestore.firestore()
+            let unclaimedRef = db.collection("recipients").document(currentUserID!).collection("unclaimed")
+
+            do {
+                let querySnapshot = try await unclaimedRef.getDocuments()
+                DispatchQueue.main.async {
+                    self.receivedReceipts.removeAll()
+                    for document in querySnapshot.documents {
+                        let data = document.data()
+                        if let receipt = try? JSONDecoder().decode(Receipt.self, from: JSONSerialization.data(withJSONObject: data)) {
+                            self.receivedReceipts.append(receipt)
+                        }
+                    }
+                    // Trigger UI update
+                    updateExpenseData()
+                    self.doneListening = true
                 }
-                
+            } catch {
+                print("Error fetching documents: \(error)")
             }
-            doneListening = true
         }
-    }
     
-    func listenForClaimedReceipts() {
-        let currentUserID = Auth.auth().currentUser?.email
-        
-        let db = Firestore.firestore()
-        let ClaimedRef = db.collection("recipients").document(currentUserID!).collection("claimed")
-        
-        ClaimedRef.addSnapshotListener {
-            querySnapshot, error in
-            guard let documents = querySnapshot?.documents else {
-                print("Error fetching documents: \(String(describing: error))")
-                return
-            }
-            
-            // processing received receipts
-            for document in documents {
-                let data = document.data()
-                
-                do {
-                    let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
-                    let receipt = try JSONDecoder().decode(Receipt.self, from: jsonData)
-                    
-                    claimedReceipts.append(receipt)
-                    print("RECEIVED RECEIPT LIST: ", claimedReceipts)
-                    
-                    // Handle the receipt object
-                } catch {
-                    print("Error decoding: \(error.localizedDescription)")
+    func listenForClaimedReceipts() async {
+            let currentUserID = Auth.auth().currentUser?.email
+            let claimedRef = Firestore.firestore().collection("recipients").document(currentUserID!).collection("claimed")
+
+            do {
+                let querySnapshot = try await claimedRef.getDocuments()
+                DispatchQueue.main.async {
+                    self.claimedReceipts.removeAll()
+                    for document in querySnapshot.documents {
+                        let data = document.data()
+                        if let receipt = try? JSONDecoder().decode(Receipt.self, from: JSONSerialization.data(withJSONObject: data)) {
+                            self.claimedReceipts.append(receipt)
+                        }
+                    }
+                    // Trigger UI update
+                    updateClaimedExpenseData()
+                    self.doneClaimedListening = true
                 }
-                
+            } catch {
+                print("Error fetching documents: \(error)")
             }
-            doneClaimedListening = true
         }
-    }
     
     var swipeCardView: some View {
-        //        Text("Card view here")
         ScrollView(.horizontal, showsIndicators: false){
             HStack(spacing:-5){
                 ForEach(expenseData) { expense in
@@ -147,9 +126,52 @@ struct HomePage: View {
                     Spacer()
                 }
                 
-                Section(header: swipeCardView) {
+                // if no new divvys, show EmptyDivvy struct
+                if expenseData.isEmpty && doneListening && doneClaimedListening {
+                    HStack{
+                        Spacer()
+                        GeometryReader { geometry in
+                            //background
+                            RoundedRectangle(cornerRadius: 30)
+                                .fill(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9512709975, green: 1, blue: 0.930760324, alpha: 1)), Color(#colorLiteral(red: 0.7515366077, green: 0.8420163989, blue: 0.7321715951, alpha: 1))]), startPoint: .center, endPoint: .bottomTrailing))
+                                .rotation3DEffect(
+                                    Angle(
+                                        degrees: Double((geometry.frame(in: .global).minX - 15) / -20)
+                                    ),
+                                    axis: (x: 0, y: 1, z: 0),
+                                    anchor: .center,
+                                    anchorZ: 0.0,
+                                    perspective: 1.0
+                                )
+                                .shadow(color: Color.gray.opacity(0.3), radius: 4, x: 0, y: 2)
+                            
+                            //content
+                            
+                            VStack {
+                                
+                                Text("No new Divvys")
+                                    .font(.system(size: 24))
+                                    .foregroundColor(.secondary)
+                                
+                            }
+                            .padding(24)
+                            .padding(.top, 100)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.primary)
+                            .frame (maxWidth: .infinity, alignment: .center)
+                        }
+                        .frame(width: 220, height: 280)
+                        Spacer()
+                    }
+                    
+                    
+                    
+                } else {
+                    Section(header: swipeCardView) {
+                    }
                 }
-
+                
+                
                 Section(header: Text("Claimed Divvys")
                     .foregroundColor(.black)
                     .font(.headline)
@@ -176,11 +198,11 @@ struct HomePage: View {
                                 }
                             }
                         }
-                        
-                        
-                        
                     }
-                
+            }
+            .refreshable {
+                // Call functions to fetch new data
+                await refreshData()
             }
             .listStyle(PlainListStyle()) // Use PlainListStyle to have a clear background
             .background(Color.white) // Set the background color of the List
@@ -188,8 +210,7 @@ struct HomePage: View {
         }
         .background(Color.white) // Set the background color of the NavigationView
         .onAppear {
-            listenForUnclaimedReceipts()
-            listenForClaimedReceipts()
+            fetchData()
         }
         .onChange(of: doneListening) { newDataLoaded in
             if newDataLoaded {
@@ -216,6 +237,38 @@ struct HomePage: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarHidden(true)
     }
+    
+    // Refresh data function
+        private func refreshData() async {
+
+            // Reload data
+            await listenForUnclaimedReceipts()
+            await listenForClaimedReceipts()
+            
+            // Since these functions are asynchronous,
+            // you may need to wait for them to complete
+            // or use other ways to ensure the data is fully loaded.
+        }
+    
+    private func updateExpenseData() {
+            expenseData = receivedReceipts.map { receipt in
+                Expense(description: receipt.createdDate ?? "", icon: "doc.text", receipt: receipt)
+            }
+        }
+
+        private func updateClaimedExpenseData() {
+            claimedExpenseData = claimedReceipts.map { receipt in
+                Expense(description: receipt.createdDate ?? "", icon: "doc.text", receipt: receipt)
+            }
+        }
+    
+    // Add this function to handle async calls
+        private func fetchData() {
+            Task {
+                await listenForUnclaimedReceipts()
+                await listenForClaimedReceipts()
+            }
+        }
 }
 
 struct Balance: Identifiable {
@@ -231,9 +284,4 @@ struct Expense: Identifiable {
     let description: String
     let icon: String
     let receipt: Receipt
-}
-
-
-#Preview {
-    HomePage()
 }
