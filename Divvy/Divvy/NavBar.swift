@@ -88,7 +88,7 @@ struct PlusMenu: View {
     //camera code begins
     
     @State private var showImagePicker: Bool = false
-    @State private var sourceType: UIImagePickerController.SourceType = .camera
+    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
     @State private var image: UIImage?
     @State private var isImageSelected = false
