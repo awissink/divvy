@@ -27,6 +27,7 @@
 		4C5ED18F2B06C63C00D59DF5 /* PhotoUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5ED18E2B06C63C00D59DF5 /* PhotoUploadView.swift */; };
 		4C5ED1912B06C65D00D59DF5 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5ED1902B06C65D00D59DF5 /* CameraView.swift */; };
 		4CBDF4CD2B0FD7F8003AC22C /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBDF4CC2B0FD7F8003AC22C /* UserProfileView.swift */; };
+		4CC30E772B1CD4C900D3BC4C /* GreenLaunchScreen.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF819D2B1C835B00FFB7F4 /* GreenLaunchScreen.storyboard */; };
 		4CDF819E2B1C835B00FFB7F4 /* GreenLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CDF819D2B1C835B00FFB7F4 /* GreenLaunchScreen.storyboard */; };
 		523325412B04355E00FB6889 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523325402B04355E00FB6889 /* FirebaseAuthManager.swift */; };
 		526A00642B06BD2900C4D236 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526A00632B06BD2900C4D236 /* ImagePicker.swift */; };
@@ -312,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CC30E772B1CD4C900D3BC4C /* GreenLaunchScreen.storyboard in Sources */,
 				52F092D12B1AA1FC00EBCE05 /* ClaimedReceipt.swift in Sources */,
 				4C5ED17F2B06C19500D59DF5 /* NavBar.swift in Sources */,
 				4C5ED17B2B06C0E800D59DF5 /* CustomTabBarApp.swift in Sources */,
