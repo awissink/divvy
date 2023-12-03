@@ -88,7 +88,7 @@ struct PlusMenu: View {
     //camera code begins
     
     @State private var showImagePicker: Bool = false
-    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @State private var sourceType: UIImagePickerController.SourceType = .camera
     
     @State private var image: UIImage?
     @State private var isImageSelected = false
@@ -121,7 +121,9 @@ struct PlusMenu: View {
     private func cameraButton(systemIconName: String) -> some View {
         Button(action: {
             self.sourceType = .camera
-            self.showImagePicker = true
+            DispatchQueue.main.async {
+                        self.showImagePicker = true
+                    }
         }) {
             buttonContent(systemIconName: systemIconName)
         }
@@ -130,7 +132,9 @@ struct PlusMenu: View {
     private func photoUploadButton(systemIconName: String) -> some View {
         Button(action: {
             self.sourceType = .photoLibrary
-            self.showImagePicker = true
+            DispatchQueue.main.async {
+                        self.showImagePicker = true
+                    }
         }) {
             buttonContent(systemIconName: systemIconName)
         }
