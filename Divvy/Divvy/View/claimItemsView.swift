@@ -188,7 +188,7 @@ struct ClaimItemCheckmarkView: View {
                         recalculateTotal() // Recalculate total when the item is toggled
                     }) {
                         Image(systemName: receiptItem.isChecked ? "checkmark.square.fill" : "square")
-                            .foregroundColor(receiptItem.isChecked ? .green : .gray)
+                            .foregroundColor(receiptItem.isChecked ? Color("ForestGreen") : .gray)
                             .font(.system(size: 20))
                     }
                 }
