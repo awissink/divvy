@@ -12,7 +12,7 @@ import FirebaseAuth
 
 @main
 struct DivvyApp: App {
-    
+    @StateObject var networkMonitor = NetworkMonitor()
     
     init() {
         let providerFactory = AppCheckDebugProviderFactory()
@@ -24,7 +24,9 @@ struct DivvyApp: App {
     var body: some Scene {
 
         WindowGroup {
-            ContentView().environmentObject(UserData())
+            ContentView()
+                .environmentObject(UserData())
+                .environmentObject(networkMonitor)
             
         }
     }
