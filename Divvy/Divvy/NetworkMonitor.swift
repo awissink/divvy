@@ -3,7 +3,7 @@
 //  Divvy
 //
 //  Created by Hannah on 12/4/23.
-//
+// referenced code from: https://www.danijelavrzan.com/posts/2022/11/network-connection-alert-swiftui/
 
 import Foundation
 import SwiftUI
