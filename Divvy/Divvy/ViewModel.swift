@@ -9,10 +9,11 @@ import Foundation
 import VeryfiSDK
 
 class ViewModel: ObservableObject {
-    let clientId = "vrfrFmw2P8hgakFhhvaMO9gHKSc4Rg9yH0vAElW"
-    let clientSecret = "Er4f1OgYdiOLytIflcMjy3Ax4eDjNyEWCTwcKGJlzM75P4RhpsYlYlKzT6mXmjTvmZf3c7p0vNnALM3cCZG6nCTBm3W5gz8vYlWINrGH1IX0etsDO12G7YzEMpuLpwUV"
-    let username = "amelia4"
-    let apiKey = "69415cd7ce03189c57f9732504d0c3db"
+    // TODO: replace with actual API keys if testing
+    let clientId = "secret"
+    let clientSecret = "secret"
+    let username = "secret"
+    let apiKey = "secret"
 
     @Published var restaurantName: String = ""
     @Published var menuItems: [LineItem] = [] {
